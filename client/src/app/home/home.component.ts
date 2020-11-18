@@ -17,15 +17,11 @@ export class HomeComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    if (this.accountService.currentUser$) {this.router.navigateByUrl('/companies');}
   }
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl('/companies');
-    }, error => {
-      console.log(error);
-      this.toastr.error(error.error);
     })
   }
 

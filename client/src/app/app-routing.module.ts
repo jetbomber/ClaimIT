@@ -6,6 +6,9 @@ import { CompanyDetailComponent } from './companies/company-detail/company-detai
 import { CompanyListComponent } from './companies/company-list/company-list.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { HomeComponent } from './home/home.component';
 import { ReportsComponent } from './reports/reports.component';
 import { AuthGuard } from './_guards/auth.guard';
@@ -26,7 +29,10 @@ const routes: Routes = [
       {path: 'reports', component: ReportsComponent},
     ]
   },
-  {path: '**', component: HomeComponent, pathMatch: 'full'}
+  {path: 'errors', component: TestErrorsComponent},
+  {path: 'not-found', component: NotFoundComponent},
+  {path: 'server-error', component: ServerErrorComponent},
+  {path: '**', component: NotFoundComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
