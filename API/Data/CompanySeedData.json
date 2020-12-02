@@ -1,0 +1,177 @@
+[
+  {
+    "CompanyName": "ESCHOIR",
+    "YearEndDate": "2020-05-16",
+    "CommencementDate": "2020-11-20",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "HOMELUX",
+    "YearEndDate": "2020-01-19",
+    "CommencementDate": "2020-08-07",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "BUZZNESS",
+    "YearEndDate": "2020-11-24",
+    "CommencementDate": "2021-01-26",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "COMSTRUCT",
+    "YearEndDate": "2020-07-11",
+    "CommencementDate": "2020-08-01",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "QUARX",
+    "YearEndDate": "2020-02-23",
+    "CommencementDate": "2020-02-20",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "FOSSIEL",
+    "YearEndDate": "2020-04-15",
+    "CommencementDate": "2020-06-06",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "AUSTECH",
+    "YearEndDate": "2020-03-22",
+    "CommencementDate": "2020-12-22",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "EXOSTREAM",
+    "YearEndDate": "2020-12-31",
+    "CommencementDate": "2020-08-20",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "ISOSURE",
+    "YearEndDate": "2020-07-03",
+    "CommencementDate": "2020-03-28",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "ACCUPRINT",
+    "YearEndDate": "2020-09-11",
+    "CommencementDate": "2020-12-22",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "ORBOID",
+    "YearEndDate": "2020-04-17",
+    "CommencementDate": "2021-01-08",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "ANOCHA",
+    "YearEndDate": "2020-06-22",
+    "CommencementDate": "2021-01-25",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "CUIZINE",
+    "YearEndDate": "2020-07-27",
+    "CommencementDate": "2021-01-05",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "DENTREX",
+    "YearEndDate": "2020-05-06",
+    "CommencementDate": "2020-12-22",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "DOGNOST",
+    "YearEndDate": "2020-12-05",
+    "CommencementDate": "2020-08-31",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "OULU",
+    "YearEndDate": "2020-02-01",
+    "CommencementDate": "2020-10-28",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "DIGIPRINT",
+    "YearEndDate": "2020-08-23",
+    "CommencementDate": "2020-02-27",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "OMNIGOG",
+    "YearEndDate": "2020-07-28",
+    "CommencementDate": "2020-02-19",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "PYRAMAX",
+    "YearEndDate": "2020-04-15",
+    "CommencementDate": "2020-07-05",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "CYTREK",
+    "YearEndDate": "2020-03-23",
+    "CommencementDate": "2020-02-05",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "FILODYNE",
+    "YearEndDate": "2020-05-28",
+    "CommencementDate": "2020-06-01",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "CRUSTATIA",
+    "YearEndDate": "2020-12-23",
+    "CommencementDate": "2020-05-01",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "SUNCLIPSE",
+    "YearEndDate": "2021-01-13",
+    "CommencementDate": "2020-08-02",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": true
+  },
+  {
+    "CompanyName": "VALPREAL",
+    "YearEndDate": "2020-07-14",
+    "CommencementDate": "2020-03-11",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  },
+  {
+    "CompanyName": "ACRODANCE",
+    "YearEndDate": "2020-01-13",
+    "CommencementDate": "2020-05-20",
+    "IncludeHsaClaims": true,
+    "IncludeCostPlusClaims": false
+  }
+]

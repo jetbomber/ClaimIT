@@ -10,7 +10,7 @@ namespace API.Data
         {
         }
 
-        public DbSet<AppUser> Users { get; set; }
-        public DbSet<Company> Companies { get; set; }
+        public DbSet<AppUser> User { get; set; }
+        public DbSet<Company> Company { get; set; }
     }
 }

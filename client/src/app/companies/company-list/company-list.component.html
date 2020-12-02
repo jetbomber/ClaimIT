@@ -1,1 +1,81 @@
-<p>company-list works!</p>
+<div class="company">
+
+    <mat-form-field>
+
+        <input matInput placeholder="Search Companies" #input>
+
+    </mat-form-field>
+
+    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+
+        <mat-spinner></mat-spinner>
+
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-hover thead-dark"
+    matSort matSortActive="companyName" matSortDirection="asc" matSortDisableClear>
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let company"> {{company.id}} </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="companyName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let company"> {{company.companyName}} </td>
+        </ng-container>
+        <!-- Year End Date Column -->
+        <ng-container matColumnDef="yearEndDate">
+          <th mat-header-cell *matHeaderCellDef> Year End Date </th>
+          <td mat-cell *matCellDef="let company">
+            <span *ngIf="!emptyDate(company.yearEndDate); else displayEmpty">
+               {{company.yearEndDate | date:'MM/dd/yyyy'}}
+            </span>
+            <ng-template #displayEmpty>-</ng-template>
+        </td>
+        </ng-container>
+        <!-- Group Termination Date Column -->
+        <ng-container matColumnDef="groupTerminationDate">
+          <th mat-header-cell *matHeaderCellDef> Group Termination Date </th>
+          <td mat-cell *matCellDef="let company">
+              <span *ngIf="emptyDate(company.groupTerminationDate); else displayEmpty">
+                 {{company.groupTerminationDate | date:'MM/dd/yyyy'}}
+              </span>
+              <ng-template #displayEmpty>-</ng-template>
+          </td>
+        </ng-container>
+        <!-- Commencement Date Column -->
+        <ng-container matColumnDef="commencementDate">
+          <th mat-header-cell *matHeaderCellDef> Commencement Date </th>
+          <td mat-cell *matCellDef="let company"> {{company.commencementDate | date:'MM/dd/yyyy'}} </td>
+        </ng-container>
+        <!-- Include Hsa Claims Column -->
+        <ng-container matColumnDef="includeHsaClaims">
+          <th mat-header-cell *matHeaderCellDef> Include Hsa Claims </th>
+          <td mat-cell *matCellDef="let company">
+            <span *ngIf="company.includeHsaClaims; else displayNo">YES</span>
+            <ng-template #displayNo>NO</ng-template>
+          </td>
+        </ng-container>
+        <!-- Include Hsa Claims Column -->
+        <ng-container matColumnDef="includeCostPlusClaims">
+          <th mat-header-cell *matHeaderCellDef> Include Cost Plus Claims </th>
+          <td mat-cell *matCellDef="let company">
+            <span *ngIf="company.includeCostPlusClaims; else displayNo">YES</span>
+            <ng-template #displayNo>NO</ng-template>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns;" (click)="clickedRow(row)"></tr>
+       
+      </table>
+      <mat-paginator [length]="dataSource.total" 
+      [pageSizeOptions]="[5, 10, 15, 20, 25]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+      
+
+</div>

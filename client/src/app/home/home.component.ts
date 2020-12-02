@@ -13,8 +13,7 @@ export class HomeComponent implements OnInit {
   model: any = {}
 
   constructor(private accountService: AccountService,
-              private router: Router, 
-              private toastr: ToastrService) { }
+              private router: Router) { }
 
   ngOnInit(): void {
   }
