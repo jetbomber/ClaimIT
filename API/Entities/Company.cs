@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Entities
@@ -7,10 +8,10 @@ namespace API.Entities
     public class Company
     {
         public int Id { get; set; }
-        public string CompanyName { get; set; }
-        public DateTime YearEndDate { get; set; }
+        [Required] public string CompanyName { get; set; }
+        [Required] public DateTime YearEndDate { get; set; }
         public DateTime? GroupTerminationDate { get; set; }
-        public DateTime CommencementDate { get; set; }
+        [Required] public DateTime CommencementDate { get; set; }
         public bool IncludeHsaClaims { get; set; }
         public bool IncludeCostPlusClaims { get; set; }
     }

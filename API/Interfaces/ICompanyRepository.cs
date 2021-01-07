@@ -10,8 +10,8 @@ namespace API.Interfaces
     {
         void Update(Company company);
         Task<bool> SaveAllAsync();
-        Task<PagedList<CompanyDto>> GetCompaniesAsync(UserParams userParams);
-        Task<CompanyDto> GetCompanyByIdAsync(int id);
+        Task<PagedList<Company>> GetCompaniesAsync(UserParams userParams);
+        Task<Company> GetCompanyByIdAsync(int id);
         
     }
 }

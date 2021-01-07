@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using API.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
@@ -22,28 +22,24 @@ namespace API.Data
 
         }
 
-        public async Task<PagedList<CompanyDto>> GetCompaniesAsync(UserParams userParams)
+        public async Task<PagedList<Company>> GetCompaniesAsync(UserParams userParams)
         {
             
-            var query = _context.Company
-            .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)
+            IQueryable<Company> query = _context.Company
             .AsNoTracking();
             if (!string.IsNullOrEmpty(userParams.Filter)){
                 query = query.Where(x=>x.CompanyName.ToUpper().Contains(userParams.Filter.ToUpper()));
             }
-            if(userParams.SortDirection.ToUpper() == "DESC") {
-                query = query.OrderByDescending(x=>x.CompanyName);
-            } else {
-                query = query.OrderBy(x=>x.CompanyName);
-            }
-            return await PagedList<CompanyDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+
+            query = SortingExtension.SortBy(query,userParams.SortColumn,userParams.Reverse);
+
+            return await PagedList<Company>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
-        public async Task<CompanyDto> GetCompanyByIdAsync(int id)
+        public async Task<Company> GetCompanyByIdAsync(int id)
         {
              return await _context.Company
             .Where(x => x.Id == id)
-            .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)
             .SingleOrDefaultAsync();
         }
 

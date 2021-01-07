@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClaimDetailComponent } from './claims/claim-detail/claim-detail.component';
 import { ClaimListComponent } from './claims/claim-list/claim-list.component';
+import { CompanyCreateComponent } from './companies/company-create/company-create.component';
 import { CompanyDetailComponent } from './companies/company-detail/company-detail.component';
 import { CompanyListComponent } from './companies/company-list/company-list.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
     children: [
       {path: 'companies', component: CompanyListComponent},
       {path: 'companies/:id', component: CompanyDetailComponent},
+      {path: 'create', component: CompanyCreateComponent},
       {path: 'employees', component: EmployeeListComponent},
       {path: 'employees/:id', component: EmployeeDetailComponent},
       {path: 'claims', component: ClaimListComponent},

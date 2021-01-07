@@ -1,12 +1,15 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, merge } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { Company } from 'src/app/_models/company';
 import { CompanyService } from 'src/app/_services/company.service';
 import { CompanyListDataSource } from './company-list-data-source';
+import { setSortingParameters } from '../../utilities/sort.utilities';
+import { Constants } from '../../utilities/constants';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-company-list',
@@ -14,19 +17,29 @@ import { CompanyListDataSource } from './company-list-data-source';
   styleUrls: ['./company-list.component.css']
 })
 export class CompanyListComponent implements AfterViewInit, OnInit   {
+  modalRef: BsModalRef;
   company:Company;
   dataSource: CompanyListDataSource;
-  displayColumns = ["id","companyName","yearEndDate","groupTerminationDate","commencementDate","includeHsaClaims","includeCostPlusClaims"];
+  itemsPerPage = Constants.ItemsPerPage;
+  pageSizeOptions = Constants.PageSizeOptions;
+  displayColumns = ["Id","CompanyName","YearEndDate","GroupTerminationDate","CommencementDate","IncludeHsaClaims","IncludeCostPlusClaims"];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
-  constructor(private companyService: CompanyService, private route: ActivatedRoute) { }
+  constructor(private companyService: CompanyService, 
+              private route: ActivatedRoute,
+              private router: Router,
+              private modalService: BsModalService) { }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   ngOnInit() {
     this.dataSource = new CompanyListDataSource(this.companyService);
-    this.dataSource.loadCompanies('','asc',0, 5);
+    this.dataSource.loadCompanies(setSortingParameters('','asc','CompanyName',0,this.itemsPerPage));
   }
 
   ngAfterViewInit() {
@@ -54,19 +67,19 @@ export class CompanyListComponent implements AfterViewInit, OnInit   {
   }
 
   loadCompaniesPage() {
-    this.dataSource.loadCompanies(
-      this.input.nativeElement.value,
-      this.sort.direction,
-      this.paginator.pageIndex,
-      this.paginator.pageSize);
+    this.dataSource.loadCompanies(setSortingParameters(this.input.nativeElement.value,
+                                                       this.sort.direction,
+                                                       this.sort.active,
+                                                       this.paginator.pageIndex,
+                                                       this.paginator.pageSize));
   }
 
   emptyDate(dateValue: Date): boolean{
     return (dateValue == null);
   }
 
-  clickedRow(row) {
-    console.log('Row clicked: ', row);
+  selectCompany(company) {
+    this.router.navigateByUrl('/companies/'+company.id);
   }
 
 }

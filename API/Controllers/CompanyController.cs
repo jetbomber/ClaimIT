@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
+using API.Entities;
 using API.Extensions;
 using API.Helpers;
 using API.Interfaces;
@@ -22,7 +25,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CompanyDto>>> GetCompanies([FromQuery]UserParams userParams)
+        public async Task<ActionResult<IEnumerable<Company>>> GetCompanies([FromQuery]UserParams userParams)
         {
             var companies = await _companyRepository.GetCompaniesAsync(userParams);
 
@@ -34,10 +37,32 @@ namespace API.Controllers
         }
 
         [HttpGet("{companyid}")]
-        public async Task<ActionResult<CompanyDto>> GetCompanyById(int companyId)
+        public async Task<ActionResult<Company>> GetCompanyById(int companyId)
         {
             return await _companyRepository.GetCompanyByIdAsync(companyId);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Company>> CreateCompany(Company company)
+        {
+            return Ok("Create Company");
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateCompany(Company company)
+        {
+
+            company.CommencementDate = ParseDates.ParseDate(company.CommencementDate);
+            company.YearEndDate = ParseDates.ParseDate(company.YearEndDate);
+            company.GroupTerminationDate = ParseDates.ParseDate(company.GroupTerminationDate);
+            _companyRepository.Update(company);
+
+            if (await _companyRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to update company");
+            
+        }
+
 
     }
 }

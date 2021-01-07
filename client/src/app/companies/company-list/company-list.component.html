@@ -1,36 +1,47 @@
-<div class="company">
 
-    <mat-form-field>
+<div>
 
-        <input matInput placeholder="Search Companies" #input>
+    <div class="row justify-content-between">
 
-    </mat-form-field>
+      <div class="col-4">
+        <mat-form-field>
+          <input matInput placeholder="Search Companies" #input>
+        </mat-form-field>
+      </div>
 
-    <div class="spinner-container" *ngIf="dataSource.loading$ | async">
-
-        <mat-spinner></mat-spinner>
+      <div class="col-4">
+        <a mat-button color="primary" (click)="openModal(createcompany)">Create Company</a>
+      </div>
 
     </div>
 
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table table-hover thead-dark"
-    matSort matSortActive="companyName" matSortDirection="asc" matSortDisableClear>
+</div>
+
+<ng-template #createcompany>
+  <app-company-create></app-company-create>
+</ng-template>
+
+<div class="company p-2 bg-light border">
+
+    <table mat-table [dataSource]="dataSource" class="table table-hover"
+    matSort matSortActive="CompanyName" matSortDirection="asc" matSortDisableClear>
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
       
         <!-- Id Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id </th>
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Id </th>
           <td mat-cell *matCellDef="let company"> {{company.id}} </td>
         </ng-container>
         <!-- Name Column -->
-        <ng-container matColumnDef="companyName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <ng-container matColumnDef="CompanyName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Name </th>
           <td mat-cell *matCellDef="let company"> {{company.companyName}} </td>
         </ng-container>
         <!-- Year End Date Column -->
-        <ng-container matColumnDef="yearEndDate">
-          <th mat-header-cell *matHeaderCellDef> Year End Date </th>
+        <ng-container matColumnDef="YearEndDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Year End Date </th>
           <td mat-cell *matCellDef="let company">
             <span *ngIf="!emptyDate(company.yearEndDate); else displayEmpty">
                {{company.yearEndDate | date:'MM/dd/yyyy'}}
@@ -39,43 +50,49 @@
         </td>
         </ng-container>
         <!-- Group Termination Date Column -->
-        <ng-container matColumnDef="groupTerminationDate">
-          <th mat-header-cell *matHeaderCellDef> Group Termination Date </th>
+        <ng-container matColumnDef="GroupTerminationDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Group Termination Date </th>
           <td mat-cell *matCellDef="let company">
-              <span *ngIf="emptyDate(company.groupTerminationDate); else displayEmpty">
-                 {{company.groupTerminationDate | date:'MM/dd/yyyy'}}
+              <span *ngIf="!emptyDate(company.groupTerminationDate); else displayEmpty">
+                {{company.groupTerminationDate | date:'MM/dd/yyyy'}}
               </span>
               <ng-template #displayEmpty>-</ng-template>
           </td>
         </ng-container>
         <!-- Commencement Date Column -->
-        <ng-container matColumnDef="commencementDate">
-          <th mat-header-cell *matHeaderCellDef> Commencement Date </th>
+        <ng-container matColumnDef="CommencementDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Commencement Date </th>
           <td mat-cell *matCellDef="let company"> {{company.commencementDate | date:'MM/dd/yyyy'}} </td>
         </ng-container>
         <!-- Include Hsa Claims Column -->
-        <ng-container matColumnDef="includeHsaClaims">
-          <th mat-header-cell *matHeaderCellDef> Include Hsa Claims </th>
+        <ng-container matColumnDef="IncludeHsaClaims">
+          <th mat-header-cell *matHeaderCellDef> HSA </th>
           <td mat-cell *matCellDef="let company">
-            <span *ngIf="company.includeHsaClaims; else displayNo">YES</span>
-            <ng-template #displayNo>NO</ng-template>
+            <mat-icon *ngIf="company.includeHsaClaims" style="color:green">check</mat-icon>
+            <mat-icon *ngIf="!company.includeHsaClaims" style="color:red">close</mat-icon>
           </td>
         </ng-container>
-        <!-- Include Hsa Claims Column -->
-        <ng-container matColumnDef="includeCostPlusClaims">
-          <th mat-header-cell *matHeaderCellDef> Include Cost Plus Claims </th>
+        <!-- Include Cost Plus Claims Column -->
+        <ng-container matColumnDef="IncludeCostPlusClaims">
+          <th mat-header-cell *matHeaderCellDef> Cost Plus </th>
           <td mat-cell *matCellDef="let company">
-            <span *ngIf="company.includeCostPlusClaims; else displayNo">YES</span>
-            <ng-template #displayNo>NO</ng-template>
+            <mat-icon *ngIf="company.includeCostPlusClaims" style="color:green">check</mat-icon>
+            <mat-icon *ngIf="!company.includeCostPlusClaims" style="color:red">close</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editRow">
+          <th mat-header-cell *matHeaderCellDef> Edit </th>
+          <td mat-cell>
+            <mat-icon>check</mat-icon>
           </td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayColumns;" (click)="clickedRow(row)"></tr>
+        <tr mat-row *matRowDef="let company; columns: displayColumns;" (click)="selectCompany(company)"></tr>
        
       </table>
-      <mat-paginator [length]="dataSource.total" 
-      [pageSizeOptions]="[5, 10, 15, 20, 25]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+      <mat-paginator class="p-2 bg-light border" [length]="dataSource.total" 
+      [pageSizeOptions]="pageSizeOptions" [pageSize]="itemsPerPage" showFirstLastButtons></mat-paginator>
       
-
 </div>

@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    border: 1px solid black;
   }
 
 .spinner-container {
@@ -13,10 +14,26 @@ table {
 }
 
 .mat-header-row {
-    background-color: #0056b3
+    background-color: #2979FF;
+    border: 1px solid black;
     
+}
+
+::ng-deep .modify-arrow .mat-sort-header-arrow {
+    color: #fff !important;
+    opacity: 1 !important;
 }
 
 .mat-header-cell {
     color:#f8f9fa;
+}
+
+.mat-row {
+    /* row border */
+    border: 1px solid black;
+    height: 25px !important;
+}
+
+td.mat-cell {
+    border-bottom: 1px solid black;
 }

@@ -1,1 +1,49 @@
-<p>company-detail works!</p>
+<div *ngIf="company">
+  <tabset>
+    <tab class="p-2 bg-light border" heading="General Info" id="tabGeneralInfo">
+      <div class="col-4 p-3 border">
+        <form [formGroup]='companyForm' (ngSubmit)="companyForm.valid && updateCompany()" autocomplete="off">
+          <app-text-input 
+            [formControl]='companyForm.controls["companyName"]'
+            [label]='"Company Name:"'>
+          </app-text-input>
+          <app-date-input
+            [formControl]='companyForm.controls["commencementDate"]'
+            [label]='"Commencement Date"'>
+          </app-date-input>
+          <app-date-input
+            [formControl]='companyForm.controls["yearEndDate"]'
+            [label]='"Year End Date"'>
+          </app-date-input>
+          <app-date-input
+            [formControl]='companyForm.controls["groupTerminationDate"]'
+            [label]='"Termination Date"'>
+          </app-date-input>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" formControlName="includeHsaClaims" 
+            [checked]="company.includeHsaClaims">
+            <label class="form-check-label" for="includeHsaClaims">HSA</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" formControlName="includeCostPlusClaims"
+            [checked]="company.includeCostPlusClaims">
+            <label class="form-check-label" for="includeCostPlusClaims">Cost Plus</label>
+          </div>
+          <div class="row mb-2" *ngIf="validationErrors.length > 0">
+            <ul class="text-danger">
+                <li *ngFor="let error of validationErrors">
+                    {{error}}
+                </li>
+            </ul>
+          </div>
+          <button [disabled]='!companyForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
+        </form>
+      </div>
+    </tab>
+    <tab class="p-2 bg-light border" heading="Divisions" id="tabDivisions">Divisions</tab>
+    <tab class="p-2 bg-light border" heading="Classes" id="tabClasses">Classes</tab>
+  </tabset>
+</div>
+
+
+
