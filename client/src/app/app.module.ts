@@ -40,6 +40,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
+import { DivisionListComponent } from './companies/division-list/division-list.component';
+import { ClassListComponent } from './companies/class-list/class-list.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     CompanyCreateComponent,
     TextInputComponent,
     DateInputComponent,
+    DivisionListComponent,
+    ClassListComponent,
   ],
   imports: [
     CommonModule,

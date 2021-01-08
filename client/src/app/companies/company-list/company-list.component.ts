@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { fromEvent, merge } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { Company } from 'src/app/_models/company';
@@ -29,7 +29,6 @@ export class CompanyListComponent implements AfterViewInit, OnInit   {
   @ViewChild('input') input: ElementRef;
 
   constructor(private companyService: CompanyService, 
-              private route: ActivatedRoute,
               private router: Router,
               private modalService: BsModalService) { }
 

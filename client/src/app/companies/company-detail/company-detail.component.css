@@ -1,7 +1,16 @@
-.general-container {
-    width: 500px;
+.tab-pane {
+    height:500px;
 }
 
-.tab-pane {
-    height:600px;
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.child {
+    width: 100%;
+}
+
+.btn {
+    text-align: center;
 }

@@ -1,40 +1,46 @@
-<div class="general-container bg-light">
-    <h4>Create Company</h4>
-    <div class="col-4 p-3 bg-light border">
-        <form [formGroup]='createCompanyForm' (ngSubmit)="createCompanyForm.valid && createCompany()" autocomplete="off">
-        <app-text-input 
-            [formControl]='createCompanyForm.controls["companyName"]'
-            [label]='"Company Name:"'>
-        </app-text-input>
-        <app-date-input
-            [formControl]='createCompanyForm.controls["commencementDate"]'
-            [label]='"Commencement Date"'>
-        </app-date-input>
-        <app-date-input
-            [formControl]='createCompanyForm.controls["yearEndDate"]'
-            [label]='"Year End Date"'>
-        </app-date-input>
-        <app-date-input
-            [formControl]='createCompanyForm.controls["groupTerminationDate"]'
-            [label]='"Termination Date"'>
-        </app-date-input>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" formControlName="includeHsaClaims">
-            <label class="form-check-label" for="includeHsaClaims">HSA</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" formControlName="includeCostPlusClaims">
-            <label class="form-check-label" for="includeCostPlusClaims">Cost Plus</label>
-        </div>
-        <div class="row mb-2" *ngIf="validationErrors.length > 0">
-            <ul class="text-danger">
-                <li *ngFor="let error of validationErrors">
-                    {{error}}
-                </li>
-            </ul>
-        </div>
-        <button [disabled]='!createCompanyForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
-        </form>
-        <button (click)="cancel()" class="btn btn-primary btn-block">Cancel </button>
+
+    <div class="modal-header">
+        <h2 class="modal-title pull-left">Create Company</h2>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="cancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
     </div>
-</div>
+    <div class="modal-body bg-light">
+        <div class="p-3 bg-light border">
+            <form [formGroup]='createCompanyForm' (ngSubmit)="createCompanyForm.valid && createCompany()" autocomplete="off">
+                <app-text-input 
+                    [formControl]='createCompanyForm.controls["companyName"]'
+                    [label]='"Company Name:"'>
+                </app-text-input>
+                <app-date-input
+                    [formControl]='createCompanyForm.controls["commencementDate"]'
+                    [label]='"Commencement Date"'>
+                </app-date-input>
+                <app-date-input
+                    [formControl]='createCompanyForm.controls["yearEndDate"]'
+                    [label]='"Year End Date"'>
+                </app-date-input>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" formControlName="includeHsaClaims">
+                    <label class="form-check-label" for="includeHsaClaims">HSA</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" formControlName="includeCostPlusClaims">
+                    <label class="form-check-label" for="includeCostPlusClaims">Cost Plus</label>
+                </div>
+                <div class="row mb-2" *ngIf="validationErrors.length > 0">
+                    <ul class="text-danger">
+                        <li *ngFor="let error of validationErrors">
+                            {{error}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-container">
+                    <div class="child">
+                        <button [disabled]='!createCompanyForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
+                    </div>
+                </div>   
+            </form>
+        </div>
+    </div>
+

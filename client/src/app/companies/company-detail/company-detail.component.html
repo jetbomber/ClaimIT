@@ -36,12 +36,16 @@
                 </li>
             </ul>
           </div>
-          <button [disabled]='!companyForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
+          <div class="btn-container">
+            <div class="child">
+              <button [disabled]='!companyForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
+            </div>
+          </div>   
         </form>
       </div>
     </tab>
-    <tab class="p-2 bg-light border" heading="Divisions" id="tabDivisions">Divisions</tab>
-    <tab class="p-2 bg-light border" heading="Classes" id="tabClasses">Classes</tab>
+    <tab class="p-2 bg-light border" heading="Divisions" id="tabDivisions"><app-division-list></app-division-list></tab>
+    <tab class="p-2 bg-light border" heading="Classes" id="tabClasses"><app-class-list></app-class-list></tab>
   </tabset>
 </div>
 

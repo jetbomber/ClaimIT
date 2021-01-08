@@ -45,7 +45,18 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Company>> CreateCompany(Company company)
         {
-            return Ok("Create Company");
+            
+            if (await _companyRepository.CompanyExists(company.CompanyName)) {
+                return BadRequest("A Company with the name '" + company.CompanyName + "' already exists");
+            } 
+            
+            company.CommencementDate = ParseDates.ParseDate(company.CommencementDate);
+            company.YearEndDate = ParseDates.ParseDate(company.YearEndDate);
+             _companyRepository.Add(company);
+
+            if (await _companyRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to add company");
         }
 
         [HttpPut]

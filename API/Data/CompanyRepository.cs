@@ -1,13 +1,12 @@
 using API.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
-using API.DTOs;
 using API.Entities;
 using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace API.Data
 {
@@ -38,9 +37,16 @@ namespace API.Data
 
         public async Task<Company> GetCompanyByIdAsync(int id)
         {
-             return await _context.Company
+            return await _context.Company
             .Where(x => x.Id == id)
             .SingleOrDefaultAsync();
+        }
+
+        public async Task<bool> CompanyExists(string companyName)
+        {
+            return await _context.Company
+            .Where(x => x.CompanyName == companyName)
+            .CountAsync() > 0;
         }
 
         public async Task<bool> SaveAllAsync()
@@ -51,6 +57,11 @@ namespace API.Data
         public void Update(Company company)
         {
             _context.Entry(company).State = EntityState.Modified;
+        }
+
+        public void Add(Company company)
+        {
+            _context.Add(company).State = EntityState.Added;
         }
     }
 }

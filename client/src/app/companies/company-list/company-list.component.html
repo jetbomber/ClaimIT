@@ -18,10 +18,10 @@
 </div>
 
 <ng-template #createcompany>
-  <app-company-create></app-company-create>
+  <app-company-create [modalRef]="modalRef"></app-company-create>
 </ng-template>
 
-<div class="company p-2 bg-light border">
+<div class="p-2 bg-light border">
 
     <table mat-table [dataSource]="dataSource" class="table table-hover"
     matSort matSortActive="CompanyName" matSortDirection="asc" matSortDisableClear>

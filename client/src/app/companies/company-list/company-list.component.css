@@ -1,22 +1,9 @@
 table {
     width: 100%;
-    border: 1px solid black;
-  }
-
-.spinner-container {
-    height: 360px;
-    width: 390px;
-    position: fixed;
-}
-
-.spinner-container mat-spinner {
-    margin: 130px auto 0 auto;
 }
 
 .mat-header-row {
     background-color: #2979FF;
-    border: 1px solid black;
-    
 }
 
 ::ng-deep .modify-arrow .mat-sort-header-arrow {
@@ -29,11 +16,5 @@ table {
 }
 
 .mat-row {
-    /* row border */
-    border: 1px solid black;
     height: 25px !important;
-}
-
-td.mat-cell {
-    border-bottom: 1px solid black;
 }
