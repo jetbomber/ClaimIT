@@ -12,5 +12,9 @@ namespace API.Data
 
         public DbSet<AppUser> User { get; set; }
         public DbSet<Company> Company { get; set; }
+        public DbSet<Province> Province { get; set; }
+        public DbSet<TaxType> Tax_Type { get; set; }
+        public DbSet<Division> Division { get; set; }
+        public DbSet<Class> Class { get; set; }
     }
 }

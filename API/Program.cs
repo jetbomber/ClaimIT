@@ -22,6 +22,9 @@ namespace API
                 await context.Database.MigrateAsync();
                 await Seed.SeedUsers(context);
                 await Seed.SeedCompanies(context);
+                await Seed.SeedTaxTypes(context);
+                await Seed.SeedProvinces(context);
+                await Seed.SeedDivisions(context);
             } 
             catch (Exception ex) {
                 var logger = services.GetRequiredService<ILogger<Program>>();

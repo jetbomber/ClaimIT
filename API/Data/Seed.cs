@@ -29,7 +29,6 @@ namespace API.Data
             }
 
             await context.SaveChangesAsync();
-
         }
 
         public static async Task SeedCompanies(DataContext context)
@@ -45,7 +44,51 @@ namespace API.Data
             }
 
             await context.SaveChangesAsync();
+        }
 
+        public static async Task SeedTaxTypes(DataContext context)
+        {
+            if (await context.Tax_Type.AnyAsync()) return;
+
+            var taxTypeData = await System.IO.File.ReadAllTextAsync("Data/TaxTypeSeedData.json");
+            var taxTypes = JsonSerializer.Deserialize<List<TaxType>>(taxTypeData);
+
+            foreach (var taxType in taxTypes)
+            {
+                context.Tax_Type.Add(taxType);
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+        public static async Task SeedProvinces(DataContext context)
+        {
+            if (await context.Province.AnyAsync()) return;
+
+            var provinceData = await System.IO.File.ReadAllTextAsync("Data/ProvinceSeedData.json");
+            var provinces = JsonSerializer.Deserialize<List<Province>>(provinceData);
+
+            foreach (var province in provinces)
+            {
+                context.Province.Add(province);
+            }
+
+            await context.SaveChangesAsync();
+        }
+        
+        public static async Task SeedDivisions(DataContext context)
+        {
+            if (await context.Division.AnyAsync()) return;
+
+            var divisionData = await System.IO.File.ReadAllTextAsync("Data/DivisionSeedData.json");
+            var divisions = JsonSerializer.Deserialize<List<Division>>(divisionData);
+
+            foreach (var division in divisions)
+            {
+                context.Division.Add(division);
+            }
+
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -1,0 +1,67 @@
+[
+  {
+    "Name": "Yukon",
+    "TaxPercentage": 0,
+    "TaxTypeId": 2
+  },
+  {
+    "Name": "Saskatchewan",
+    "TaxPercentage": 6,
+    "TaxTypeId": 2
+  },
+  {
+    "Name": "Quebec",
+    "TaxPercentage": 9.975,
+    "TaxTypeId": 2
+  },
+  {
+    "Name": "PEI",
+    "TaxPercentage": 15,
+    "TaxTypeId": 3
+  },
+  {
+    "Name": "Ontario",
+    "TaxPercentage": 13,
+    "TaxTypeId": 3
+  },
+  {
+    "Name": "Nunavut",
+    "TaxPercentage": 0,
+    "TaxTypeId": 2
+  },
+  {
+    "Name": "Northwest Territories",
+    "TaxPercentage": 0,
+    "TaxTypeId": 2
+  },
+  {
+    "Name": "Nova Scotia",
+    "TaxPercentage": 15,
+    "TaxTypeId": 3
+  },
+  {
+    "Name": "Newfoundland",
+    "TaxPercentage": 15,
+    "TaxTypeId": 3
+  },
+  {
+    "Name": "New Brunswick",
+    "TaxPercentage": 15,
+    "TaxTypeId": 3
+  },
+  {
+    "Name": "Manitoba",
+    "TaxPercentage": 7,
+    "TaxTypeId": 2
+  },
+  {
+    "Name": "British Columbia",
+    "TaxPercentage": 7,
+    "TaxTypeId": 2
+  },
+  {
+    "Name": "Alberta",
+    "TaxPercentage": 0,
+    "TaxTypeId": 2
+  }
+]

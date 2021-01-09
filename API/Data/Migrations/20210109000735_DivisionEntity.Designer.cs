@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210109000735_DivisionEntity")]
+    partial class DivisionEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,40 +42,6 @@ namespace API.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("API.Entities.Class", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ClassName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ClassNumber")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClassWaitingPeriod")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsHsaClass")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("PersonalHealthMaximum")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Class");
                 });
 
             modelBuilder.Entity("API.Entities.Company", b =>
@@ -197,17 +165,6 @@ namespace API.Data.Migrations
                     b.ToTable("Tax_Type");
                 });
 
-            modelBuilder.Entity("API.Entities.Class", b =>
-                {
-                    b.HasOne("API.Entities.Company", "Company")
-                        .WithMany("Classes")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("API.Entities.Division", b =>
                 {
                     b.HasOne("API.Entities.Company", "Company")
@@ -240,8 +197,6 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.Company", b =>
                 {
-                    b.Navigation("Classes");
-
                     b.Navigation("Divisions");
                 });
 
