@@ -25,6 +25,7 @@ namespace API
                 await Seed.SeedTaxTypes(context);
                 await Seed.SeedProvinces(context);
                 await Seed.SeedDivisions(context);
+                await Seed.SeedClasses(context);
             } 
             catch (Exception ex) {
                 var logger = services.GetRequiredService<ILogger<Program>>();

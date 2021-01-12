@@ -9,6 +9,8 @@ namespace API.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<AppUser, MemberDto>();
+            CreateMap<Division, DivisionDto>();
+            CreateMap<Province, ProvinceDto>();
         }
         
     }

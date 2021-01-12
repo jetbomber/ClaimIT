@@ -21,9 +21,7 @@ export class CompanyListDataSource implements DataSource<Company> {
 
     get itemsPerPage(): number {return this._itemsPerPage}
 
-    constructor(private companyService: CompanyService) {
-
-    }
+    constructor(private companyService: CompanyService) {}
 
     loadCompanies(sortProps: SortProps) {
 

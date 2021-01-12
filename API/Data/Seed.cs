@@ -90,5 +90,19 @@ namespace API.Data
 
             await context.SaveChangesAsync();
         }
+        public static async Task SeedClasses(DataContext context)
+        {
+            if (await context.Class.AnyAsync()) return;
+
+            var classData = await System.IO.File.ReadAllTextAsync("Data/ClassSeedData.json");
+            var classes = JsonSerializer.Deserialize<List<Class>>(classData);
+
+            foreach (var classElement in classes)
+            {
+                context.Class.Add(classElement);
+            }
+
+            await context.SaveChangesAsync();
+        }
     }
 }

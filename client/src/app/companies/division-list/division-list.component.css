@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+}
+
+.mat-header-row {
+    background-color: #2979FF;
+}
+
+::ng-deep .modify-arrow .mat-sort-header-arrow {
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+.mat-header-cell {
+    color:#f8f9fa;
+}
+
+.mat-row {
+    height: 25px !important;
+}
+
+div.ext-box { display: table; width:100%;}
+div.int-box { display: table-cell; vertical-align: middle; }

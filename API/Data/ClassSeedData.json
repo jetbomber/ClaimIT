@@ -1,0 +1,677 @@
+[
+    {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "sunt elit esse duis anim",
+        "ClassWaitingPeriod": 32,
+        "PersonalHealthMaximum": 5186,
+        "IsHsaClass": false,
+        "CompanyId": 1
+    },
+    {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "velit non excepteur proident labore",
+        "ClassWaitingPeriod": 52,
+        "PersonalHealthMaximum": 9046.31,
+        "IsHsaClass": false,
+        "CompanyId": 1
+    },
+    {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "elit deserunt mollit duis eu",
+        "ClassWaitingPeriod": 20,
+        "PersonalHealthMaximum": 7585.1,
+        "IsHsaClass": false,
+        "CompanyId": 1
+    },
+    {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "voluptate aute excepteur ad sunt",
+        "ClassWaitingPeriod": 43,
+        "PersonalHealthMaximum": 7169.09,
+        "IsHsaClass": true,
+        "CompanyId": 2
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "enim ea velit do laboris",
+        "ClassWaitingPeriod": 26,
+        "PersonalHealthMaximum": 3822.35,
+        "IsHsaClass": false,
+        "CompanyId": 2
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "nulla cillum eiusmod dolore qui",
+        "ClassWaitingPeriod": 60,
+        "PersonalHealthMaximum": 4338.34,
+        "IsHsaClass": false,
+        "CompanyId": 2
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "consequat dolore ad non dolore",
+        "ClassWaitingPeriod": 46,
+        "PersonalHealthMaximum": 2617.53,
+        "IsHsaClass": false,
+        "CompanyId": 3
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "reprehenderit non est ut veniam",
+        "ClassWaitingPeriod": 24,
+        "PersonalHealthMaximum": 6643.04,
+        "IsHsaClass": true,
+        "CompanyId": 3
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "sint officia tempor pariatur culpa",
+        "ClassWaitingPeriod": 71,
+        "PersonalHealthMaximum": 9594.84,
+        "IsHsaClass": false,
+        "CompanyId": 3
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "excepteur culpa ex adipisicing exercitation",
+        "ClassWaitingPeriod": 6,
+        "PersonalHealthMaximum": 7732.96,
+        "IsHsaClass": true,
+        "CompanyId": 4
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "dolor ipsum et ad amet",
+        "ClassWaitingPeriod": 62,
+        "PersonalHealthMaximum": 7607.48,
+        "IsHsaClass": true,
+        "CompanyId": 4
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "non nostrud irure sunt ad",
+        "ClassWaitingPeriod": 66,
+        "PersonalHealthMaximum": 5865.21,
+        "IsHsaClass": true,
+        "CompanyId": 4
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "proident est do commodo in",
+        "ClassWaitingPeriod": 24,
+        "PersonalHealthMaximum": 7809.19,
+        "IsHsaClass": true,
+        "CompanyId": 5
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "do laboris esse veniam ullamco",
+        "ClassWaitingPeriod": 86,
+        "PersonalHealthMaximum": 1995.51,
+        "IsHsaClass": true,
+        "CompanyId": 5
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "enim magna id duis velit",
+        "ClassWaitingPeriod": 52,
+        "PersonalHealthMaximum": 6928,
+        "IsHsaClass": true,
+        "CompanyId": 5
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "est enim veniam voluptate sunt",
+        "ClassWaitingPeriod": 5,
+        "PersonalHealthMaximum": 6143.02,
+        "IsHsaClass": true,
+        "CompanyId": 6
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "ut anim mollit non sit",
+        "ClassWaitingPeriod": 39,
+        "PersonalHealthMaximum": 4170.39,
+        "IsHsaClass": false,
+        "CompanyId": 6
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "non officia cillum exercitation nisi",
+        "ClassWaitingPeriod": 70,
+        "PersonalHealthMaximum": 3839.74,
+        "IsHsaClass": true,
+        "CompanyId": 6
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "sit incididunt excepteur irure ipsum",
+        "ClassWaitingPeriod": 48,
+        "PersonalHealthMaximum": 5000.96,
+        "IsHsaClass": true,
+        "CompanyId": 7
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "est mollit est ut consectetur",
+        "ClassWaitingPeriod": 59,
+        "PersonalHealthMaximum": 2457.32,
+        "IsHsaClass": true,
+        "CompanyId": 7
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "et consequat et do veniam",
+        "ClassWaitingPeriod": 79,
+        "PersonalHealthMaximum": 1874.57,
+        "IsHsaClass": true,
+        "CompanyId": 7
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "mollit aliquip dolore occaecat aliqua",
+        "ClassWaitingPeriod": 57,
+        "PersonalHealthMaximum": 6807.34,
+        "IsHsaClass": false,
+        "CompanyId": 8
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "incididunt reprehenderit dolor laboris ex",
+        "ClassWaitingPeriod": 25,
+        "PersonalHealthMaximum": 5903.32,
+        "IsHsaClass": false,
+        "CompanyId": 8
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "laborum qui fugiat non adipisicing",
+        "ClassWaitingPeriod": 75,
+        "PersonalHealthMaximum": 2484.88,
+        "IsHsaClass": true,
+        "CompanyId": 8
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "nisi commodo ut exercitation laboris",
+        "ClassWaitingPeriod": 52,
+        "PersonalHealthMaximum": 3814.72,
+        "IsHsaClass": false,
+        "CompanyId": 9
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "exercitation et sint et dolore",
+        "ClassWaitingPeriod": 63,
+        "PersonalHealthMaximum": 8133.53,
+        "IsHsaClass": false,
+        "CompanyId": 9
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "enim elit exercitation officia qui",
+        "ClassWaitingPeriod": 37,
+        "PersonalHealthMaximum": 9833.59,
+        "IsHsaClass": false,
+        "CompanyId": 9
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "dolore ad dolor dolore minim",
+        "ClassWaitingPeriod": 50,
+        "PersonalHealthMaximum": 9251.72,
+        "IsHsaClass": false,
+        "CompanyId": 10
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "proident ipsum occaecat exercitation commodo",
+        "ClassWaitingPeriod": 29,
+        "PersonalHealthMaximum": 7778.79,
+        "IsHsaClass": true,
+        "CompanyId": 10
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "elit consequat duis officia ullamco",
+        "ClassWaitingPeriod": 43,
+        "PersonalHealthMaximum": 9645.9,
+        "IsHsaClass": false,
+        "CompanyId": 10
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "cupidatat ipsum consequat cupidatat velit",
+        "ClassWaitingPeriod": 90,
+        "PersonalHealthMaximum": 5222.96,
+        "IsHsaClass": true,
+        "CompanyId": 11
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "ut ut dolore nulla anim",
+        "ClassWaitingPeriod": 47,
+        "PersonalHealthMaximum": 5581.39,
+        "IsHsaClass": true,
+        "CompanyId": 11
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "esse commodo fugiat reprehenderit sunt",
+        "ClassWaitingPeriod": 79,
+        "PersonalHealthMaximum": 4570.03,
+        "IsHsaClass": true,
+        "CompanyId": 11
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "aliqua nostrud duis et ad",
+        "ClassWaitingPeriod": 3,
+        "PersonalHealthMaximum": 7278.63,
+        "IsHsaClass": false,
+        "CompanyId": 12
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "minim aliquip est culpa do",
+        "ClassWaitingPeriod": 70,
+        "PersonalHealthMaximum": 8911.3,
+        "IsHsaClass": true,
+        "CompanyId": 12
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "veniam id dolore nulla anim",
+        "ClassWaitingPeriod": 62,
+        "PersonalHealthMaximum": 3594.08,
+        "IsHsaClass": true,
+        "CompanyId": 12
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "pariatur laboris laboris duis ad",
+        "ClassWaitingPeriod": 10,
+        "PersonalHealthMaximum": 1587.81,
+        "IsHsaClass": true,
+        "CompanyId": 13
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "culpa aute laborum exercitation ad",
+        "ClassWaitingPeriod": 90,
+        "PersonalHealthMaximum": 1972.45,
+        "IsHsaClass": false,
+        "CompanyId": 13
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "consectetur occaecat aute occaecat ea",
+        "ClassWaitingPeriod": 17,
+        "PersonalHealthMaximum": 1568.34,
+        "IsHsaClass": true,
+        "CompanyId": 13
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "id nulla incididunt eu velit",
+        "ClassWaitingPeriod": 47,
+        "PersonalHealthMaximum": 5821.62,
+        "IsHsaClass": true,
+        "CompanyId": 14
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "nostrud reprehenderit deserunt et nisi",
+        "ClassWaitingPeriod": 55,
+        "PersonalHealthMaximum": 4011.33,
+        "IsHsaClass": true,
+        "CompanyId": 14
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "ea id culpa aute nulla",
+        "ClassWaitingPeriod": 52,
+        "PersonalHealthMaximum": 4779.94,
+        "IsHsaClass": true,
+        "CompanyId": 14
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "eu laborum irure proident eu",
+        "ClassWaitingPeriod": 6,
+        "PersonalHealthMaximum": 2495.21,
+        "IsHsaClass": false,
+        "CompanyId": 15
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "ea laboris nisi duis tempor",
+        "ClassWaitingPeriod": 10,
+        "PersonalHealthMaximum": 9575.4,
+        "IsHsaClass": true,
+        "CompanyId": 15
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "minim laborum qui ea nostrud",
+        "ClassWaitingPeriod": 85,
+        "PersonalHealthMaximum": 9635.45,
+        "IsHsaClass": false,
+        "CompanyId": 15
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "adipisicing anim eu velit quis",
+        "ClassWaitingPeriod": 24,
+        "PersonalHealthMaximum": 5390.86,
+        "IsHsaClass": false,
+        "CompanyId": 16
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "qui occaecat elit mollit voluptate",
+        "ClassWaitingPeriod": 80,
+        "PersonalHealthMaximum": 1532.11,
+        "IsHsaClass": true,
+        "CompanyId": 16
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "quis voluptate est excepteur culpa",
+        "ClassWaitingPeriod": 77,
+        "PersonalHealthMaximum": 1324.16,
+        "IsHsaClass": false,
+        "CompanyId": 16
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "adipisicing pariatur proident do cillum",
+        "ClassWaitingPeriod": 83,
+        "PersonalHealthMaximum": 1009.42,
+        "IsHsaClass": false,
+        "CompanyId": 17
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "aute sit sint ea Lorem",
+        "ClassWaitingPeriod": 52,
+        "PersonalHealthMaximum": 9940.82,
+        "IsHsaClass": false,
+        "CompanyId": 17
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "officia irure aliquip do exercitation",
+        "ClassWaitingPeriod": 54,
+        "PersonalHealthMaximum": 2570.63,
+        "IsHsaClass": false,
+        "CompanyId": 17
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "sit enim amet amet nostrud",
+        "ClassWaitingPeriod": 73,
+        "PersonalHealthMaximum": 2225.67,
+        "IsHsaClass": true,
+        "CompanyId": 18
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "anim laboris ullamco aliqua est",
+        "ClassWaitingPeriod": 15,
+        "PersonalHealthMaximum": 5374.14,
+        "IsHsaClass": true,
+        "CompanyId": 18
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "consectetur aute dolore labore amet",
+        "ClassWaitingPeriod": 11,
+        "PersonalHealthMaximum": 2349.64,
+        "IsHsaClass": true,
+        "CompanyId": 18
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "ullamco ipsum incididunt proident veniam",
+        "ClassWaitingPeriod": 8,
+        "PersonalHealthMaximum": 3372.06,
+        "IsHsaClass": false,
+        "CompanyId": 19
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "id cupidatat culpa ut proident",
+        "ClassWaitingPeriod": 19,
+        "PersonalHealthMaximum": 3460.1,
+        "IsHsaClass": false,
+        "CompanyId": 19
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "occaecat aute non cupidatat commodo",
+        "ClassWaitingPeriod": 25,
+        "PersonalHealthMaximum": 1785.16,
+        "IsHsaClass": false,
+        "CompanyId": 19
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "esse ex quis ex ex",
+        "ClassWaitingPeriod": 33,
+        "PersonalHealthMaximum": 9521.1,
+        "IsHsaClass": false,
+        "CompanyId": 20
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "do est fugiat nisi non",
+        "ClassWaitingPeriod": 71,
+        "PersonalHealthMaximum": 7040.63,
+        "IsHsaClass": false,
+        "CompanyId": 20
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "magna proident sit laboris proident",
+        "ClassWaitingPeriod": 31,
+        "PersonalHealthMaximum": 3187.81,
+        "IsHsaClass": false,
+        "CompanyId": 20
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "occaecat sit ea officia ut",
+        "ClassWaitingPeriod": 48,
+        "PersonalHealthMaximum": 1908.71,
+        "IsHsaClass": false,
+        "CompanyId": 21
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "aliquip esse commodo aute elit",
+        "ClassWaitingPeriod": 15,
+        "PersonalHealthMaximum": 2884.36,
+        "IsHsaClass": true,
+        "CompanyId": 21
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "ea occaecat id nulla aliqua",
+        "ClassWaitingPeriod": 29,
+        "PersonalHealthMaximum": 9849.71,
+        "IsHsaClass": true,
+        "CompanyId": 21
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "dolore velit aute exercitation magna",
+        "ClassWaitingPeriod": 88,
+        "PersonalHealthMaximum": 3491.02,
+        "IsHsaClass": false,
+        "CompanyId": 22
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "nulla elit exercitation in mollit",
+        "ClassWaitingPeriod": 1,
+        "PersonalHealthMaximum": 8691.28,
+        "IsHsaClass": true,
+        "CompanyId": 22
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "laboris voluptate aliqua est magna",
+        "ClassWaitingPeriod": 0,
+        "PersonalHealthMaximum": 8724.34,
+        "IsHsaClass": false,
+        "CompanyId": 22
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "mollit sint qui ea cillum",
+        "ClassWaitingPeriod": 80,
+        "PersonalHealthMaximum": 3323.93,
+        "IsHsaClass": false,
+        "CompanyId": 23
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "veniam do id in in",
+        "ClassWaitingPeriod": 81,
+        "PersonalHealthMaximum": 4241.93,
+        "IsHsaClass": true,
+        "CompanyId": 23
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "labore et sint aliquip nostrud",
+        "ClassWaitingPeriod": 81,
+        "PersonalHealthMaximum": 7769.73,
+        "IsHsaClass": true,
+        "CompanyId": 23
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "commodo culpa cupidatat cillum irure",
+        "ClassWaitingPeriod": 76,
+        "PersonalHealthMaximum": 6177.84,
+        "IsHsaClass": false,
+        "CompanyId": 24
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "aliqua duis tempor est dolore",
+        "ClassWaitingPeriod": 44,
+        "PersonalHealthMaximum": 3559.61,
+        "IsHsaClass": false,
+        "CompanyId": 24
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "laboris consequat exercitation reprehenderit consequat",
+        "ClassWaitingPeriod": 20,
+        "PersonalHealthMaximum": 4936.31,
+        "IsHsaClass": false,
+        "CompanyId": 24
+      },
+      {
+        "ClassNumber": 1,
+        "ClassName": "Class 1",
+        "Description": "amet dolor velit culpa dolore",
+        "ClassWaitingPeriod": 66,
+        "PersonalHealthMaximum": 7966.08,
+        "IsHsaClass": false,
+        "CompanyId": 25
+      },
+      {
+        "ClassNumber": 2,
+        "ClassName": "Class 2",
+        "Description": "ipsum dolore consequat dolore nostrud",
+        "ClassWaitingPeriod": 90,
+        "PersonalHealthMaximum": 6765.95,
+        "IsHsaClass": false,
+        "CompanyId": 25
+      },
+      {
+        "ClassNumber": 3,
+        "ClassName": "Class 3",
+        "Description": "est duis nulla sit do",
+        "ClassWaitingPeriod": 30,
+        "PersonalHealthMaximum": 7489.47,
+        "IsHsaClass": true,
+        "CompanyId": 25
+      }
+]
