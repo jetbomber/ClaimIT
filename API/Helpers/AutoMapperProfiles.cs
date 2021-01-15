@@ -11,6 +11,7 @@ namespace API.Helpers
             CreateMap<AppUser, MemberDto>();
             CreateMap<Division, DivisionDto>();
             CreateMap<Province, ProvinceDto>();
+            CreateMap<TaxType, TaxTypeDto>();
         }
         
     }

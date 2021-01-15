@@ -1,11 +1,11 @@
 <div *ngIf="company">
   <tabset>
     <tab class="p-2 bg-light border" heading="General Info" id="tabGeneralInfo">
-      <div class="col-4 p-3 border">
+      <div class="col-3 p-3 border">
         <form [formGroup]='companyForm' (ngSubmit)="companyForm.valid && updateCompany()" autocomplete="off">
           <app-text-input 
             [formControl]='companyForm.controls["companyName"]'
-            [label]='"Company Name:"'>
+            [label]='"Company Name"'>
           </app-text-input>
           <app-date-input
             [formControl]='companyForm.controls["commencementDate"]'

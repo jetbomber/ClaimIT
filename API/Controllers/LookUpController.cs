@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,32 @@ namespace API.Controllers
             _lookUpRepository = lookUpRepository;
 
         }
-        [HttpGet("{provinces}")]
-        public async Task<ActionResult<IEnumerable<Province>>> GetProvinces()
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProvinceDto>>> GetProvinces()
         {
             var provinces = await _lookUpRepository.GetProvincesAsync();
 
             return Ok(provinces);
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<TaxType>>> GetTaxTypes()
+        {
+            var taxtypes = await _lookUpRepository.GetTaxTypesAsync();
+
+            return Ok(taxtypes);
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<FederalTaxDto>>> GetFederalTaxes()
+        {
+            var federalTaxes = await _lookUpRepository.GetFederalTaxesAsync();
+
+            return Ok(federalTaxes);
         }
     }
 }

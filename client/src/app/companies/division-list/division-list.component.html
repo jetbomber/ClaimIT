@@ -27,7 +27,7 @@
         <!-- Id Column -->
         <ng-container matColumnDef="Id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Id </th>
-          <td mat-cell *matCellDef="let division"> {{division.id}} </td>
+          <td mat-cell *matCellDef="let division">{{division.id}}</td>
         </ng-container>
         <!-- Division Number Column -->
         <ng-container matColumnDef="DivisionNumber">
@@ -44,6 +44,11 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> City </th>
           <td mat-cell *matCellDef="let division"> {{division.city}} </td>
         </ng-container>
+        <!-- Province Column -->
+        <ng-container matColumnDef="ProvinceName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Province </th>
+          <td mat-cell *matCellDef="let division"> {{division.provinceName}} </td>
+        </ng-container>
         <!-- General Admin Fee Column -->
         <ng-container matColumnDef="GeneralAdminFee">
           <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Admin Fee </th>
@@ -58,3 +63,4 @@
       [pageSizeOptions]="pageSizeOptions" [pageSize]="itemsPerPage" showFirstLastButtons></mat-paginator>
       
 </div>
+<app-division-details [division]="division" [provinces]="provinces" [federalTaxes]="federalTaxes"></app-division-details>

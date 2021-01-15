@@ -36,10 +36,20 @@ namespace API.Data
 
         public async Task<DivisionDto> GetDivisionByIdAsync(int divisionId)
         {
-            return await _context.Division
+
+            IQueryable<DivisionDto> query = _context.Division
             .ProjectTo<DivisionDto>(_mapper.ConfigurationProvider)
-            .Where(x => x.Id == divisionId)
-            .SingleOrDefaultAsync();
+            .Where(x => x.Id == divisionId);
+
+            query.Join(_context.Province,
+            div=>div.ProvinceId,
+            prov=>prov.Id,
+            (div,prov) => new { Prov = prov })
+            .Select(s=> new {
+                ProvinceName = s.Prov.Name
+            });
+
+            return await query.SingleOrDefaultAsync();
         }
 
         public async Task<PagedList<DivisionDto>> GetDivisionsAsync(UserParams userParams, int companyId)
@@ -52,6 +62,14 @@ namespace API.Data
             if (!string.IsNullOrEmpty(userParams.Filter)){
                 query = query.Where(x=>x.DivisionName.ToUpper().Contains(userParams.Filter.ToUpper()));               
             }
+
+            query.Join(_context.Province,
+            div=>div.ProvinceId,
+            prov=>prov.Id,
+            (div,prov) => new { Prov = prov })
+            .Select(s=> new {
+                ProvinceName = s.Prov.Name
+            });
 
             query = SortingExtension.SortBy(query,userParams.SortColumn,userParams.Reverse);
 

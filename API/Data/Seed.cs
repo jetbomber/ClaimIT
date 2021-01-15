@@ -104,5 +104,19 @@ namespace API.Data
 
             await context.SaveChangesAsync();
         }
+        public static async Task SeedFederalTax(DataContext context)
+        {
+            if (await context.Federal_Tax.AnyAsync()) return;
+
+            var federalTaxData = await System.IO.File.ReadAllTextAsync("Data/FederalTaxSeedData.json");
+            var federalTaxes = JsonSerializer.Deserialize<List<FederalTax>>(federalTaxData);
+
+            foreach (var federalTax in federalTaxes)
+            {
+                context.Federal_Tax.Add(federalTax);
+            }
+
+            await context.SaveChangesAsync();
+        }
     }
 }

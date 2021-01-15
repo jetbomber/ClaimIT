@@ -10,7 +10,7 @@
             <form [formGroup]='createCompanyForm' (ngSubmit)="createCompanyForm.valid && createCompany()" autocomplete="off">
                 <app-text-input 
                     [formControl]='createCompanyForm.controls["companyName"]'
-                    [label]='"Company Name:"'>
+                    [label]='"Company Name"'>
                 </app-text-input>
                 <app-date-input
                     [formControl]='createCompanyForm.controls["commencementDate"]'

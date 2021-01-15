@@ -62,7 +62,6 @@ export class CompanyDetailComponent implements OnInit {
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false)))
       .subscribe();
-
   }
 
   public updateCompany() {

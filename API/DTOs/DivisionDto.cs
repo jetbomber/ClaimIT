@@ -1,8 +1,10 @@
+using API.Entities;
+
 namespace API.DTOs
 {
     public class DivisionDto
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
         public int DivisionNumber { get; set; }
         public string DivisionName { get; set; }
         public string Address { get; set; }
@@ -16,6 +18,7 @@ namespace API.DTOs
         public double GeneralAdminFee { get; set; }
         public int CompanyId { get; set; }
         public int ProvinceId { get; set; }
+        public string ProvinceName { get; set; }
         
     }
 }

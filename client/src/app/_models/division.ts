@@ -9,8 +9,9 @@ export interface Division {
     contactPersonPhoneNumber: string
     contactPersonPhoneNumberExt: string;
     contactPersonEmailAddress: string;
-    contactPersonFac: string;
+    contactPersonFax: string;
     generalAdminFee: number;
     companyId: number;
     provinceId: number;
-  }
+    provinceName: string;
+}

@@ -16,5 +16,6 @@ namespace API.Data
         public DbSet<TaxType> Tax_Type { get; set; }
         public DbSet<Division> Division { get; set; }
         public DbSet<Class> Class { get; set; }
+        public DbSet<FederalTax> Federal_Tax { get; set; }
     }
 }

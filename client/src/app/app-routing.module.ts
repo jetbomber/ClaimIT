@@ -5,6 +5,7 @@ import { ClaimListComponent } from './claims/claim-list/claim-list.component';
 import { CompanyCreateComponent } from './companies/company-create/company-create.component';
 import { CompanyDetailComponent } from './companies/company-detail/company-detail.component';
 import { CompanyListComponent } from './companies/company-list/company-list.component';
+import { DivisionDetailsComponent } from './companies/division-details/division-details.component';
 import { EmployeeDetailComponent } from './employees/employee-detail/employee-detail.component';
 import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
       {path: 'companies', component: CompanyListComponent},
       {path: 'companies/:id', component: CompanyDetailComponent},
       {path: 'create', component: CompanyCreateComponent},
+      {path: 'divisions/:id', component: DivisionDetailsComponent},
       {path: 'employees', component: EmployeeListComponent},
       {path: 'employees/:id', component: EmployeeDetailComponent},
       {path: 'claims', component: ClaimListComponent},

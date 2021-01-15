@@ -42,6 +42,7 @@ import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { DivisionListComponent } from './companies/division-list/division-list.component';
 import { ClassListComponent } from './companies/class-list/class-list.component';
+import { DivisionDetailsComponent } from './companies/division-details/division-details.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ClassListComponent } from './companies/class-list/class-list.component'
     TextInputComponent,
     DateInputComponent,
     DivisionListComponent,
-    ClassListComponent,
+    DivisionDetailsComponent,
+    ClassListComponent
   ],
   imports: [
     CommonModule,

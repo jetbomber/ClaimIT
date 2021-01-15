@@ -30,4 +30,8 @@ export class DivisionService {
       })
     )
   }
+
+  getDivision(divisionId: number) {
+    return this.http.get<Division>(this.baseUrl + 'division/' + divisionId); 
+  }
 }

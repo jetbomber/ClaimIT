@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from 'src/app/_services/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-company-create',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./company-create.component.css']
 })
 export class CompanyCreateComponent implements OnInit {
-  @Input() modalRef;
+  @Input() modalRef: BsModalRef;
   public createCompanyForm: FormGroup;
   validationErrors: string[] = [];
 
