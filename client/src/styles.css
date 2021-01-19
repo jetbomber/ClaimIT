@@ -57,7 +57,7 @@
 }
 
 .mat-paginator {
-  height: 50px;
+  height: 60px;
 }
 
 .modify-arrow .mat-sort-header-arrow {
@@ -65,7 +65,7 @@
   opacity: 1 !important;
 }
 
-input[type="text"]
+input[type="text"],input[type="password"]
 {
   font-size:12px;
   width: 100%;

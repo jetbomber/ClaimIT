@@ -1,99 +1,118 @@
 
 <br/>
 <div *ngIf="division" class="p-3 border">
-    <form [formGroup]='divisionForm' (ngSubmit)="divisionForm.valid && updateDivision()" autocomplete="off">
-        <div class="form-row">
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["divisionNumber"]'
-                [label]='"Division Number"'>
-                </app-text-input>
-            </div>
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["divisionName"]'
-                [label]='"Division Name"'>
-                </app-text-input>
-            </div>
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["generalAdminFee"]'
-                [label]='"Admin Fee"'>
-                </app-text-input>
-            </div>
-            <div class="col taxFee">
-               <p *ngIf="provincialTaxType=='HST'">Tax Fee</p>
-               <p *ngIf="provincialTaxType!='HST'">Provincial Tax Fee</p>
-               <p>{{provincialTaxType}}({{taxFeePercentage}}%)</p>
-            </div>
-            <div *ngIf="provincialTaxType!='HST'" class="col taxFee">
-                <p>Federal Tax Fee</p>
-                <ul *ngFor="let tax of federalTaxes">
-                    <li>{{tax.taxTypeName}}({{tax.taxPercentage}}%)</li>
-                </ul>
-            </div>
+    <form [formGroup]='divisionForm' (ngSubmit)="divisionForm.valid && handleSubmission()" autocomplete="off">
+        <div class="grid-container">            
+			<div class="grid-item1 border">
+                <fieldset>
+                    <legend>Division</legend>
+                    <div class="form-row">
+                        <div class="col">
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["divisionNumber"]'
+                            [label]='"Number"'>
+                            </app-text-input>
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["divisionName"]'
+                            [label]='"Name"'>
+                            </app-text-input>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["generalAdminFee"]'
+                            [label]='"Admin Fee %"'>
+                            </app-text-input>
+                        </div>
+                        <div *ngIf="provincialTaxType" class="col taxFee">
+                            <p *ngIf="provincialTaxType=='HST'">Tax Fee</p>
+                            <p *ngIf="provincialTaxType!='HST'">Provincial Tax Fee</p>
+                            <p>{{provincialTaxType}}({{taxFeePercentage}}%)</p>
+                        </div>
+                        <div *ngIf="provincialTaxType!='HST' && provincialTaxType" class="col taxFee">
+                            <p>Federal Tax Fee</p>
+                            <ul *ngFor="let tax of federalTaxes">
+                                <li>{{tax.taxTypeName}}({{tax.taxPercentage}}%)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>                     
+			<div class="grid-item2 border">
+                <fieldset>
+                    <legend>Contact</legend>
+                    <div class="form-row">
+                        <div class="col">
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["contactPersonName"]'
+                            [label]='"Person"'>
+                            </app-text-input>
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["contactPersonEmailAddress"]'
+                            [label]='"Email"'>
+                            </app-text-input>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["contactPersonPhoneNumber"]'
+                            [label]='"Phone Number"'>
+                            </app-text-input>
+                        </div>
+                        <div class="col">
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["contactPersonPhoneNumberExt"]'
+                            [label]='"Ext."'>
+                            </app-text-input>
+                        </div>
+                        <div class="col">
+                            <app-text-input 
+                            [formControl]='divisionForm.controls["contactPersonFax"]'
+                            [label]='"Fax Number"'>
+                            </app-text-input>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>    
+            <div class="grid-item3 border">  
+                <div class="form-row">
+                    <div class="col">
+                        <app-text-input 
+                        [formControl]='divisionForm.controls["address"]'
+                        [label]='"Address"'>
+                        </app-text-input>
+                    </div>
+                    <div class="col">
+                        <app-text-input 
+                        [formControl]='divisionForm.controls["city"]'
+                        [label]='"City"'>
+                        </app-text-input>
+                    </div>
+                    <div class="col">
+                        <label for="province">Province</label>
+                        <select class="form-control select-style" formControlName="province" id="province">
+                            <option *ngFor="let province of provinceList" [ngValue]="province.id">
+                                {{ province.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <app-text-input 
+                        [formControl]='divisionForm.controls["postalCode"]'
+                        [label]='"Postal Code"'>
+                        </app-text-input>
+                    </div>
+                </div>
+            </div>              
         </div>
-        <div class="form-row">
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["address"]'
-                [label]='"Address"'>
-                </app-text-input>
-            </div>
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["city"]'
-                [label]='"City"'>
-                </app-text-input>
-            </div>
-            <div class="col">
-                <label for="province">Province</label>
-                <select class="form-control select-style" formControlName="province" id="province">
-                    <option *ngFor="let province of provinceList" [ngValue]="province.id">
-                        {{ province.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["postalCode"]'
-                [label]='"Postal Code"'>
-                </app-text-input>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["contactPersonName"]'
-                [label]='"Contact Person"'>
-                </app-text-input>
-            </div>
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["contactPersonEmailAddress"]'
-                [label]='"Contact Person Email"'>
-                </app-text-input>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["contactPersonPhoneNumber"]'
-                [label]='"Phone Number"'>
-                </app-text-input>
-            </div>
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["contactPersonPhoneNumberExt"]'
-                [label]='"Ext."'>
-                </app-text-input>
-            </div>
-            <div class="col">
-                <app-text-input 
-                [formControl]='divisionForm.controls["contactPersonFax"]'
-                [label]='"Fax"'>
-                </app-text-input>
-            </div>
+        <div class="row mb-2" *ngIf="validationErrors.length > 0">
+            <ul class="text-danger">
+                <li *ngFor="let error of validationErrors">
+                    {{error}}
+                </li>
+            </ul>
         </div>
         <div class="btn-container">
             <fieldset>

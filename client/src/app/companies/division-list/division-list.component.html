@@ -9,7 +9,7 @@
       </div>
 
       <div class="col-4 int-box">
-        <a mat-button color="primary">Create Division</a>
+        <a mat-button color="primary" (click)="createDivision(companyId)">Create Division</a>
       </div>
 
     </div>
@@ -63,4 +63,8 @@
       [pageSizeOptions]="pageSizeOptions" [pageSize]="itemsPerPage" showFirstLastButtons></mat-paginator>
       
 </div>
-<app-division-details [division]="division" [provinces]="provinces" [federalTaxes]="federalTaxes"></app-division-details>
+<app-division-details [division]="division" 
+                      [provinces]="provinces" 
+                      [federalTaxes]="federalTaxes" 
+                      [divisionOperation]="divisionOperation">
+</app-division-details>

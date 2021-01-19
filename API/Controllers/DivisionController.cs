@@ -39,6 +39,33 @@ namespace API.Controllers
         {
             return await _divisionRepository.GetDivisionByIdAsync(divisionId);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateDivision(Division division)
+        {
+
+            _divisionRepository.Update(division);
+
+            if (await _divisionRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to update division");
+            
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Division>> CreateDivision(Division division)
+        {
+            
+            if (await _divisionRepository.DivisionExists(division.DivisionName, division.CompanyId)) {
+                return BadRequest("A Division with the name '" + division.DivisionName + "' already exists for the company");
+            } 
+            
+             _divisionRepository.Add(division);
+
+            if (await _divisionRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to add division");
+        }
         
     }
 }

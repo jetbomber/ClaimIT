@@ -34,4 +34,12 @@ export class DivisionService {
   getDivision(divisionId: number) {
     return this.http.get<Division>(this.baseUrl + 'division/' + divisionId); 
   }
+
+  updateDivision(division: Division){
+    return this.http.put(this.baseUrl + 'division', division);
+  }
+
+  createDivision(division: Division){
+    return this.http.post(this.baseUrl + 'division', division);
+  }
 }

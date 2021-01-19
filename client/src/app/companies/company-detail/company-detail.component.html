@@ -1,5 +1,6 @@
 <div *ngIf="company">
-  <tabset>
+  <h2>{{company.companyName}}</h2>
+  <tabset id="tabs">
     <tab class="p-2 bg-light border" heading="General Info" id="tabGeneralInfo">
       <div class="col-3 p-3 border">
         <form [formGroup]='companyForm' (ngSubmit)="companyForm.valid && updateCompany()" autocomplete="off">

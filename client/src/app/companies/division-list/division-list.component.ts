@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { fromEvent, merge } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, finalize, map, tap } from 'rxjs/operators';
 import { Constants } from 'src/app/utilities/constants';
+import { FormActions } from 'src/app/utilities/enum';
 import { setSortingParameters } from 'src/app/utilities/sort.utilities';
 import { Division } from 'src/app/_models/division';
 import { FederalTax } from 'src/app/_models/federaltax';
@@ -21,6 +22,7 @@ import { DivisionListDataSource } from './division-list-data-source';
 })
 export class DivisionListComponent implements OnInit {
   @Input() companyId: number;
+  divisionOperation: FormActions;
   division:Division;
   provinces: Province[];
   federalTaxes: FederalTax[];
@@ -97,7 +99,15 @@ export class DivisionListComponent implements OnInit {
   }
 
   public selectDivision(division: Division) {
+    this.divisionOperation = FormActions.Edit;
     this.division=division;
+  }
+
+  public createDivision(companyId: number) {
+    this.divisionOperation = FormActions.Create;
+    const newDivision = <Division>{};
+    newDivision.companyId = companyId;
+    this.division=newDivision;
   }
 
 }

@@ -14,6 +14,18 @@
     </div> 
     <div *ngIf="ngControl.control.errors?.isMatching" class="invalid-feedback">
         Passwords do not match
-    </div>  
+    </div> 
+    <div *ngIf="ngControl.control.errors?.email" class="invalid-feedback">
+        A valid email address is required
+    </div>
+    <div *ngIf="ngControl.control.errors?.pattern" class="invalid-feedback">
+        A valid {{label}} is required
+    </div>
+    <div *ngIf="ngControl.control.errors?.isValidPhoneNumber" class="invalid-feedback">
+        A valid {{label}} is required - (e.g. 123-456-7890)
+    </div> 
+    <div *ngIf="ngControl.control.errors?.isValidPostalCode" class="invalid-feedback">
+        A valid {{label}} is required - (e.g. R2J-1Y4)
+    </div>      
 </div>
 
