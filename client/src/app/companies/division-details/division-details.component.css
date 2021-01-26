@@ -1,5 +1,19 @@
+td {   
+    height: 30px; 
+}
+
 .taxFee {
+    width: 100%;
     font-size:12px;
+    background-color: white;
+}
+
+th {
+    font-size:12px;
+    font-weight: normal;
+    color: white;
+    background-color: #2979FF;
+    padding: 2%;
 }
 
 ul {  
@@ -9,6 +23,15 @@ ul {
 li {  
     text-align: left;  
 } 
+
+.form-control {
+    padding: 0.2rem 0.5rem;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 32px;
+    font-size: 12px;
+}
 
 .grid-container {
 	padding: 10px;

@@ -1,1 +1,72 @@
-<p>class-list works!</p>
+<div>
+
+    <div class="row justify-content-between ext-box">
+
+      <div class="col-4 int-box">
+        <mat-form-field>
+          <input matInput placeholder="Search Classes" #input>
+        </mat-form-field>
+      </div>
+
+      <div class="col-4 int-box">
+        <a mat-button color="primary" (click)="createClass(companyId)">Create Class</a>
+      </div>
+
+    </div>
+
+</div>
+
+<div class="p-2 bg-light border">
+
+    <table mat-table [dataSource]="dataSource" class="table table-hover"
+    matSort matSortActive="ClassName" matSortDirection="asc" matSortDisableClear>
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Id Column -->
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Id </th>
+          <td mat-cell *matCellDef="let class">{{class.id}}</td>
+        </ng-container>
+        <!-- Class Number Column -->
+        <ng-container matColumnDef="ClassNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Class Number </th>
+          <td mat-cell *matCellDef="let class"> {{class.classNumber}} </td>
+        </ng-container>
+        <!-- Class Name Column -->
+        <ng-container matColumnDef="ClassName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Class Name </th>
+          <td mat-cell *matCellDef="let class"> {{class.className}} </td>
+        </ng-container>
+        <!-- Personal Health Maximum Column -->
+        <ng-container matColumnDef="PersonalHealthMaximum">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Personal Health Maximum </th>
+          <td mat-cell *matCellDef="let class"> {{class.personalHealthMaximum | currency}} </td>
+        </ng-container>
+        <!-- Class Waiting Period Column -->
+        <ng-container matColumnDef="ClassWaitingPeriod">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Waiting Period (days) </th>
+          <td mat-cell *matCellDef="let class"> {{class.classWaitingPeriod}} </td>
+        </ng-container>
+        <!-- Is Hsa Class Column -->
+        <ng-container matColumnDef="IsHsaClass">
+          <th mat-header-cell *matHeaderCellDef> HSA </th>
+          <td mat-cell *matCellDef="let class">
+            <mat-icon *ngIf="class.isHsaClass" style="color:green">check</mat-icon>
+            <mat-icon *ngIf="!class.isHsaClass" style="color:red">close</mat-icon>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row *matRowDef="let class; columns: displayColumns;" (click)="selectClass(class)"></tr>
+       
+      </table>
+      <mat-paginator class="p-2 bg-light border" [length]="dataSource.total" 
+      [pageSizeOptions]="pageSizeOptions" [pageSize]="itemsPerPage" showFirstLastButtons></mat-paginator>
+      
+</div>
+<app-class-details [classData]="classData" 
+                   [classOperation]="classOperation"
+                   (reloadClasses)="reloadClasses($event)">
+</app-class-details>

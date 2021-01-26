@@ -16,4 +16,11 @@ export class CustomValidators {
         }
     }
 
+    static isNumeric(validateTo: string): ValidatorFn {
+        return (control: AbstractControl) => {
+            const NUMERIC_REGEXP = /[0-9]\.*$/;
+            return NUMERIC_REGEXP.test(control?.parent?.controls[validateTo].value) ? null : {isNumeric: true};
+        }
+    }
+
 }

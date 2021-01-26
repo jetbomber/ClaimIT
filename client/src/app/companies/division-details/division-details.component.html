@@ -25,16 +25,22 @@
                             [label]='"Admin Fee %"'>
                             </app-text-input>
                         </div>
-                        <div *ngIf="provincialTaxType" class="col taxFee">
-                            <p *ngIf="provincialTaxType=='HST'">Tax Fee</p>
-                            <p *ngIf="provincialTaxType!='HST'">Provincial Tax Fee</p>
-                            <p>{{provincialTaxType}}({{taxFeePercentage}}%)</p>
-                        </div>
-                        <div *ngIf="provincialTaxType!='HST' && provincialTaxType" class="col taxFee">
-                            <p>Federal Tax Fee</p>
-                            <ul *ngFor="let tax of federalTaxes">
-                                <li>{{tax.taxTypeName}}({{tax.taxPercentage}}%)</li>
-                            </ul>
+                        <div *ngIf="division.provinceId" class="col">
+                            <table class="border taxFee">
+                                <th *ngIf="provincialTaxType=='HST'">HST</th>
+                                <th *ngIf="provincialTaxType!='HST'">PST</th>
+                                <th *ngIf="provincialTaxType!='HST'">Federal Taxes</th>
+                                <tr>
+                                    <td>{{taxFeePercentage}}%</td>
+                                    <td *ngIf="provincialTaxType!='HST'">
+                                        <table class="taxFee">
+                                            <tr *ngFor="let tax of federalTaxes">
+                                                <td>{{tax.taxTypeName}}({{tax.taxPercentage}}%)</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </fieldset>
@@ -92,7 +98,7 @@
                     </div>
                     <div class="col">
                         <label for="province">Province</label>
-                        <select class="form-control select-style" formControlName="province" id="province">
+                        <select class="form-control" formControlName="province" id="province">
                             <option *ngFor="let province of provinceList" [ngValue]="province.id">
                                 {{ province.name }}
                             </option>

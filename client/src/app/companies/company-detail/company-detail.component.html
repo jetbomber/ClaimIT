@@ -20,16 +20,14 @@
             [formControl]='companyForm.controls["groupTerminationDate"]'
             [label]='"Termination Date"'>
           </app-date-input>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" formControlName="includeHsaClaims" 
-            [checked]="company.includeHsaClaims">
-            <label class="form-check-label" for="includeHsaClaims">HSA</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" formControlName="includeCostPlusClaims"
-            [checked]="company.includeCostPlusClaims">
-            <label class="form-check-label" for="includeCostPlusClaims">Cost Plus</label>
-          </div>
+          <app-checkbox-input
+            [formControl]='companyForm.controls["includeHsaClaims"]'
+            [label]='"HSA"'>
+          </app-checkbox-input>
+          <app-checkbox-input
+            [formControl]='companyForm.controls["includeCostPlusClaims"]'
+            [label]='"Cost Plus"'>
+          </app-checkbox-input>
           <div class="row mb-2" *ngIf="validationErrors.length > 0">
             <ul class="text-danger">
                 <li *ngFor="let error of validationErrors">
@@ -46,9 +44,8 @@
       </div>
     </tab>
     <tab class="p-2 bg-light border" heading="Divisions" id="tabDivisions"><app-division-list [companyId]="company.id"></app-division-list></tab>
-    <tab class="p-2 bg-light border" heading="Classes" id="tabClasses"><app-class-list></app-class-list></tab>
+    <tab class="p-2 bg-light border" heading="Classes" id="tabClasses"><app-class-list [companyId]="company.id"></app-class-list></tab>
   </tabset>
 </div>
-
 
 

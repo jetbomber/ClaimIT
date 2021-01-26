@@ -1,7 +1,6 @@
-import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
-import { Constants } from "src/app/utilities/constants";
 import { CustomValidators } from "src/app/utilities/custom.validators";
 import { FormActions } from "src/app/utilities/enum";
 import { Division } from "src/app/_models/division";
@@ -9,6 +8,7 @@ import { FederalTax } from "src/app/_models/federaltax";
 import { Province } from "src/app/_models/province";
 import { TaxFee } from "src/app/_models/taxfee";
 import { DivisionService } from "src/app/_services/division.service";
+import { PopUpMessageService } from "src/app/_services/pop-up-message.service";
 
 @Component({
   selector: 'app-division-details',
@@ -26,11 +26,12 @@ export class DivisionDetailsComponent implements OnInit {
   taxFeePercentage: number;
   provincialTaxType: string = null;
   validationErrors: string[] = [];
-  taxFees: TaxFee[] = [];
+
+  @Output() reloadDivisions: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private divisionService: DivisionService,
               private fb: FormBuilder,
-              private toastr: ToastrService) { }
+              private msg: PopUpMessageService) { }
 
   ngOnInit() {
   }
@@ -65,12 +66,14 @@ export class DivisionDetailsComponent implements OnInit {
     }
     
     this.divisionForm = this.fb.group({
-      divisionNumber: [division.divisionNumber,Validators.required],
+      id: [this.division.id],
+      companyId: [this.division.companyId],
+      divisionNumber: [division.divisionNumber,CustomValidators.isNumeric("divisionNumber")],
       divisionName: [division.divisionName,Validators.required],
-      generalAdminFee: [division.generalAdminFee,Validators.required],
+      generalAdminFee: [division.generalAdminFee,CustomValidators.isNumeric("generalAdminFee")],
       address:[division.address,Validators.required],
       city:[division.city,Validators.required],
-      province: [division.provinceId,Validators.required],
+      province:[division.provinceId,Validators.required],
       postalCode:[division.postalCode,CustomValidators.postalCode("postalCode")],
       contactPersonName: [division.contactPersonName,Validators.required],
       contactPersonPhoneNumber: [division.contactPersonPhoneNumber,CustomValidators.phoneNumber("contactPersonPhoneNumber")],
@@ -82,10 +85,11 @@ export class DivisionDetailsComponent implements OnInit {
     this.divisionForm.get("province").valueChanges
     .subscribe(provinceId=> {
       this.updateFees(provinceId);
+      division.provinceId = provinceId;
     })
   }
 
-  public handleSubmission() {
+  private retrieveFormData() {
     this.division.divisionNumber = this.divisionForm.get('divisionNumber').value;
     this.division.divisionName = this.divisionForm.get('divisionName').value;
     this.division.generalAdminFee = this.divisionForm.get('generalAdminFee').value;
@@ -98,18 +102,24 @@ export class DivisionDetailsComponent implements OnInit {
     this.division.contactPersonPhoneNumberExt = this.divisionForm.get('contactPersonPhoneNumberExt').value;
     this.division.contactPersonEmailAddress = this.divisionForm.get('contactPersonEmailAddress').value;
     this.division.contactPersonFax = this.divisionForm.get('contactPersonFax').value;
+  }
+
+  public handleSubmission() {
+    this.retrieveFormData();
     if (this.divisionOperation==FormActions.Edit) {
       this.divisionService.updateDivision(this.division).subscribe(() => {
-        this.toastr.success('Division updated successfully');
-        location.reload();
+        this.msg.success('Division updated successfully');
       }, error => {
+        this.msg.error('Division was not updated','Error');
         this.validationErrors = error;
       })
     } else {
       this.divisionService.createDivision(this.division).subscribe(() => {
-        this.toastr.success('Division created successfully');
-        location.reload();
+        this.divisionForm.reset();
+        this.reloadDivisions.emit(true);
+        this.msg.success('Division created successfully');
       }, error => {
+        this.msg.error('Division was not created','Error');
         this.validationErrors = error;
       })
     }

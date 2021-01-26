@@ -66,5 +66,6 @@
 <app-division-details [division]="division" 
                       [provinces]="provinces" 
                       [federalTaxes]="federalTaxes" 
-                      [divisionOperation]="divisionOperation">
+                      [divisionOperation]="divisionOperation"
+                      (reloadDivisions)="reloadDivisions($event)">
 </app-division-details>

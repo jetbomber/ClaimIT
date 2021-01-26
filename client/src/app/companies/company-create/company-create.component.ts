@@ -4,6 +4,7 @@ import { CompanyService } from 'src/app/_services/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 
 @Component({
   selector: 'app-company-create',
@@ -17,7 +18,7 @@ export class CompanyCreateComponent implements OnInit {
 
   constructor(private companyService: CompanyService,
               private fb: FormBuilder,
-              private toastr: ToastrService,
+              private msg: PopUpMessageService,
               private router: Router) {
 
   }
@@ -38,7 +39,7 @@ export class CompanyCreateComponent implements OnInit {
 
   public createCompany() {
     this.companyService.createCompany(this.createCompanyForm.value).subscribe(() => {
-      this.toastr.success('Company created successfully');
+      this.msg.success('Company created successfully');
       this.modalRef.hide();
       location.reload();
     }, error => {

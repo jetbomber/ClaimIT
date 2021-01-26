@@ -8,7 +8,7 @@ namespace API.Interfaces
     {
         void Update(Class classData);
         Task<bool> SaveAllAsync();
-        Task<PagedList<Class>> GetClassesAsync(UserParams userParams);
+        Task<PagedList<Class>> GetClassesAsync(UserParams userParams,int companyId);
         Task<Class> GetClassByIdAsync(int id);
         void Add(Class classData);
         Task<bool> ClassExists(string className, int companyId);

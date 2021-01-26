@@ -5,7 +5,6 @@ using API.Entities;
 using API.Extensions;
 using API.Helpers;
 using API.Interfaces;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,7 +56,7 @@ namespace API.Controllers
         {
             
             if (await _divisionRepository.DivisionExists(division.DivisionName, division.CompanyId)) {
-                return BadRequest("A Division with the name '" + division.DivisionName + "' already exists for the company");
+                return BadRequest("A Division with the name '" + division.DivisionName + "' already exists for this company");
             } 
             
              _divisionRepository.Add(division);

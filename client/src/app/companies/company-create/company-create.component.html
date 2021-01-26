@@ -20,14 +20,14 @@
                     [formControl]='createCompanyForm.controls["yearEndDate"]'
                     [label]='"Year End Date"'>
                 </app-date-input>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" formControlName="includeHsaClaims">
-                    <label class="form-check-label" for="includeHsaClaims">HSA</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" formControlName="includeCostPlusClaims">
-                    <label class="form-check-label" for="includeCostPlusClaims">Cost Plus</label>
-                </div>
+                <app-checkbox-input
+                    [formControl]='createCompanyForm.controls["includeHsaClaims"]'
+                    [label]='"HSA"'>
+                </app-checkbox-input>
+                <app-checkbox-input
+                    [formControl]='createCompanyForm.controls["includeCostPlusClaims"]'
+                    [label]='"Cost Plus"'>
+                </app-checkbox-input>
                 <div class="row mb-2" *ngIf="validationErrors.length > 0">
                     <ul class="text-danger">
                         <li *ngFor="let error of validationErrors">

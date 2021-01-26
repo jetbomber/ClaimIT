@@ -1,0 +1,63 @@
+<br/>
+<div *ngIf="classData" class="p-3 border">
+    <form [formGroup]='classForm' (ngSubmit)="classForm.valid && handleSubmission()" autocomplete="off"> 
+        <div class="grid-container"> 
+            <div class="grid-item grid-item1 border"> 
+                <div class="form-row">
+                    <div class="col">        
+                        <app-text-input 
+                        [formControl]='classForm.controls["classNumber"]'
+                        [label]='"Class Number"'>
+                        </app-text-input>
+                        <app-text-input 
+                        [formControl]='classForm.controls["className"]'
+                        [label]='"Class Name"'>
+                        </app-text-input>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item grid-item2 border">
+                <div class="form-row">
+                    <div class="col">      
+                        <app-text-input 
+                        [formControl]='classForm.controls["personalHealthMaximum"]'
+                        [label]='"Personal Health Maximum"'>
+                        </app-text-input>
+                        <app-text-input 
+                        [formControl]='classForm.controls["classWaitingPeriod"]'
+                        [label]='"Class Waiting Period"'>
+                        </app-text-input>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item grid-item3 border">
+                <div class="form-row">
+                    <div class="col">
+                        <app-text-input 
+                        [formControl]='classForm.controls["description"]'
+                        [label]='"Description"'>
+                        </app-text-input>  
+                        <app-checkbox-input
+                        [formControl]='classForm.controls["isHsaClass"]'
+                        [label]='"HSA"'>
+                        </app-checkbox-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2" *ngIf="validationErrors.length > 0">
+            <ul class="text-danger">
+                <li *ngFor="let error of validationErrors">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+        <div class="btn-container">
+            <fieldset>
+                <div class="child">
+                    <button [disabled]='!classForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>

@@ -36,9 +36,10 @@ namespace API.Data
             .SingleOrDefaultAsync();
         }
 
-        public async Task<PagedList<Class>> GetClassesAsync(UserParams userParams)
+        public async Task<PagedList<Class>> GetClassesAsync(UserParams userParams, int companyId)
         {
-            IQueryable<Class> query = _context.Class;
+            IQueryable<Class> query = _context.Class
+            .Where(x=>x.CompanyId==companyId);
             if (!string.IsNullOrEmpty(userParams.Filter)){
                 query = query.Where(x=>x.ClassName.ToUpper().Contains(userParams.Filter.ToUpper()));
             }

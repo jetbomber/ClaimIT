@@ -71,11 +71,6 @@ input[type="text"],input[type="password"]
   width: 100%;
 }
 
-.select-style{
-  font-size:12px;
-  width: 100%;
-}
-
 label {
   display: block;
   font-size: 12px;

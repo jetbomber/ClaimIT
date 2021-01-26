@@ -73,6 +73,10 @@ export class DivisionListComponent implements OnInit {
     .subscribe();
   }
 
+  reloadDivisions(reload: boolean) {
+    if (reload) {this.loadDivisionsPage();}
+  }
+
   private getProvinces() {
     this.lookUpService.getProvinces().pipe(
         map(response => {
@@ -107,6 +111,18 @@ export class DivisionListComponent implements OnInit {
     this.divisionOperation = FormActions.Create;
     const newDivision = <Division>{};
     newDivision.companyId = companyId;
+    newDivision.divisionNumber = null;
+    newDivision.divisionName = null;
+    newDivision.generalAdminFee = null;;
+    newDivision.address = null;
+    newDivision.city = null;
+    newDivision.provinceId = null;
+    newDivision.postalCode = null;
+    newDivision.contactPersonName = null;
+    newDivision.contactPersonPhoneNumber = null;
+    newDivision.contactPersonPhoneNumberExt = null;
+    newDivision.contactPersonEmailAddress = null;
+    newDivision.contactPersonFax = null;
     this.division=newDivision;
   }
 

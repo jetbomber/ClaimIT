@@ -1,14 +1,5 @@
-<!--<form class="form-signin" #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
-    <h2 class="text-center text-primary">Sign In</h2>
-    <input type="text" class="form-control" name="username"
-    [(ngModel)]="model.username" placeholder="Username" >
-    <br />
-    <input type="password" class="form-control" name="password"
-    [(ngModel)]="model.password" placeholder="Password" >
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-</form>-->
-
-<form class="form-signin" [formGroup]='loginForm' (ngSubmit)="login()" autocomplete="off">
+<h2 class="text-center text-primary">Sign In</h2>
+<form class="form-signin col-3 bg-light border" [formGroup]='loginForm' (ngSubmit)="login()" autocomplete="off">
     <app-text-input 
     [formControl]='loginForm.controls["username"]' 
     [label]='"Username"'>
@@ -20,3 +11,4 @@
     </app-text-input>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
 </form>
+

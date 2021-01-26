@@ -1,12 +1,12 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject } from 'rxjs';
 import { of } from 'rxjs/internal/observable/of';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { Company } from 'src/app/_models/company';
 import { CompanyService } from 'src/app/_services/company.service';
+import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 
 @Component({
   selector: 'app-company-detail',
@@ -30,7 +30,7 @@ export class CompanyDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private companyService: CompanyService,
-              private toastr: ToastrService,
+              private msg: PopUpMessageService,
               private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -43,6 +43,7 @@ export class CompanyDetailComponent implements OnInit {
 
   initializeForm(company : Company) {
     this.companyForm = this.fb.group({
+      id: [company.id],
       companyName: [company.companyName, Validators.required],
       commencementDate: [new Date(company.commencementDate), Validators.required],
       yearEndDate: [new Date(company.yearEndDate), Validators.required],
@@ -65,15 +66,10 @@ export class CompanyDetailComponent implements OnInit {
   }
 
   public updateCompany() {
-    this.company.companyName = this.companyForm.get('companyName').value;
-    this.company.commencementDate = this.companyForm.get('commencementDate').value;
-    this.company.yearEndDate = this.companyForm.get('yearEndDate').value;
-    this.company.groupTerminationDate = this.companyForm.get('groupTerminationDate').value;
-    this.company.includeHsaClaims = this.companyForm.get('includeHsaClaims').value;
-    this.company.includeCostPlusClaims = this.companyForm.get('includeCostPlusClaims').value;
-    this.companyService.updateCompany(this.company).subscribe(() => {
-      this.toastr.success('Company updated successfully');
+    this.companyService.updateCompany(this.companyForm.value).subscribe(() => {
+      this.msg.success('Company updated successfully');
     }, error => {
+      this.msg.error('Company was not updated','Error');
       this.validationErrors = error;
     })
   }

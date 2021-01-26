@@ -43,6 +43,8 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { DivisionListComponent } from './companies/division-list/division-list.component';
 import { ClassListComponent } from './companies/class-list/class-list.component';
 import { DivisionDetailsComponent } from './companies/division-details/division-details.component';
+import { ClassDetailsComponent } from './companies/class-details/class-details.component';
+import { CheckboxInputComponent } from './_forms/checkbox-input/checkbox-input.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { DivisionDetailsComponent } from './companies/division-details/division-
     DateInputComponent,
     DivisionListComponent,
     DivisionDetailsComponent,
-    ClassListComponent
+    ClassListComponent,
+    ClassDetailsComponent,
+    CheckboxInputComponent
   ],
   imports: [
     CommonModule,

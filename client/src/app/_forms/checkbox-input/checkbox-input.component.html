@@ -1,0 +1,10 @@
+<div class="form-check form-check-inline">
+    <input 
+    type="checkbox" 
+    class="form-check-input" 
+    [checked]="isChecked"  
+    (blur)="onBlur($event)"
+    (change)="onChanged($event)" 
+    [disabled]="disabled">
+    <label class="form-check-label">{{label}}</label>
+</div>
