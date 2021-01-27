@@ -9,6 +9,7 @@ import { FormActions } from 'src/app/utilities/enum';
 import { setSortingParameters } from 'src/app/utilities/sort.utilities';
 import { Class } from 'src/app/_models/class';
 import { ClassService } from 'src/app/_services/class.service';
+import { newClass } from './class-common';
 import { ClassListDataSource } from './class-list-data-source';
 
 @Component({
@@ -82,15 +83,7 @@ export class ClassListComponent implements OnInit {
 
   public createClass(companyId: number) {
     this.classOperation = FormActions.Create;
-    const newClass = <Class>{};
-    newClass.companyId = companyId;
-    newClass.className = null;
-    newClass.classNumber = null;
-    newClass.classWaitingPeriod = null;
-    newClass.description = null;
-    newClass.personalHealthMaximum = null;
-    newClass.isHsaClass = null;
-    this.classData = newClass;
+    this.classData = newClass(companyId);
   }
 
 }

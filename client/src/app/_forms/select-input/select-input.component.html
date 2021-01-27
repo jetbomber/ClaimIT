@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label>{{label}}</label>
+    <select class="form-control" [formControl]='ngControl.control' [id]='ngControl.control'>
+        <option *ngFor="let opt of options" [value]="opt.id">
+            {{ opt.name }}
+        </option>
+    </select>
+</div>

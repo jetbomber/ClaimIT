@@ -45,6 +45,7 @@ import { ClassListComponent } from './companies/class-list/class-list.component'
 import { DivisionDetailsComponent } from './companies/division-details/division-details.component';
 import { ClassDetailsComponent } from './companies/class-details/class-details.component';
 import { CheckboxInputComponent } from './_forms/checkbox-input/checkbox-input.component';
+import { SelectInputComponent } from './_forms/select-input/select-input.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { CheckboxInputComponent } from './_forms/checkbox-input/checkbox-input.c
     DivisionDetailsComponent,
     ClassListComponent,
     ClassDetailsComponent,
-    CheckboxInputComponent
+    CheckboxInputComponent,
+    SelectInputComponent
   ],
   imports: [
     CommonModule,

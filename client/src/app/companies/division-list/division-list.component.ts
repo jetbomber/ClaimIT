@@ -13,6 +13,7 @@ import { FederalTax } from 'src/app/_models/federaltax';
 import { Province } from 'src/app/_models/province';
 import { DivisionService } from 'src/app/_services/division.service';
 import { LookupService } from 'src/app/_services/lookup.service';
+import { newDivision } from './division-common';
 import { DivisionListDataSource } from './division-list-data-source';
 
 @Component({
@@ -109,21 +110,7 @@ export class DivisionListComponent implements OnInit {
 
   public createDivision(companyId: number) {
     this.divisionOperation = FormActions.Create;
-    const newDivision = <Division>{};
-    newDivision.companyId = companyId;
-    newDivision.divisionNumber = null;
-    newDivision.divisionName = null;
-    newDivision.generalAdminFee = null;;
-    newDivision.address = null;
-    newDivision.city = null;
-    newDivision.provinceId = null;
-    newDivision.postalCode = null;
-    newDivision.contactPersonName = null;
-    newDivision.contactPersonPhoneNumber = null;
-    newDivision.contactPersonPhoneNumberExt = null;
-    newDivision.contactPersonEmailAddress = null;
-    newDivision.contactPersonFax = null;
-    this.division=newDivision;
+    this.division=newDivision(companyId);
   }
 
 }

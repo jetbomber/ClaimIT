@@ -97,12 +97,11 @@
                         </app-text-input>
                     </div>
                     <div class="col">
-                        <label for="province">Province</label>
-                        <select class="form-control" formControlName="province" id="province">
-                            <option *ngFor="let province of provinceList" [ngValue]="province.id">
-                                {{ province.name }}
-                            </option>
-                        </select>
+                        <app-select-input
+                            [formControl]='divisionForm.controls["provinceId"]'
+                            [options]='provinceList'
+                            [label]='"Province"'>
+                        </app-select-input>
                     </div>
                     <div class="col">
                         <app-text-input 

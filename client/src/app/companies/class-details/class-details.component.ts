@@ -5,6 +5,7 @@ import { FormActions } from 'src/app/utilities/enum';
 import { Class } from 'src/app/_models/class';
 import { ClassService } from 'src/app/_services/class.service';
 import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
+import { newClass } from '../class-list/class-common';
 
 @Component({
   selector: 'app-class-details',
@@ -31,6 +32,7 @@ export class ClassDetailsComponent implements OnInit {
       const chng = changes[propName];
       if (propName=='classData' && chng.currentValue != null) {
         this.initializeForm(chng.currentValue);
+        this.validationErrors = [];
       }
     }
   }
@@ -48,29 +50,20 @@ export class ClassDetailsComponent implements OnInit {
     })
   }
 
-  private retrieveFormData() {
-    this.classData.classNumber = this.classForm.get('classNumber').value;
-    this.classData.className = this.classForm.get('className').value;
-    this.classData.description = this.classForm.get('description').value;
-    this.classData.personalHealthMaximum = this.classForm.get('personalHealthMaximum').value;
-    this.classData.classWaitingPeriod = this.classForm.get('classWaitingPeriod').value;
-    this.classData.isHsaClass = this.classForm.get('isHsaClass').value;
-  }
-
   public handleSubmission() {
     if (this.classOperation==FormActions.Edit) {
       this.classService.updateClass(this.classForm.value).subscribe(() => {
-        this.retrieveFormData();
+        this.reloadClasses.emit(true);
         this.msg.success('Class updated successfully');
       }, error => {
         this.msg.error('Class was not updated','Error');
         this.validationErrors = error;
       })
     } else {
-      this.retrieveFormData();
-      this.classService.createClass(this.classData).subscribe(() => {
-        this.classForm.reset();
+      this.classForm.removeControl("id");
+      this.classService.createClass(this.classForm.value).subscribe(() => {
         this.reloadClasses.emit(true);
+        this.initializeForm(newClass(this.classData.companyId));
         this.msg.success('Class created successfully');
       }, error => {
         this.msg.error('Class was not created','Error');
