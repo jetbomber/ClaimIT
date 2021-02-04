@@ -27,6 +27,15 @@ namespace API
                 await Seed.SeedDivisions(context);
                 await Seed.SeedClasses(context);
                 await Seed.SeedFederalTax(context);
+                await Seed.SeedCompensationTypes(context);
+                await Seed.SeedCountries(context);
+                await Seed.SeedDependentRelationshipTypes(context);
+                await Seed.SeedGender(context);
+                await Seed.SeedMaritalStatus(context);
+                await Seed.SeedEmployees(context);
+                await Seed.SeedDependents(context);
+                await Seed.SeedHsaAccountTypes(context);
+                await Seed.SeedHsaClassDetails(context);
             } 
             catch (Exception ex) {
                 var logger = services.GetRequiredService<ILogger<Program>>();
