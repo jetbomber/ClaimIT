@@ -12,6 +12,8 @@ namespace API.Helpers
             CreateMap<Division, DivisionDto>();
             CreateMap<Province, ProvinceDto>();
             CreateMap<TaxType, TaxTypeDto>();
+            CreateMap<Class, ClassDto>();
+            CreateMap<HsaClassDetails, HsaClassDetailsDto>();
         }
         
     }

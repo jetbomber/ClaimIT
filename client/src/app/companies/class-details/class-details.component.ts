@@ -33,11 +33,24 @@ export class ClassDetailsComponent implements OnInit {
       if (propName=='classData' && chng.currentValue != null) {
         this.initializeForm(chng.currentValue);
         this.validationErrors = [];
+        console.log(chng.currentValue);
       }
     }
   }
 
   private initializeForm(classData: Class) {
+    let carryForwardYears = null;
+    let excludeDental = false;
+    let excludeDrug = false;
+    let excludeExtendedHealth = false;
+    let excludeVision = false;
+    if (classData.hsaClassDetails.length > 0) {
+      carryForwardYears = classData.hsaClassDetails[0].carryForwardYears; 
+      excludeDental = classData.hsaClassDetails[0].excludeDental;
+      excludeDrug = classData.hsaClassDetails[0].excludeDrug
+      excludeExtendedHealth = classData.hsaClassDetails[0].excludeExtendedHealth;
+      excludeVision = classData.hsaClassDetails[0].excludeVision;
+    }
     this.classForm = this.fb.group({
       id: [classData.id],
       companyId: [classData.companyId],
@@ -46,7 +59,12 @@ export class ClassDetailsComponent implements OnInit {
       description: [classData.description],
       personalHealthMaximum: [classData.personalHealthMaximum,CustomValidators.isNumeric("personalHealthMaximum")],
       classWaitingPeriod: [classData.classWaitingPeriod,CustomValidators.isNumeric("classWaitingPeriod")],
-      isHsaClass: [classData.isHsaClass]
+      isHsaClass: [classData.isHsaClass],
+      carryForwardYears: [carryForwardYears,CustomValidators.isNumeric("carryForwardYears")],
+      excludeDental: [excludeDental],
+      excludeDrug: [excludeDrug],
+      excludeExtendedHealth: [excludeExtendedHealth],
+      excludeVision: [excludeVision]
     })
   }
 

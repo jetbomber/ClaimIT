@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Helpers;
@@ -12,11 +13,12 @@ namespace API.Controllers
     [Authorize]
     public class ClassController : BaseApiController
     {
-          private readonly IClassRepository _classRepository;
-        public ClassController(IClassRepository classRepository)
+        private readonly IClassRepository _classRepository;
+        private readonly IHsaClassDetailsRepository _hsaClassDetailsRepository;
+        public ClassController(IClassRepository classRepository,IHsaClassDetailsRepository hsaClassDetailsRepository)
         {
             _classRepository = classRepository;
-
+            _hsaClassDetailsRepository = hsaClassDetailsRepository;
         }
 
         [Route("[action]/{companyId}")]
@@ -36,6 +38,13 @@ namespace API.Controllers
         public async Task<ActionResult<Class>> GetClassById(int classId)
         {
             return await _classRepository.GetClassByIdAsync(classId);
+        }
+
+        [Route("[action]/{classId}")]
+        [HttpGet]
+         public async Task<ActionResult<HsaClassDetailsDto>> GetHsaClassDetailsByClassId(int classId)
+        {
+            return await _hsaClassDetailsRepository.GetHsaClassDetailsByClassIdAsync(classId);
         }
 
         [HttpPut]

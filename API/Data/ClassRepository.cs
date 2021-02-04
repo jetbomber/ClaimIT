@@ -5,15 +5,20 @@ using API.Entities;
 using API.Helpers;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using API.DTOs;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace API.Data
 {
     public class ClassRepository: IClassRepository
     {
         private readonly DataContext _context;
-        public ClassRepository(DataContext context)
+        private readonly IMapper _mapper;
+        public ClassRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
 
         }
         public void Add(Class classData)
@@ -36,17 +41,26 @@ namespace API.Data
             .SingleOrDefaultAsync();
         }
 
-        public async Task<PagedList<Class>> GetClassesAsync(UserParams userParams, int companyId)
+        public async Task<PagedList<ClassDto>> GetClassesAsync(UserParams userParams, int companyId)
         {
-            IQueryable<Class> query = _context.Class
+            IQueryable<ClassDto> query = _context.Class
+            .ProjectTo<ClassDto>(_mapper.ConfigurationProvider)
             .Where(x=>x.CompanyId==companyId);
             if (!string.IsNullOrEmpty(userParams.Filter)){
                 query = query.Where(x=>x.ClassName.ToUpper().Contains(userParams.Filter.ToUpper()));
             }
 
+            query.Join(_context.Hsa_Class_Details,
+            cls=>cls.Id,
+            details=>details.ClassId,
+            (cls,details) => new { DETAILS = details })
+            .Select(s=> new {
+                HsaClassDetailsId = s.DETAILS.Id
+            });
+
             query = SortingExtension.SortBy(query,userParams.SortColumn,userParams.Reverse);
 
-            return await PagedList<Class>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+            return await PagedList<ClassDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()

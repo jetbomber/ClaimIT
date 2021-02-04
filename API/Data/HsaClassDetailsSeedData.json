@@ -1,0 +1,20 @@
+[
+    {
+        "CarryForwardYears": 1,
+        "ExcludeDental": true,
+        "ExcludeDrug": true,
+        "ExcludeExtendedHealth": false,
+        "ExcludeVision": true,
+        "ClassId": 1,
+        "HsaAccountTypeId": 1
+    },
+    {
+        "CarryForwardYears": 1,
+        "ExcludeDental": false,
+        "ExcludeDrug": false,
+        "ExcludeExtendedHealth": true,
+        "ExcludeVision": false,
+        "ClassId": 9,
+        "HsaAccountTypeId": 2
+    }
+]

@@ -3,14 +3,16 @@ using System;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210127183516_EmployeesDependents")]
+    partial class EmployeesDependents
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -403,56 +405,6 @@ namespace API.Data.Migrations
                     b.ToTable("Gender");
                 });
 
-            modelBuilder.Entity("API.Entities.HsaAccountType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Hsa_Account_Type");
-                });
-
-            modelBuilder.Entity("API.Entities.HsaClassDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CarryForwardYears")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClassId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ExcludeDental")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ExcludeDrug")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ExcludeExtendedHealth")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("ExcludeVision")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("HsaAccountTypeId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("HsaAccountTypeId");
-
-                    b.ToTable("Hsa_Class_Details");
-                });
-
             modelBuilder.Entity("API.Entities.MaritalStatus", b =>
                 {
                     b.Property<int>("Id")
@@ -639,25 +591,6 @@ namespace API.Data.Migrations
                     b.Navigation("TaxType");
                 });
 
-            modelBuilder.Entity("API.Entities.HsaClassDetails", b =>
-                {
-                    b.HasOne("API.Entities.Class", "Class")
-                        .WithMany("HsaClassDetails")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Entities.HsaAccountType", "HsaAccountType")
-                        .WithMany("HsaClassDetails")
-                        .HasForeignKey("HsaAccountTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Class");
-
-                    b.Navigation("HsaAccountType");
-                });
-
             modelBuilder.Entity("API.Entities.Province", b =>
                 {
                     b.HasOne("API.Entities.TaxType", "TaxType")
@@ -672,8 +605,6 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.Class", b =>
                 {
                     b.Navigation("Employees");
-
-                    b.Navigation("HsaClassDetails");
                 });
 
             modelBuilder.Entity("API.Entities.Company", b =>
@@ -715,11 +646,6 @@ namespace API.Data.Migrations
                     b.Navigation("Dependents");
 
                     b.Navigation("Employees");
-                });
-
-            modelBuilder.Entity("API.Entities.HsaAccountType", b =>
-                {
-                    b.Navigation("HsaClassDetails");
                 });
 
             modelBuilder.Entity("API.Entities.MaritalStatus", b =>

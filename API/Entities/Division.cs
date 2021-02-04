@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,6 +33,7 @@ namespace API.Entities
         public Province Province { get; set; }
         [Required]
         public int ProvinceId { get; set; }
+        public ICollection<Employee> Employees { get; set; }
 
     }
 }

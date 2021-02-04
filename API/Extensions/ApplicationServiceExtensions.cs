@@ -20,6 +20,7 @@ namespace API.Extensions
             services.AddScoped<IDivisionRepository, DivisionRepository>();
             services.AddScoped<ILookUpRepository, LookUpRepository>();
             services.AddScoped<IClassRepository, ClassRepository>();
+            services.AddScoped<IHsaClassDetailsRepository, HsaClassDetailsRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {

@@ -1,3 +1,5 @@
+import { HsaClassDetails } from "./hsaclassdetails";
+
 export interface Class {
     id: number;
     classNumber: number;
@@ -7,4 +9,5 @@ export interface Class {
     personalHealthMaximum: number;
     isHsaClass: boolean;
     companyId: number;
+    hsaClassDetails: HsaClassDetails[];
 }

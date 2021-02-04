@@ -17,5 +17,6 @@ namespace API.Entities
         public bool IncludeCostPlusClaims { get; set; }
         public ICollection<Division> Divisions { get; set; }
         public ICollection<Class> Classes { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }

@@ -92,7 +92,11 @@ label {
 }
 
 legend {
-	font-size: 12px;
+  font-size:15px;
+}
+
+fieldset {
+  text-align: left;
 }
 
 div.ext-box { display: table; width:100%;}

@@ -13,5 +13,6 @@ namespace API.Entities
         public TaxType TaxType { get; set; }
         public int TaxTypeId { get; set; }
         public ICollection<Division> Divisions { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }
