@@ -3,12 +3,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { fromEvent, merge } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { Constants } from 'src/app/utilities/constants';
 import { FormActions } from 'src/app/utilities/enum';
 import { setSortingParameters } from 'src/app/utilities/sort.utilities';
 import { Class } from 'src/app/_models/class';
+import { HsaAccountTypes } from 'src/app/_models/hsaaccounttypes';
 import { ClassService } from 'src/app/_services/class.service';
+import { LookupService } from 'src/app/_services/lookup.service';
 import { newClass } from './class-common';
 import { ClassListDataSource } from './class-list-data-source';
 
@@ -21,6 +23,7 @@ export class ClassListComponent implements OnInit {
   @Input() companyId: number;
   classOperation: FormActions;
   classData:Class;
+  hsaAccountTypes: HsaAccountTypes[];
   dataSource: ClassListDataSource;
   itemsPerPage = Constants.ItemsPerPage;
   pageSizeOptions = Constants.PageSizeOptions;
@@ -30,13 +33,16 @@ export class ClassListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
-  constructor(private classService: ClassService, 
+  constructor(private classService: ClassService,
+              private lookUpService: LookupService, 
               private router: Router) { }
 
   ngOnInit() {
     this.classData = null;
+    this.hsaAccountTypes = null;
     this.dataSource = new ClassListDataSource(this.classService);
     this.dataSource.loadClasses(setSortingParameters('','asc','ClassName',0,this.itemsPerPage),this.companyId);
+    this.getHsaAccountTypes();
   }
 
   ngAfterViewInit() {
@@ -65,6 +71,14 @@ export class ClassListComponent implements OnInit {
 
   reloadClasses(reload: boolean) {
     if (reload) {this.loadClassesPage();}
+  }
+
+  private getHsaAccountTypes() {
+    this.lookUpService.getHsaAccountTypes().pipe(
+        map(response => {
+          this.hsaAccountTypes = response;
+        })
+    ).subscribe();
   }
 
   private loadClassesPage() {

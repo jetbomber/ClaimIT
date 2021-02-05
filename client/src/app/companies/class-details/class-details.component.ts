@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/utilities/custom.validators';
 import { FormActions } from 'src/app/utilities/enum';
 import { Class } from 'src/app/_models/class';
+import { HsaAccountTypes } from 'src/app/_models/hsaaccounttypes';
 import { ClassService } from 'src/app/_services/class.service';
 import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 import { newClass } from '../class-list/class-common';
@@ -15,6 +16,7 @@ import { newClass } from '../class-list/class-common';
 export class ClassDetailsComponent implements OnInit {
   @Input() classData: Class;
   @Input() classOperation: FormActions;
+  @Input() hsaAccountTypes: HsaAccountTypes[]
   classForm: FormGroup;
   validationErrors: string[] = [];
 
@@ -34,7 +36,10 @@ export class ClassDetailsComponent implements OnInit {
         this.initializeForm(chng.currentValue);
         this.validationErrors = [];
         console.log(chng.currentValue);
-      }
+      } else if (propName=='hsaAccountTypes' && chng.currentValue != null) {
+        this.hsaAccountTypes = chng.currentValue;
+        console.log(this.hsaAccountTypes);
+      } 
     }
   }
 
@@ -61,6 +66,7 @@ export class ClassDetailsComponent implements OnInit {
       classWaitingPeriod: [classData.classWaitingPeriod,CustomValidators.isNumeric("classWaitingPeriod")],
       isHsaClass: [classData.isHsaClass],
       carryForwardYears: [carryForwardYears,CustomValidators.isNumeric("carryForwardYears")],
+      carryForwardYears2: [carryForwardYears,CustomValidators.isNumeric("carryForwardYears2")],
       excludeDental: [excludeDental],
       excludeDrug: [excludeDrug],
       excludeExtendedHealth: [excludeExtendedHealth],

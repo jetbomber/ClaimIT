@@ -60,5 +60,14 @@ namespace API.Data
 
             return await query.ToListAsync();
         }
+
+        public async Task<IEnumerable<HsaAccountTypeDto>> GetHsaAccountTypes()
+        {
+             var query =  _context.Hsa_Account_Type
+            .ProjectTo<HsaAccountTypeDto>(_mapper.ConfigurationProvider)
+            .AsNoTracking();
+
+            return await query.ToListAsync();
+        }
     }
 }

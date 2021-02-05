@@ -45,30 +45,42 @@
                 </div>
             </div>
             <div *ngIf="classData.isHsaClass" class="grid-item4 border">
-                <div class="col">
-                <fieldset>
-                    <legend>HSA Class Details</legend>
-                    <app-text-input 
-                    [formControl]='classForm.controls["carryForwardYears"]'
-                    [label]='"Carry Forward Years"'>
-                    </app-text-input> 
-                    <app-checkbox-input
-                    [formControl]='classForm.controls["excludeDental"]'
-                    [label]='"Exclude Dental"'>
-                    </app-checkbox-input> 
-                    <app-checkbox-input
-                    [formControl]='classForm.controls["excludeDrug"]'
-                    [label]='"Exclude Drug"'>
-                    </app-checkbox-input> 
-                    <app-checkbox-input
-                    [formControl]='classForm.controls["excludeExtendedHealth"]'
-                    [label]='"Exclude Extended Health"'>
-                    </app-checkbox-input> 
-                    <app-checkbox-input
-                    [formControl]='classForm.controls["excludeVision"]'
-                    [label]='"Exclude Vision"'>
-                    </app-checkbox-input> 
-                </fieldset>
+                <div class="hsaDetails-grid-container">
+                    <div class="hsaDetails-grid-item1">
+                        <fieldset>
+                            <app-text-input 
+                            [formControl]='classForm.controls["carryForwardYears"]'
+                            [label]='"Carry Forward Years"'>
+                            </app-text-input> 
+                        </fieldset>
+                    </div>
+                    <div class="hsaDetails-grid-item2"> 
+                        <app-text-input 
+                        [formControl]='classForm.controls["carryForwardYears2"]'
+                        [label]='"Carry Forward Years2"'>
+                        </app-text-input> 
+                    </div>
+                    <div class="hsaDetails-grid-item3"> 
+                        <app-checkbox-input
+                        [formControl]='classForm.controls["excludeDental"]'
+                        [label]='"Exclude Dental"'>
+                        </app-checkbox-input> 
+                        <br/>
+                        <app-checkbox-input
+                        [formControl]='classForm.controls["excludeDrug"]'
+                        [label]='"Exclude Drug"'>
+                        </app-checkbox-input> 
+                        <br/>
+                        <app-checkbox-input
+                        [formControl]='classForm.controls["excludeExtendedHealth"]'
+                        [label]='"Exclude Extended Health"'>
+                        </app-checkbox-input> 
+                        <br/>
+                        <app-checkbox-input
+                        [formControl]='classForm.controls["excludeVision"]'
+                        [label]='"Exclude Vision"'>
+                        </app-checkbox-input>
+                    </div>
                 </div>
             </div>
         </div>

@@ -10,5 +10,6 @@ namespace API.Interfaces
         Task<IEnumerable<ProvinceDto>> GetProvincesAsync();
         Task<IEnumerable<TaxTypeDto>> GetTaxTypesAsync();
         Task<IEnumerable<FederalTaxDto>> GetFederalTaxesAsync();
+        Task<IEnumerable<HsaAccountTypeDto>> GetHsaAccountTypes();
     }
 }

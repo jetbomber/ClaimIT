@@ -42,5 +42,14 @@ namespace API.Controllers
 
             return Ok(federalTaxes);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<HsaAccountTypeDto>>> GetHsaAccountTypes()
+        {
+            var hsaAccountTypes = await _lookUpRepository.GetHsaAccountTypes();
+
+            return Ok(hsaAccountTypes);
+        }
     }
 }

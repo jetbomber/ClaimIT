@@ -14,6 +14,7 @@ namespace API.Helpers
             CreateMap<TaxType, TaxTypeDto>();
             CreateMap<Class, ClassDto>();
             CreateMap<HsaClassDetails, HsaClassDetailsDto>();
+            CreateMap<HsaAccountType, HsaAccountTypeDto>();
         }
         
     }
