@@ -1,10 +1,9 @@
-import { Component, ComponentFactoryResolver, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 import { fromEvent, merge } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, finalize, map, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { Constants } from 'src/app/utilities/constants';
 import { FormActions } from 'src/app/utilities/enum';
 import { setSortingParameters } from 'src/app/utilities/sort.utilities';

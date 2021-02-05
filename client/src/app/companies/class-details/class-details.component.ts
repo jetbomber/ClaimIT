@@ -19,6 +19,7 @@ export class ClassDetailsComponent implements OnInit {
   @Input() hsaAccountTypes: HsaAccountTypes[]
   classForm: FormGroup;
   validationErrors: string[] = [];
+  hsaAccountTypesList = [];
 
   @Output() reloadClasses: EventEmitter<boolean> = new EventEmitter();
 
@@ -45,6 +46,7 @@ export class ClassDetailsComponent implements OnInit {
 
   private initializeForm(classData: Class) {
     let carryForwardYears = null;
+    let hsaAccountTypeId = null;
     let excludeDental = false;
     let excludeDrug = false;
     let excludeExtendedHealth = false;
@@ -55,6 +57,7 @@ export class ClassDetailsComponent implements OnInit {
       excludeDrug = classData.hsaClassDetails[0].excludeDrug
       excludeExtendedHealth = classData.hsaClassDetails[0].excludeExtendedHealth;
       excludeVision = classData.hsaClassDetails[0].excludeVision;
+      hsaAccountTypeId = classData.hsaClassDetails[0].hsaAccountTypeId; 
     }
     this.classForm = this.fb.group({
       id: [classData.id],
@@ -66,12 +69,13 @@ export class ClassDetailsComponent implements OnInit {
       classWaitingPeriod: [classData.classWaitingPeriod,CustomValidators.isNumeric("classWaitingPeriod")],
       isHsaClass: [classData.isHsaClass],
       carryForwardYears: [carryForwardYears,CustomValidators.isNumeric("carryForwardYears")],
-      carryForwardYears2: [carryForwardYears,CustomValidators.isNumeric("carryForwardYears2")],
+      hsaAccountTypeId: [hsaAccountTypeId,Validators.required],
       excludeDental: [excludeDental],
       excludeDrug: [excludeDrug],
       excludeExtendedHealth: [excludeExtendedHealth],
       excludeVision: [excludeVision]
     })
+    this.hsaAccountTypesList = this.hsaAccountTypes;
   }
 
   public handleSubmission() {

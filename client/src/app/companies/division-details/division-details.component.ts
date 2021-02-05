@@ -50,7 +50,7 @@ export class DivisionDetailsComponent implements OnInit {
 
   private getTaxInfo(provinceId: number) {
     if (!provinceId) {provinceId=1;}
-    const provincialData = this.provinces.find(x=>x.id === provinceId);
+    const provincialData = this.provinces.find(x=>x.id == provinceId);
     this.provincialTaxType = provincialData.taxTypeName; 
     this.taxFeePercentage = provincialData.taxPercentage;
   }
