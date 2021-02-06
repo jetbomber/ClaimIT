@@ -36,10 +36,8 @@ export class ClassDetailsComponent implements OnInit {
       if (propName=='classData' && chng.currentValue != null) {
         this.initializeForm(chng.currentValue);
         this.validationErrors = [];
-        console.log(chng.currentValue);
       } else if (propName=='hsaAccountTypes' && chng.currentValue != null) {
         this.hsaAccountTypes = chng.currentValue;
-        console.log(this.hsaAccountTypes);
       } 
     }
   }
