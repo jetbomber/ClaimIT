@@ -44,39 +44,47 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="classData.isHsaClass" class="grid-item4 border">
-                <div class="hsaDetails-grid-container">
-                    <div class="hsaDetails-grid-item1">
-                        <fieldset>
-                            <app-text-input 
-                            [formControl]='classForm.controls["carryForwardYears"]'
-                            [label]='"Carry Forward Years"'>
-                            </app-text-input> 
-                        </fieldset>
-                    </div>
-                    <div class="hsaDetails-grid-item2"> 
+        </div>
+        <div *ngIf="classData.isHsaClass" class="grid-container"> 
+            <div class="grid-item1 border"> 
+                <div class="form-row">
+                    <div class="col">   
                         <app-select-input
-                            [formControl]='classForm.controls["hsaAccountTypeId"]'
-                            [options]='hsaAccountTypesList'
-                            [label]='"Account Type"'>
-                        </app-select-input>
+                        [formControl]='classForm.controls["hsaAccountTypeId"]'
+                        [options]='hsaAccountTypesList'
+                        [label]='"Account Type"'>
+                        </app-select-input>     
                     </div>
-                    <div class="hsaDetails-grid-item3"> 
+                </div>
+            </div>
+            <div class="grid-item2 border">
+                <div class="form-row">
+                    <div class="col">      
+                        <app-text-input 
+                        [formControl]='classForm.controls["carryForwardYears"]'
+                        [label]='"Carry Forward Years"'>
+                        </app-text-input> 
+                    </div>
+                </div>
+            </div>
+            <div class="grid-item3 border">
+                <div class="form-row">
+                    <div class="col">
                         <app-checkbox-input
                         [formControl]='classForm.controls["excludeDental"]'
                         [label]='"Exclude Dental"'>
                         </app-checkbox-input> 
-                        <br/>
+                        <br />
                         <app-checkbox-input
                         [formControl]='classForm.controls["excludeDrug"]'
                         [label]='"Exclude Drug"'>
                         </app-checkbox-input> 
-                        <br/>
+                        <br />
                         <app-checkbox-input
                         [formControl]='classForm.controls["excludeExtendedHealth"]'
                         [label]='"Exclude Extended Health"'>
-                        </app-checkbox-input> 
-                        <br/>
+                        </app-checkbox-input>
+                        <br /> 
                         <app-checkbox-input
                         [formControl]='classForm.controls["excludeVision"]'
                         [label]='"Exclude Vision"'>

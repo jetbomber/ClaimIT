@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
@@ -48,15 +49,42 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> UpdateClass(Class classData)
+        public async Task<ActionResult> UpdateClass(ClassDto classDto)
         {
 
-            _classRepository.Update(classData);
+            _classRepository.Update(getClassData(classDto));
+            _hsaClassDetailsRepository.Update(GetHsaClassDetails(classDto.HsaClassDetails));
 
-            if (await _classRepository.SaveAllAsync()) return NoContent();
+            if (await _classRepository.SaveAllAsync() && await _hsaClassDetailsRepository.SaveAllAsync()) return NoContent();
 
             return BadRequest("Failed to update class");
             
+        }
+
+        private HsaClassDetails GetHsaClassDetails(ICollection<HsaClassDetailsDto> HsaClassDetails) {
+            HsaClassDetails hsaClassDetails = new HsaClassDetails();
+            hsaClassDetails.Id = HsaClassDetails.ElementAt(0).Id;
+            hsaClassDetails.ExcludeDental = HsaClassDetails.ElementAt(0).ExcludeDental;
+            hsaClassDetails.ExcludeDrug = HsaClassDetails.ElementAt(0).ExcludeDrug;
+            hsaClassDetails.ExcludeExtendedHealth = HsaClassDetails.ElementAt(0).ExcludeExtendedHealth;
+            hsaClassDetails.ExcludeVision = HsaClassDetails.ElementAt(0).ExcludeVision;
+            hsaClassDetails.HsaAccountTypeId = HsaClassDetails.ElementAt(0).HsaAccountTypeId;
+            hsaClassDetails.CarryForwardYears = HsaClassDetails.ElementAt(0).CarryForwardYears;
+            hsaClassDetails.ClassId = HsaClassDetails.ElementAt(0).ClassId;
+            return hsaClassDetails;
+        }
+
+        private Class getClassData(ClassDto classDto) {
+            Class classData = new Class();
+            classData.Id = classDto.Id;
+            classData.ClassName = classDto.ClassName;
+            classData.ClassNumber = classDto.ClassNumber;
+            classData.ClassWaitingPeriod = classDto.ClassWaitingPeriod;
+            classData.Description = classDto.Description;
+            classData.PersonalHealthMaximum = classDto.PersonalHealthMaximum;
+            classData.IsHsaClass = classDto.IsHsaClass;
+            classData.CompanyId = classDto.CompanyId;
+            return classData;
         }
 
         [HttpPost]

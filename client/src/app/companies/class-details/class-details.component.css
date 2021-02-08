@@ -2,7 +2,7 @@
 	padding: 10px;
 	display: grid;
 	grid-gap: 10px;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: 33% 33% 33%;
 }
 .grid-item1 {
 	grid-column: 1/2;
@@ -12,23 +12,4 @@
 }
 .grid-item3 {	
     grid-column: 3/4;
-}
-.grid-item4 {	
-	grid-column: 1/4;
-}
-
-.hsaDetails-grid-container {
-	padding: 10px;
-	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: auto auto auto;
-}
-.hsaDetails-grid-item1 {
-	grid-column: 1/2;
-}
-.hsaDetails-grid-item2 {	
-	grid-column: 2/3;
-}
-.hsaDetails-grid-item3 {	
-	grid-column: 3/4;
 }

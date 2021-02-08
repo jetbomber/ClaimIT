@@ -38,14 +38,14 @@ namespace API.Data
             return await query.SingleOrDefaultAsync();
         }
 
-        public Task<bool> SaveAllAsync()
+        public async Task<bool> SaveAllAsync()
         {
-            throw new System.NotImplementedException();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public void Update(HsaClassDetails hsaClassDetails)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(hsaClassDetails).State = EntityState.Modified;
         }
     }
 }
