@@ -53,10 +53,14 @@ namespace API.Controllers
         {
 
             _classRepository.Update(getClassData(classDto));
-            _hsaClassDetailsRepository.Update(GetHsaClassDetails(classDto.HsaClassDetails));
-
-            if (await _classRepository.SaveAllAsync()){
-                if (await _hsaClassDetailsRepository.SaveAllAsync()) return NoContent();
+           
+            if (await _classRepository.SaveAllAsync()) {
+                bool updateSuccess = true;
+                if (classDto.IsHsaClass) {
+                    _hsaClassDetailsRepository.Update(GetHsaClassDetails(classDto.HsaClassDetails));
+                    updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
+                } 
+                if (updateSuccess) return NoContent();
             } 
 
             return BadRequest("Failed to update class");
