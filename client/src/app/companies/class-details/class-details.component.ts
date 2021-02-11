@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 import { CustomValidators } from 'src/app/utilities/custom.validators';
 import { FormActions } from 'src/app/utilities/enum';
 import { Class } from 'src/app/_models/class';
@@ -36,6 +37,7 @@ export class ClassDetailsComponent implements OnInit {
       if (propName=='classData' && chng.currentValue != null) {
         this.initializeForm(chng.currentValue);
         this.validationErrors = [];
+        console.log(chng.currentValue);
       } else if (propName=='hsaAccountTypes' && chng.currentValue != null) {
         this.hsaAccountTypes = chng.currentValue;
       } 
@@ -91,7 +93,6 @@ export class ClassDetailsComponent implements OnInit {
     this.classData.hsaClassDetails[0].excludeDrug = this.classForm.get("excludeDrug").value;
     this.classData.hsaClassDetails[0].excludeExtendedHealth = this.classForm.get("excludeExtendedHealth").value;
     this.classData.hsaClassDetails[0].excludeVision = this.classForm.get("excludeVision").value;
-    console.log(this.classData);
   }
 
   public handleSubmission() {
@@ -101,7 +102,6 @@ export class ClassDetailsComponent implements OnInit {
         this.reloadClasses.emit(true);
         this.msg.success('Class updated successfully');
       }, error => {
-        this.msg.error('Class was not updated','Error');
         this.validationErrors = error;
       })
     } else {
@@ -111,7 +111,6 @@ export class ClassDetailsComponent implements OnInit {
         this.initializeForm(newClass(this.classData.companyId));
         this.msg.success('Class created successfully');
       }, error => {
-        this.msg.error('Class was not created','Error');
         this.validationErrors = error;
       })
     }
