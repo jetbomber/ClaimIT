@@ -11,5 +11,6 @@ namespace API.Interfaces
         Task<bool> SaveAllAsync();
         Task<HsaClassDetailsDto> GetHsaClassDetailsByClassIdAsync(int classId);
         void Add(HsaClassDetails hsaClassDetails);
+        void Delete(HsaClassDetails hsaClassDetails);
     }
 }

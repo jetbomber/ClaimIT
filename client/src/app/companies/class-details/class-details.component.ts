@@ -6,7 +6,7 @@ import { Class } from 'src/app/_models/class';
 import { HsaAccountTypes } from 'src/app/_models/hsaaccounttypes';
 import { ClassService } from 'src/app/_services/class.service';
 import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
-import { newClass } from '../class-list/class-common';
+import { newClass, newHsaClassDetails } from '../class-list/class-common';
 
 @Component({
   selector: 'app-class-details',
@@ -81,14 +81,17 @@ export class ClassDetailsComponent implements OnInit {
     this.classData.personalHealthMaximum = this.classForm.get("personalHealthMaximum").value;
     this.classData.classWaitingPeriod = this.classForm.get("classWaitingPeriod").value;
     this.classData.isHsaClass = this.classForm.get("isHsaClass").value;
-    if (this.classData.isHsaClass) {
-      this.classData.hsaClassDetails[0].carryForwardYears = this.classForm.get("carryForwardYears").value;
-      this.classData.hsaClassDetails[0].hsaAccountTypeId = this.classForm.get("hsaAccountTypeId").value;
-      this.classData.hsaClassDetails[0].excludeDental = this.classForm.get("excludeDental").value;
-      this.classData.hsaClassDetails[0].excludeDrug = this.classForm.get("excludeDrug").value;
-      this.classData.hsaClassDetails[0].excludeExtendedHealth = this.classForm.get("excludeExtendedHealth").value;
-      this.classData.hsaClassDetails[0].excludeVision = this.classForm.get("excludeVision").value;
+    if (this.classData.hsaClassDetails.length == 0)
+    {
+       this.classData.hsaClassDetails[0] = newHsaClassDetails(this.classData.id); 
     }
+    this.classData.hsaClassDetails[0].carryForwardYears = this.classForm.get("carryForwardYears").value;
+    this.classData.hsaClassDetails[0].hsaAccountTypeId = this.classForm.get("hsaAccountTypeId").value;
+    this.classData.hsaClassDetails[0].excludeDental = this.classForm.get("excludeDental").value;
+    this.classData.hsaClassDetails[0].excludeDrug = this.classForm.get("excludeDrug").value;
+    this.classData.hsaClassDetails[0].excludeExtendedHealth = this.classForm.get("excludeExtendedHealth").value;
+    this.classData.hsaClassDetails[0].excludeVision = this.classForm.get("excludeVision").value;
+    console.log(this.classData);
   }
 
   public handleSubmission() {

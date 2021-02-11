@@ -21,7 +21,7 @@ namespace API.Data
         }
         public void Add(HsaClassDetails hsaClassDetails)
         {
-            throw new System.NotImplementedException();
+            _context.Add(hsaClassDetails).State = EntityState.Added;
         }
 
         public async Task<HsaClassDetailsDto> GetHsaClassDetailsByClassIdAsync(int classId)
@@ -41,6 +41,11 @@ namespace API.Data
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        public void Delete(HsaClassDetails hsaClassDetails)
+        {
+            _context.Entry(hsaClassDetails).State = EntityState.Deleted;
         }
 
         public void Update(HsaClassDetails hsaClassDetails)

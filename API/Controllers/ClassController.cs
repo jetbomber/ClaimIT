@@ -56,10 +56,16 @@ namespace API.Controllers
            
             if (await _classRepository.SaveAllAsync()) {
                 bool updateSuccess = true;
-                if (classDto.IsHsaClass) {
+                if (classDto.IsHsaClass && !(classDto.HsaClassDetails.ElementAt(0).Id == 0)) {
                     _hsaClassDetailsRepository.Update(GetHsaClassDetails(classDto.HsaClassDetails));
                     updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
-                } 
+                } else if (!classDto.IsHsaClass && !(classDto.HsaClassDetails.ElementAt(0).Id == 0)) {
+                    _hsaClassDetailsRepository.Delete(GetHsaClassDetails(classDto.HsaClassDetails));
+                    updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
+                } else if (classDto.IsHsaClass && (classDto.HsaClassDetails.ElementAt(0).Id == 0)) {
+                    _hsaClassDetailsRepository.Add(GetHsaClassDetails(classDto.HsaClassDetails));
+                    updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
+                }
                 if (updateSuccess) return NoContent();
             } 
 

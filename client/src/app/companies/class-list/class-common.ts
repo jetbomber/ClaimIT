@@ -1,4 +1,5 @@
 import { Class } from "src/app/_models/class";
+import { HsaClassDetails } from "src/app/_models/hsaclassdetails";
 
 export const newClass = (companyId: number): Class => {
                                         
@@ -13,4 +14,18 @@ export const newClass = (companyId: number): Class => {
 
     return newClass;
 
+}
+
+export const newHsaClassDetails = (classId: number): HsaClassDetails => {
+    const newHsaClassDetails = <HsaClassDetails>{};
+    newHsaClassDetails.carryForwardYears = null;
+    newHsaClassDetails.classId = classId;
+    newHsaClassDetails.hsaAccountTypeId = null;
+    newHsaClassDetails.excludeDental = false;
+    newHsaClassDetails.excludeDrug = false;
+    newHsaClassDetails.excludeExtendedHealth = false;
+    newHsaClassDetails.excludeVision = false;
+    newHsaClassDetails.id = 0;
+
+    return newHsaClassDetails;
 }
