@@ -21,6 +21,7 @@ namespace API.Extensions
             services.AddScoped<ILookUpRepository, LookUpRepository>();
             services.AddScoped<IClassRepository, ClassRepository>();
             services.AddScoped<IHsaClassDetailsRepository, HsaClassDetailsRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
