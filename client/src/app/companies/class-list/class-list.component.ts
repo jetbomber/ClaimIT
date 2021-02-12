@@ -11,7 +11,7 @@ import { Class } from 'src/app/_models/class';
 import { HsaAccountTypes } from 'src/app/_models/hsaaccounttypes';
 import { ClassService } from 'src/app/_services/class.service';
 import { LookupService } from 'src/app/_services/lookup.service';
-import { newClass } from './class-common';
+import { newClass, newHsaClassDetails } from './class-common';
 import { ClassListDataSource } from './class-list-data-source';
 
 @Component({
@@ -98,6 +98,8 @@ export class ClassListComponent implements OnInit {
   public createClass(companyId: number) {
     this.classOperation = FormActions.Create;
     this.classData = newClass(companyId);
+    this.classData.hsaClassDetails = [];
+    this.classData.hsaClassDetails[0] = newHsaClassDetails(0); 
   }
 
 }

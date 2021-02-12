@@ -18,9 +18,9 @@ export const newClass = (companyId: number): Class => {
 
 export const newHsaClassDetails = (classId: number): HsaClassDetails => {
     const newHsaClassDetails = <HsaClassDetails>{};
-    newHsaClassDetails.carryForwardYears = null;
+    newHsaClassDetails.carryForwardYears = 0;
     newHsaClassDetails.classId = classId;
-    newHsaClassDetails.hsaAccountTypeId = null;
+    newHsaClassDetails.hsaAccountTypeId = 1;
     newHsaClassDetails.excludeDental = false;
     newHsaClassDetails.excludeDrug = false;
     newHsaClassDetails.excludeExtendedHealth = false;

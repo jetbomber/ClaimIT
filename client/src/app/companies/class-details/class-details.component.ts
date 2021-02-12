@@ -85,6 +85,7 @@ export class ClassDetailsComponent implements OnInit {
     this.classData.isHsaClass = this.classForm.get("isHsaClass").value;
     if (this.classData.hsaClassDetails.length == 0)
     {
+       this.classData.hsaClassDetails = [];
        this.classData.hsaClassDetails[0] = newHsaClassDetails(this.classData.id); 
     }
     this.classData.hsaClassDetails[0].carryForwardYears = this.classForm.get("carryForwardYears").value;
@@ -105,10 +106,13 @@ export class ClassDetailsComponent implements OnInit {
         this.validationErrors = error;
       })
     } else {
-      this.classForm.removeControl("id");
-      this.classService.createClass(this.classForm.value).subscribe(() => {
+      this.retrieveFormData();
+      this.classService.createClass(this.classData).subscribe(() => {
         this.reloadClasses.emit(true);
-        this.initializeForm(newClass(this.classData.companyId));
+        this.classData = newClass(this.classData.companyId);
+        this.classData.hsaClassDetails = [];
+        this.classData.hsaClassDetails[0] = newHsaClassDetails(0); 
+        this.initializeForm(this.classData);
         this.msg.success('Class created successfully');
       }, error => {
         this.validationErrors = error;

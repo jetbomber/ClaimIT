@@ -21,9 +21,12 @@ namespace API.Data
             _mapper = mapper;
 
         }
-        public void Add(Class classData)
+        public bool Add(Class classData, out int classId)
         {
-            _context.Add(classData).State = EntityState.Added;
+            _context.Class.Add(classData);
+            bool addStatus = _context.SaveChanges() > 0; 
+            classId = classData.Id;
+            return addStatus;
         }
 
         public async Task<bool> ClassExists(string className, int companyId)

@@ -100,16 +100,25 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Class>> CreateClass(Class classData)
+        public async Task<ActionResult<Class>> CreateClass(ClassDto classDto)
         {
             
+            var classData = getClassData(classDto);
             if (await _classRepository.ClassExists(classData.ClassName, classData.CompanyId)) {
                 return BadRequest("A Class with the name '" + classData.ClassName + "' already exists for this company");
             } 
-            
-             _classRepository.Add(classData);
 
-            if (await _classRepository.SaveAllAsync()) return NoContent();
+            int classId;
+
+            if (_classRepository.Add(classData,out classId)) {
+                bool updateSuccess = true;
+                if (classDto.IsHsaClass) {
+                    classDto.HsaClassDetails.ElementAt(0).ClassId = classId;
+                    _hsaClassDetailsRepository.Add(GetHsaClassDetails(classDto.HsaClassDetails));
+                    updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
+                }
+                if (updateSuccess) return NoContent();
+            }
 
             return BadRequest("Failed to add class");
         }
