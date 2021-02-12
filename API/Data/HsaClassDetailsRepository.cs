@@ -19,9 +19,12 @@ namespace API.Data
             _mapper = mapper;
 
         }
-        public void Add(HsaClassDetails hsaClassDetails)
+        public bool Add(HsaClassDetails hsaClassDetails,out int hsaClassDetailId)
         {
-            _context.Add(hsaClassDetails).State = EntityState.Added;
+            _context.Hsa_Class_Details.Add(hsaClassDetails);
+            bool addStatus = _context.SaveChanges() > 0; 
+            hsaClassDetailId = hsaClassDetails.Id;
+            return addStatus;
         }
 
         public async Task<HsaClassDetailsDto> GetHsaClassDetailsByClassIdAsync(int classId)

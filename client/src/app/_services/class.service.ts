@@ -36,7 +36,7 @@ export class ClassService {
   }
 
   updateClass(classData: Class){
-    return this.http.put(this.baseUrl + 'class', classData);
+    return this.http.put<number>(this.baseUrl + 'class', classData);
   }
 
   createClass(classData: Class){

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
+import { catchError, finalize, map } from 'rxjs/operators';
 import { CustomValidators } from 'src/app/utilities/custom.validators';
 import { FormActions } from 'src/app/utilities/enum';
 import { Class } from 'src/app/_models/class';
@@ -37,7 +38,6 @@ export class ClassDetailsComponent implements OnInit {
       if (propName=='classData' && chng.currentValue != null) {
         this.initializeForm(chng.currentValue);
         this.validationErrors = [];
-        console.log(chng.currentValue);
       } else if (propName=='hsaAccountTypes' && chng.currentValue != null) {
         this.hsaAccountTypes = chng.currentValue;
       } 
@@ -99,12 +99,17 @@ export class ClassDetailsComponent implements OnInit {
   public handleSubmission() {
     if (this.classOperation==FormActions.Edit) {
       this.retrieveFormData();
-      this.classService.updateClass(this.classData).subscribe(() => {
-        this.reloadClasses.emit(true);
-        this.msg.success('Class updated successfully');
-      }, error => {
-        this.validationErrors = error;
-      })
+      this.classService.updateClass(this.classData).pipe(
+        map(response => {
+           if (response != null) {
+            this.classData.hsaClassDetails[0].id = response;
+           }
+        }),
+        catchError((error) => of([this.validationErrors = error])),
+        finalize(() => this.reloadClasses.emit(true)
+        )).subscribe(() => {
+          this.msg.success('Class updated successfully');
+        });
     } else {
       this.retrieveFormData();
       this.classService.createClass(this.classData).subscribe(() => {

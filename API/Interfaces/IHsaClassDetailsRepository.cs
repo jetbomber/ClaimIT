@@ -10,7 +10,7 @@ namespace API.Interfaces
         void Update(HsaClassDetails hsaClassDetails);
         Task<bool> SaveAllAsync();
         Task<HsaClassDetailsDto> GetHsaClassDetailsByClassIdAsync(int classId);
-        void Add(HsaClassDetails hsaClassDetails);
+        bool Add(HsaClassDetails hsaClassDetails,out int hsaClassDetailId);
         void Delete(HsaClassDetails hsaClassDetails);
     }
 }

@@ -7,6 +7,7 @@ using API.Extensions;
 using API.Helpers;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -49,6 +50,9 @@ namespace API.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(int))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> UpdateClass(ClassDto classDto)
         {
 
@@ -63,8 +67,14 @@ namespace API.Controllers
                     _hsaClassDetailsRepository.Delete(GetHsaClassDetails(classDto.HsaClassDetails));
                     updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
                 } else if (classDto.IsHsaClass && (classDto.HsaClassDetails.ElementAt(0).Id == 0)) {
-                    _hsaClassDetailsRepository.Add(GetHsaClassDetails(classDto.HsaClassDetails));
-                    updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
+                    int hsaClassDetailId;
+                    if (_hsaClassDetailsRepository.Add(GetHsaClassDetails(classDto.HsaClassDetails),out hsaClassDetailId))
+                    {
+                        return Ok(hsaClassDetailId);
+                    } else {
+                        updateSuccess = false;
+                    }
+                    
                 }
                 if (updateSuccess) return NoContent();
             } 
@@ -114,8 +124,8 @@ namespace API.Controllers
                 bool updateSuccess = true;
                 if (classDto.IsHsaClass) {
                     classDto.HsaClassDetails.ElementAt(0).ClassId = classId;
-                    _hsaClassDetailsRepository.Add(GetHsaClassDetails(classDto.HsaClassDetails));
-                    updateSuccess = await _hsaClassDetailsRepository.SaveAllAsync();
+                    int hsaClassDetailId;
+                    updateSuccess = _hsaClassDetailsRepository.Add(GetHsaClassDetails(classDto.HsaClassDetails),out hsaClassDetailId);
                 }
                 if (updateSuccess) return NoContent();
             }
