@@ -1,0 +1,37 @@
+export interface Employee {
+    id: number;
+    sin: string;
+    firstName: string;
+    lastName: string;
+    middleName: string;
+    birthDate: Date;
+    address: string;
+    city: string;
+    postalCode: string;
+    phoneNumber: string;
+    emailAddress: string;
+    eligibilityDate: Date;
+    hireDate: Date;
+    startDate: Date;
+    terminationDate: Date;
+    occupation: string;
+    compensation: number;
+    employeeNumber: string;
+    smoker: boolean;
+    cob: boolean;
+    mailCompany: boolean;
+    eft: boolean;
+    evidence: boolean;
+    dependentCoverage: boolean;
+    policyNumber: string;
+    insuranceCompany: string;
+    genderId: number;
+    maritalStatusId: number;
+    countryId: number;
+    classId: number;
+    divisionId: number;
+    companyId: number;
+    companyName: string;
+    provinceId: number;
+    compensationTypeId: number;
+}

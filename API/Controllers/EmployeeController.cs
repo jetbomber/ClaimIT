@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using API.Helpers;
 using API.Extensions;
+using API.DTOs;
 
 namespace API.Controllers
 {
@@ -21,7 +22,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees([FromQuery]UserParams userParams)
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetEmployees([FromQuery]UserParams userParams)
         {
             var employees = await _employeeRepository.GetEmployeesAsync(userParams);
 
