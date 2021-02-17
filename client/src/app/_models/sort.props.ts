@@ -4,4 +4,5 @@ export class SortProps {
     sortColumn: string;
     page?: number; 
     itemsPerPage?: number;
+    filterBy: string
 }

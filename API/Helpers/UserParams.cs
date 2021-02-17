@@ -6,6 +6,7 @@ namespace API.Helpers
         public int PageNumber { get; set; } = 1;
         private int _pageSize = 10;
         private string _filter = "";
+        private string _filterBy = "companyName";
         private string _sortColumn = "companyName";
         private bool _reverse = false;
 
@@ -20,6 +21,12 @@ namespace API.Helpers
             get => _filter;
             set => _filter = value;
         }
+        
+        public string FilterBy
+        {
+            get => _filterBy;
+            set => _filterBy = value;
+        }
 
         public string SortColumn
         {
@@ -32,5 +39,6 @@ namespace API.Helpers
             get => _reverse;
             set => _reverse = value;
         }
+
     }
 }

@@ -33,5 +33,6 @@ export interface Employee {
     companyId: number;
     companyName: string;
     provinceId: number;
+    provinceName: string;
     compensationTypeId: number;
 }

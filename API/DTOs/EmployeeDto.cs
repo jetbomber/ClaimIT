@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using API.Entities;
 
 namespace API.DTOs
@@ -39,6 +40,8 @@ namespace API.DTOs
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public int ProvinceId { get; set; }
+        public string ProvinceName { get; set; }
         public int CompensationTypeId { get; set; }
+        
     }
 }

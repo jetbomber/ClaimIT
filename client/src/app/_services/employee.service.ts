@@ -18,11 +18,11 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  getClasses(sortProps: SortProps) {
+  getEmployees(sortProps: SortProps) {
 
     var params = setRequestParameters(sortProps);
 
-    return this.http.get<Employee[]>(this.baseUrl + 'employee/GetEmployees/', {observe: 'response',params}).pipe(
+    return this.http.get<Employee[]>(this.baseUrl + 'employee', {observe: 'response',params}).pipe(
       map(response => {
         this.paginatedResult.result = response.body;
         if (response.headers.get('Pagination') !== null) {
