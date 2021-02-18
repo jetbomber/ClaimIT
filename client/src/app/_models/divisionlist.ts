@@ -1,4 +1,4 @@
 export interface DivisionList {
     id: number;
-    divisionName: string;
+    name: string;
 }

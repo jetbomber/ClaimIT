@@ -13,5 +13,6 @@ namespace API.Interfaces
         Task<IEnumerable<HsaAccountTypeDto>> GetHsaAccountTypes();
         Task<IEnumerable<GenderDto>> GetGendersAsync();
         Task<IEnumerable<MaritalStatusDto>> GetMaritalStatusesAsync();
+        Task<IEnumerable<CompensationTypeDto>> GetCompensationTypesAsync();
     }
 }

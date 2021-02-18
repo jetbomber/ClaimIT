@@ -38,6 +38,18 @@ namespace API.Controllers
         {
             return await _employeeRepository.GetEmployeeByIdAsync(employeeId);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateEmployee(Employee employee)
+        {
+
+            _employeeRepository.Update(employee);
+
+            if (await _employeeRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to update employee");
+            
+        }
      
     }
 }

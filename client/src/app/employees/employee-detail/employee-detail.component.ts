@@ -5,6 +5,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { CustomValidators } from 'src/app/utilities/custom.validators';
 import { ClassList } from 'src/app/_models/classlist';
+import { CompensationType } from 'src/app/_models/compensationtypes';
 import { DivisionList } from 'src/app/_models/divisionlist';
 import { Employee } from 'src/app/_models/employee';
 import { Gender } from 'src/app/_models/gender';
@@ -29,6 +30,7 @@ export class EmployeeDetailComponent implements OnInit {
   genders: Gender[];
   classes: ClassList[];
   divisions: DivisionList[];
+  compensationTypes: CompensationType[];
   maritalStatuses: MaritalStatus[];
 
   validationErrors: string[] = [];
@@ -59,9 +61,11 @@ export class EmployeeDetailComponent implements OnInit {
       this.classes = null;
       this.divisions = null;
       this.maritalStatuses = null;
+      this.compensationTypes = null;
       this.getProvinces();
       this.getGenders();
       this.getMaritalStatuses();
+      this.getCompensationTypes();
       this.loadEmployee();
     });
   }
@@ -71,11 +75,12 @@ export class EmployeeDetailComponent implements OnInit {
     this.getClasses(this.employee.companyId);
     this.employeeForm = this.fb.group({
       id: [employee.id],
+      companyId: [employee.companyId],
       firstName: [employee.firstName, Validators.required],
       lastName: [employee.lastName, Validators.required],
       middleName: [employee.lastName, Validators.required],
       employeeNumber: [employee.employeeNumber, Validators.required],
-      SIN: [employee.sin, Validators.required],
+      sin: [employee.sin, Validators.required],
       birthDate: [new Date(employee.birthDate), Validators.required],
       genderId:[employee.genderId,Validators.required],
       maritalStatusId:[employee.maritalStatusId,Validators.required],
@@ -83,11 +88,26 @@ export class EmployeeDetailComponent implements OnInit {
       phoneNumber: [employee.phoneNumber,CustomValidators.phoneNumber("phoneNumber")],
       address:[employee.address,Validators.required],
       city:[employee.city,Validators.required],
+      divisionId:[employee.divisionId,Validators.required],
+      classId:[employee.classId,Validators.required],
       provinceId:[employee.provinceId,Validators.required],
       postalCode:[employee.postalCode,CustomValidators.postalCode("postalCode")],
-      divisionId:[employee.divisionId,Validators.required],
-      classId:[employee.classId,Validators.required]
-    })
+      eligibilityDate: [new Date(employee.eligibilityDate), Validators.required],
+      hireDate: [new Date(employee.hireDate), Validators.required],
+      startDate: [new Date(employee.startDate), Validators.required],
+      terminationDate: [employee.terminationDate==null?null:new Date(employee.terminationDate)],
+      occupation: [employee.occupation, Validators.required],
+      compensation: [employee.compensation, CustomValidators.isNumeric("compensation")],
+      compensationTypeId: [employee.compensationTypeId, Validators.required],
+      insuranceCompany: [employee.insuranceCompany],
+      policyNumber: [employee.policyNumber],
+      smoker: [employee.smoker],
+      cob: [employee.cob],
+      eft: [employee.eft],
+      mailCompany: [employee.mailCompany],
+      evidence: [employee.evidence],
+      dependentCoverage: [employee.dependentCoverage]
+    });
   }
 
   private getProvinces() {
@@ -102,6 +122,14 @@ export class EmployeeDetailComponent implements OnInit {
     this.lookUpService.getGenders().pipe(
         map(response => {
           this.genders = response;
+        })
+    ).subscribe();
+  }
+
+  private getCompensationTypes() {
+    this.lookUpService.getCompensationTypes().pipe(
+        map(response => {
+          this.compensationTypes = response;
         })
     ).subscribe();
   }
@@ -142,8 +170,43 @@ export class EmployeeDetailComponent implements OnInit {
       .subscribe();
   }
 
+  private retrieveFormData() {
+    this.employee.address = this.employeeForm.get("address").value;
+    this.employee.birthDate = this.employeeForm.get("birthDate").value;
+    this.employee.city = this.employeeForm.get("city").value;
+    this.employee.classId = this.employeeForm.get("classId").value;
+    this.employee.cob = this.employeeForm.get("cob").value;
+    this.employee.compensation = this.employeeForm.get("compensation").value;
+    this.employee.compensationTypeId = this.employeeForm.get("compensationTypeId").value;
+    this.employee.dependentCoverage = this.employeeForm.get("dependentCoverage").value;
+    this.employee.divisionId = this.employeeForm.get("divisionId").value;
+    this.employee.eft = this.employeeForm.get("eft").value;
+    this.employee.eligibilityDate = this.employeeForm.get("eligibilityDate").value;
+    this.employee.emailAddress = this.employeeForm.get("emailAddress").value;
+    this.employee.employeeNumber = this.employeeForm.get("employeeNumber").value;
+    this.employee.evidence = this.employeeForm.get("evidence").value;
+    this.employee.firstName = this.employeeForm.get("firstName").value;
+    this.employee.genderId = this.employeeForm.get("genderId").value;
+    this.employee.hireDate = this.employeeForm.get("hireDate").value; 
+    this.employee.insuranceCompany = this.employeeForm.get("insuranceCompany").value; 
+    this.employee.lastName = this.employeeForm.get("lastName").value; 
+    this.employee.mailCompany = this.employeeForm.get("mailCompany").value; 
+    this.employee.maritalStatusId = this.employeeForm.get("maritalStatusId").value; 
+    this.employee.middleName = this.employeeForm.get("middleName").value; 
+    this.employee.occupation = this.employeeForm.get("occupation").value; 
+    this.employee.phoneNumber = this.employeeForm.get("phoneNumber").value; 
+    this.employee.policyNumber = this.employeeForm.get("policyNumber").value; 
+    this.employee.postalCode = this.employeeForm.get("postalCode").value; 
+    this.employee.provinceId = this.employeeForm.get("provinceId").value; 
+    this.employee.sin = this.employeeForm.get("sin").value; 
+    this.employee.smoker = this.employeeForm.get("smoker").value; 
+    this.employee.startDate = this.employeeForm.get("startDate").value; 
+    this.employee.terminationDate = this.employeeForm.get("terminationDate").value; 
+  }
+
   public updateEmployee() {
-    this.employeeService.updateEmployee(this.employeeForm.value).subscribe(() => {
+    this.retrieveFormData();
+    this.employeeService.updateEmployee(this.employee).subscribe(() => {
       this.msg.success('Employee updated successfully');
     }, error => {
       this.msg.error('Employee was not updated','Error');

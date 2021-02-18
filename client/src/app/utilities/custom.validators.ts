@@ -11,7 +11,7 @@ export class CustomValidators {
 
     static postalCode(validateTo: string): ValidatorFn {
         return (control: AbstractControl) => {
-            const POSTAL_CODE_REGEXP = /^(?!.*[DFIOQU])[A-VXY][0-9][A-Z]-?[0-9][A-Z][0-9]$/;
+            const POSTAL_CODE_REGEXP = /^(?!.*[DFIOQU])[A-VXY][0-9][A-Z]-[0-9][A-Z][0-9]$/;
             return POSTAL_CODE_REGEXP.test(control?.parent?.controls[validateTo].value) ? null : {isValidPostalCode: true};
         }
     }

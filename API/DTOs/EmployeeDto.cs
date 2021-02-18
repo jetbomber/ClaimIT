@@ -20,7 +20,7 @@ namespace API.DTOs
         public DateTime EligibilityDate  { get; set; }
         public DateTime HireDate  { get; set; }
         public DateTime StartDate  { get; set; }
-        public DateTime TerminationDate  { get; set; }
+        public DateTime? TerminationDate  { get; set; }
         public string Occupation { get; set; }
         public double Compensation { get; set; }
         public string EmployeeNumber { get; set; }

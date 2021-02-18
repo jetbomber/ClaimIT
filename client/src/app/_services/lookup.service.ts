@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { CompensationType } from '../_models/compensationtypes';
 import { FederalTax } from '../_models/federaltax';
 import { Gender } from '../_models/gender';
 import { HsaAccountTypes } from '../_models/hsaaccounttypes';
@@ -32,5 +33,9 @@ export class LookupService {
   }
   getMaritalStatuses() {
     return this.http.get<MaritalStatus[]>(this.baseUrl + 'lookup/GetMaritalStatuses'); 
+  }
+
+  getCompensationTypes() {
+    return this.http.get<CompensationType[]>(this.baseUrl + 'lookup/GetCompensationTypes'); 
   }
 }

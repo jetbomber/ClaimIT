@@ -91,5 +91,16 @@ namespace API.Data
 
             return await query.ToListAsync();
         }
+
+        public async Task<IEnumerable<CompensationTypeDto>> GetCompensationTypesAsync()
+        {
+            var query = _context.Compensation_Type
+            .Select(dtoData => new CompensationTypeDto {
+                Id = dtoData.Id,
+                Name= dtoData.Type
+            });
+
+            return await query.ToListAsync();
+        }
     }
 }

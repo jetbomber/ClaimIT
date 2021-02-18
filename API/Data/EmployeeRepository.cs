@@ -145,14 +145,14 @@ namespace API.Data
             return await PagedList<EmployeeDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
-        public Task<bool> SaveAllAsync()
+        public async Task<bool> SaveAllAsync()
         {
-            throw new System.NotImplementedException();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public void Update(Employee employee)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(employee).State = EntityState.Modified;
         }
     }
 }

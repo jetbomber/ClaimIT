@@ -69,5 +69,14 @@ namespace API.Controllers
 
             return Ok(maritalStatuses);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<CompensationTypeDto>>> GetCompensationTypes()
+        {
+            var compensationTypes = await _lookUpRepository.GetCompensationTypesAsync();
+
+            return Ok(compensationTypes);
+        }
     }
 }
