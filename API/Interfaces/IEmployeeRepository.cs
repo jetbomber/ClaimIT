@@ -10,7 +10,7 @@ namespace API.Interfaces
         void Update(Employee employee);
         Task<bool> SaveAllAsync();
         Task<PagedList<EmployeeDto>> GetEmployeesAsync(UserParams userParams);
-        Task<Employee> GetEmployeeByIdAsync(int id);
+        Task<EmployeeDto> GetEmployeeByIdAsync(int employeeId);
         bool Add(Employee employee);
         Task<bool> EmployeeExists(string SIN, int companyId);
     }

@@ -11,5 +11,7 @@ namespace API.Interfaces
         Task<IEnumerable<TaxTypeDto>> GetTaxTypesAsync();
         Task<IEnumerable<FederalTaxDto>> GetFederalTaxesAsync();
         Task<IEnumerable<HsaAccountTypeDto>> GetHsaAccountTypes();
+        Task<IEnumerable<GenderDto>> GetGendersAsync();
+        Task<IEnumerable<MaritalStatusDto>> GetMaritalStatusesAsync();
     }
 }

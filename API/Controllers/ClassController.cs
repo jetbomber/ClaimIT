@@ -36,6 +36,15 @@ namespace API.Controllers
             return Ok(classes);
         }
 
+        [Route("[action]/{companyId}")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ClassListDto>>> GetClassListForCompany(int companyId)
+        {
+            var classList = await _classRepository.GetClassListForCompany(companyId);
+
+            return Ok(classList);
+        }
+
         [HttpGet("{classid}")]
         public async Task<ActionResult<Class>> GetClassById(int classId)
         {

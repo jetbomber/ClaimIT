@@ -33,6 +33,15 @@ namespace API.Controllers
             return Ok(divisions);
         }
 
+        [Route("[action]/{companyId}")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<DivisionListDto>>> GetDivisionListForCompany(int companyId)
+        {
+            var divisionList = await _divisionRepository.GetDivisionListForCompany(companyId);
+
+            return Ok(divisionList);
+        }
+
         [HttpGet("{divisionid}")]
         public async Task<ActionResult<DivisionDto>> GetDivsionById(int divisionId)
         {

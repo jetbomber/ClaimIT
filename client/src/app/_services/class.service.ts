@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { setRequestParameters } from '../utilities/http.utilities';
 import { Class } from '../_models/class';
+import { ClassList } from '../_models/classlist';
 import { PaginatedResult } from '../_models/pagination';
 import { SortProps } from '../_models/sort.props';
 
@@ -33,6 +34,10 @@ export class ClassService {
 
   getClass(classId: number) {
     return this.http.get<Class>(this.baseUrl + 'class/' + classId); 
+  }
+
+  getClassListForCompany(companyId: number) {
+    return this.http.get<ClassList[]>(this.baseUrl + 'class/GetClassListForCompany/' + companyId); 
   }
 
   updateClass(classData: Class){

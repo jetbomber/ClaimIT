@@ -61,6 +61,26 @@ namespace API.Data
             return await query.ToListAsync();
         }
 
+        public async Task<IEnumerable<GenderDto>> GetGendersAsync()
+        {
+            var query =  _context.Gender
+            .Select(dtoData => new GenderDto {
+                Id = dtoData.Id,
+                Name= dtoData.Type
+            });
+            return await query.ToListAsync();
+        }
+
+        public async Task<IEnumerable<MaritalStatusDto>> GetMaritalStatusesAsync()
+        {
+            var query =  _context.Marital_Status
+            .Select(dtoData => new MaritalStatusDto {
+                Id = dtoData.Id,
+                Name= dtoData.Type
+            });
+            return await query.ToListAsync();
+        }
+
         public async Task<IEnumerable<HsaAccountTypeDto>> GetHsaAccountTypes()
         {
             var query = _context.Hsa_Account_Type

@@ -32,6 +32,12 @@ namespace API.Controllers
                                          employees.TotalPages);
             return Ok(employees);
         }
+
+        [HttpGet("{employeeid}")]
+        public async Task<ActionResult<EmployeeDto>> GetEmployeeById(int employeeId)
+        {
+            return await _employeeRepository.GetEmployeeByIdAsync(employeeId);
+        }
      
     }
 }

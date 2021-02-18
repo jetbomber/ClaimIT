@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { setRequestParameters } from '../utilities/http.utilities';
 import { Division } from '../_models/division';
+import { DivisionList } from '../_models/divisionlist';
 import { PaginatedResult } from '../_models/pagination';
 import { SortProps } from '../_models/sort.props';
 
@@ -33,6 +34,10 @@ export class DivisionService {
 
   getDivision(divisionId: number) {
     return this.http.get<Division>(this.baseUrl + 'division/' + divisionId); 
+  }
+
+  getDivisionListForCompany(companyId: number) {
+    return this.http.get<DivisionList[]>(this.baseUrl + 'division/GetDivisionListForCompany/' + companyId); 
   }
 
   updateDivision(division: Division){

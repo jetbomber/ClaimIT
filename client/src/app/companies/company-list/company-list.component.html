@@ -79,13 +79,6 @@
             <mat-icon *ngIf="!company.includeCostPlusClaims" style="color:red">close</mat-icon>
           </td>
         </ng-container>
-
-        <ng-container matColumnDef="editRow">
-          <th mat-header-cell *matHeaderCellDef> Edit </th>
-          <td mat-cell>
-            <mat-icon>check</mat-icon>
-          </td>
-        </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
         <tr mat-row *matRowDef="let company; columns: displayColumns;" (click)="selectCompany(company)"></tr>

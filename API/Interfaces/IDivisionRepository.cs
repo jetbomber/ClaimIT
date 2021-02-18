@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
@@ -11,6 +12,7 @@ namespace API.Interfaces
         Task<bool> SaveAllAsync();
         Task<PagedList<DivisionDto>> GetDivisionsAsync(UserParams userParams, int companyId);
         Task<DivisionDto> GetDivisionByIdAsync(int id);
+        Task<IEnumerable<DivisionListDto>> GetDivisionListForCompany(int companyId);
         void Add(Division division);
         Task<bool> DivisionExists(string divisionName, int companyId);
     }

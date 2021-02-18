@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API.DTOs;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using System.Collections.Generic;
 
 namespace API.Data
 {
@@ -42,6 +43,17 @@ namespace API.Data
             return await _context.Class
             .Where(x => x.Id == id)
             .SingleOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<ClassListDto>> GetClassListForCompany(int companyId)
+        {
+            var query =  _context.Class
+            .Where(x=>x.CompanyId == companyId)
+            .Select(dtoData => new ClassListDto {
+                Id = dtoData.Id,
+                Name= dtoData.ClassName
+            });
+            return await query.ToListAsync();
         }
 
         public async Task<PagedList<ClassDto>> GetClassesAsync(UserParams userParams, int companyId)

@@ -51,5 +51,23 @@ namespace API.Controllers
 
             return Ok(hsaAccountTypes);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<GenderDto>>> GetGenders()
+        {
+            var genders = await _lookUpRepository.GetGendersAsync();
+
+            return Ok(genders);
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<MaritalStatusDto>>> GetMaritalStatuses()
+        {
+            var maritalStatuses = await _lookUpRepository.GetMaritalStatusesAsync();
+
+            return Ok(maritalStatuses);
+        }
     }
 }

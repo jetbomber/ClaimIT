@@ -32,4 +32,16 @@ export class EmployeeService {
       })
     )
   }
+
+  getEmployee(employeeId: number) {
+    return this.http.get<Employee>(this.baseUrl + 'employee/' + employeeId); 
+  }
+
+  updateEmployee(employee: Employee){
+    return this.http.put(this.baseUrl + 'employee', employee);
+  }
+
+  createEmployee(employee: Employee){
+    return this.http.post(this.baseUrl + 'employee', employee);
+  }
 }

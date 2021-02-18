@@ -46,6 +46,8 @@ import { DivisionDetailsComponent } from './companies/division-details/division-
 import { ClassDetailsComponent } from './companies/class-details/class-details.component';
 import { CheckboxInputComponent } from './_forms/checkbox-input/checkbox-input.component';
 import { SelectInputComponent } from './_forms/select-input/select-input.component';
+import { MatSelectModule } from '@angular/material/select';
+import { EmployeeCreateComponent } from './employees/employee-create/employee-create.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { SelectInputComponent } from './_forms/select-input/select-input.compone
     ClassListComponent,
     ClassDetailsComponent,
     CheckboxInputComponent,
-    SelectInputComponent
+    SelectInputComponent,
+    EmployeeCreateComponent
   ],
   imports: [
     CommonModule,
@@ -94,7 +97,8 @@ import { SelectInputComponent } from './_forms/select-input/select-input.compone
     MatDatepickerModule,
     MatNativeDateModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatSelectModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

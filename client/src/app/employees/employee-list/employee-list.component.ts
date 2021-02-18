@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { fromEvent, merge } from 'rxjs';
@@ -11,6 +11,8 @@ import { Province } from 'src/app/_models/province';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { LookupService } from 'src/app/_services/lookup.service';
 import { EmployeeListDataSource } from './employee-list-data-source';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -19,9 +21,12 @@ import { EmployeeListDataSource } from './employee-list-data-source';
 })
 export class EmployeeListComponent implements OnInit {
   @Input() companyId: number;
+  modalRef: BsModalRef;
   employeeOperation: FormActions;
   employee:Employee;
   provinces: Province[];
+  filterByOptions: any[];
+  filterBy: string;
   dataSource: EmployeeListDataSource;
   itemsPerPage = Constants.ItemsPerPage;
   pageSizeOptions = Constants.PageSizeOptions;
@@ -32,13 +37,20 @@ export class EmployeeListComponent implements OnInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(private employeeService: EmployeeService, 
-              private lookUpService: LookupService,) { }
+              private lookUpService: LookupService,
+              private modalService: BsModalService,
+              private router: Router) { }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   ngOnInit(): void {
     this.employee = null;
     this.provinces = null;
     this.dataSource = new EmployeeListDataSource(this.employeeService);
     this.dataSource.loadEmployees(setSortingParameters('','asc','LastName',0,this.itemsPerPage));
+    this.populatefilterByOptions()
     this.getProvinces();
   }
 
@@ -66,6 +78,14 @@ export class EmployeeListComponent implements OnInit {
     .subscribe();
   }
 
+  populatefilterByOptions() {
+    this.filterByOptions = [
+      { name: 'Company' },
+      { name: 'Last Name' },
+      { name: 'First Name' }
+    ];
+  }
+
   reloadEmployees(reload: boolean) {
     if (reload) {this.loadEmployeesPage();}
   }
@@ -84,17 +104,11 @@ export class EmployeeListComponent implements OnInit {
                                                        this.sort.active,
                                                        this.paginator.pageIndex,
                                                        this.paginator.pageSize,
-                                                       "LastName"));
+                                                       this.filterBy));
   }
 
   public selectEmployee(employee: Employee) {
-    this.employeeOperation = FormActions.Edit;
-    this.employee=employee;
-  }
-
-  public createEmployee() {
-    this.employeeOperation = FormActions.Create;
-    //this.employee=newEmployee();
+    this.router.navigateByUrl('/employees/'+ employee.id);
   }
 
 }

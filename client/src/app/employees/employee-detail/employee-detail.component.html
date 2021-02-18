@@ -1,1 +1,108 @@
-<p>employee-detail works!</p>
+<div *ngIf="employee">
+    <h2>{{employee.firstName + ' ' + employee.lastName + ' - [' + employee.companyName + ']'}}</h2>
+    <tabset id="tabs">
+      <tab class="p-2 bg-light border" heading="Employee Info" id="tabEmployeeInfo">
+        <form [formGroup]='employeeForm' (ngSubmit)="employeeForm.valid && updateEmployee()" autocomplete="off">
+        <div class="grid-container">            
+            <div class="grid-item1 border">
+                <app-text-input 
+                    [formControl]='employeeForm.controls["firstName"]'
+                    [label]='"First Name"'>
+                </app-text-input>
+                <app-text-input 
+                    [formControl]='employeeForm.controls["middleName"]'
+                    [label]='"Middle Name"'>
+                </app-text-input>
+                <app-text-input 
+                    [formControl]='employeeForm.controls["lastName"]'
+                    [label]='"Last Name"'>
+                </app-text-input>
+                <app-date-input
+                    [formControl]='employeeForm.controls["birthDate"]'
+                    [label]='"Birthdate"'>
+                </app-date-input>
+                <app-text-input 
+                    [formControl]='employeeForm.controls["employeeNumber"]'
+                    [label]='"Employee Number"'>
+                </app-text-input>
+                <app-text-input 
+                    [formControl]='employeeForm.controls["SIN"]'
+                    [label]='"SIN"'>
+                </app-text-input>
+                <app-select-input
+                    [formControl]='employeeForm.controls["genderId"]'
+                    [options]='genders'
+                    [label]='"Gender"'>
+                </app-select-input>
+                <app-select-input
+                    [formControl]='employeeForm.controls["maritalStatusId"]'
+                    [options]='maritalStatuses'
+                    [label]='"Marital Status"'>
+                </app-select-input>
+            </div>
+            <div class="grid-item2 border">  
+                <div class="form-row">
+                    <div class="col">
+                        <app-text-input 
+                            [formControl]='employeeForm.controls["emailAddress"]'
+                            [label]='"Email Address"'>
+                        </app-text-input>
+                        <app-text-input 
+                            [formControl]='employeeForm.controls["phoneNumber"]'
+                            [label]='"Phone Number"'>
+                        </app-text-input>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <app-text-input 
+                        [formControl]='employeeForm.controls["address"]'
+                        [label]='"Address"'>
+                        </app-text-input>
+                    </div>
+                    <div class="col">
+                        <app-text-input 
+                        [formControl]='employeeForm.controls["city"]'
+                        [label]='"City"'>
+                        </app-text-input>
+                    </div>
+                    <div class="col">
+                        <app-select-input
+                            [formControl]='employeeForm.controls["provinceId"]'
+                            [options]='provinces'
+                            [label]='"Province"'>
+                        </app-select-input>
+                    </div>
+                    <div class="col">
+                        <app-text-input 
+                        [formControl]='employeeForm.controls["postalCode"]'
+                        [label]='"Postal Code"'>
+                        </app-text-input>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <app-select-input
+                            [formControl]='employeeForm.controls["divisionId"]'
+                            [options]='divisions'
+                            [label]='"Division"'>
+                        </app-select-input>
+                    </div>
+                    <div class="col">
+                        <app-select-input
+                            [formControl]='employeeForm.controls["classId"]'
+                            [options]='classes'
+                            [label]='"Class"'>
+                        </app-select-input>
+                    </div>
+                </div>
+            </div>   
+            <div class="grid-item3 border"> Item 3</div>
+            <div class="grid-item4 border"> Item 4</div>
+        </div>
+        </form>
+      </tab>
+      <tab class="p-2 bg-light border" heading="Dependents" id="tabDependents">Dependents</tab>
+      <tab class="p-2 bg-light border" heading="Claims" id="tabClaims">Claims</tab>
+    </tabset>
+  </div>

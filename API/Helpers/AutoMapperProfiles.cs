@@ -16,6 +16,8 @@ namespace API.Helpers
             CreateMap<HsaClassDetails, HsaClassDetailsDto>();
             CreateMap<HsaAccountType, HsaAccountTypeDto>();
             CreateMap<Employee, EmployeeDto>();
+            CreateMap<Gender, GenderDto>();
+            CreateMap<MaritalStatus, MaritalStatusDto>();
         }
         
     }

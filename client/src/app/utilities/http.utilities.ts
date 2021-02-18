@@ -12,6 +12,7 @@ export const setRequestParameters = (sortProps: SortProps): any => {
         params = params.append('pageNumber',sortProps.page.toString());
         params = params.append('pageSize', sortProps.itemsPerPage.toString());
         params = params.append('reverse', (sortProps.sortDirection==='asc').toString());
+        params = params.append('filterBy', sortProps.filterBy);
     }
 
     return params;

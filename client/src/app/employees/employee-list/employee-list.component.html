@@ -4,21 +4,28 @@
 
       <div class="col-4 int-box">
         <mat-form-field>
-          <input matInput placeholder="Search Employees" #input>
+          <mat-select placeholder="Filter By" [(ngModel)]="filterBy">
+            <mat-option *ngFor="let option  of filterByOptions" [value]="option.name">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Filter Employees" #input>
         </mat-form-field>
       </div>
 
-      <!--<div class="col-4 int-box">
-        <a mat-button color="primary" (click)="openModal(createEmployee)">Create Company</a>
-      </div>-->
+      <div class="col-4 int-box">
+        <a mat-button color="primary" (click)="openModal(createEmployee)">Create Employee</a>
+      </div>
 
     </div>
 
 </div>
 
-<!--<ng-template #createEmployee>
-  <app-company-create [modalRef]="modalRef"></app-company-create>
-</ng-template>-->
+<ng-template #createEmployee>
+  <app-employee-create [modalRef]="modalRef"></app-employee-create>
+</ng-template>
 
 <div class="p-2 bg-light border">
 
@@ -65,7 +72,7 @@
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-        <tr mat-row *matRowDef="let company; columns: displayColumns;" (click)="selectEmployee(employee)"></tr>
+        <tr mat-row *matRowDef="let employee; columns: displayColumns;" (click)="selectEmployee(employee)"></tr>
        
       </table>
       <mat-paginator class="p-2 bg-light border" [length]="dataSource.total" 

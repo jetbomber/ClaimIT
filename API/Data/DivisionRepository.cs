@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API.DTOs;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using System.Collections.Generic;
 
 namespace API.Data
 {
@@ -50,6 +51,17 @@ namespace API.Data
             });
 
             return await query.SingleOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<DivisionListDto>> GetDivisionListForCompany(int companyId)
+        {
+            var query =  _context.Division
+            .Where(x=>x.CompanyId == companyId)
+            .Select(dtoData => new DivisionListDto {
+                Id = dtoData.Id,
+                Name= dtoData.DivisionName
+            });
+            return await query.ToListAsync();
         }
 
         public async Task<PagedList<DivisionDto>> GetDivisionsAsync(UserParams userParams, int companyId)

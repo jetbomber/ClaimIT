@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FederalTax } from '../_models/federaltax';
+import { Gender } from '../_models/gender';
 import { HsaAccountTypes } from '../_models/hsaaccounttypes';
+import { MaritalStatus } from '../_models/maritalstatus';
 import { Province } from '../_models/province';
 
 @Injectable({
@@ -23,5 +25,12 @@ export class LookupService {
   
   getHsaAccountTypes() {
     return this.http.get<HsaAccountTypes[]>(this.baseUrl + 'lookup/GetHsaAccountTypes'); 
+  }
+
+  getGenders() {
+    return this.http.get<Gender[]>(this.baseUrl + 'lookup/GetGenders'); 
+  }
+  getMaritalStatuses() {
+    return this.http.get<MaritalStatus[]>(this.baseUrl + 'lookup/GetMaritalStatuses'); 
   }
 }

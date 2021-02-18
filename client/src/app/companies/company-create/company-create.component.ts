@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from 'src/app/_services/company.service';
-import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
