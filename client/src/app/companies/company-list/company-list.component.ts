@@ -65,6 +65,10 @@ export class CompanyListComponent implements AfterViewInit, OnInit   {
     .subscribe();
   }
 
+  reloadCompanies(reload: boolean) {
+    if (reload) {this.loadCompaniesPage();}
+  }
+
   loadCompaniesPage() {
     this.dataSource.loadCompanies(setSortingParameters(this.input.nativeElement.value,
                                                        this.sort.direction,

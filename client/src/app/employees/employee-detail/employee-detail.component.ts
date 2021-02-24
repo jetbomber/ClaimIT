@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, of } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
+import { FormActions } from 'src/app/utilities/enum';
 import { Employee } from 'src/app/_models/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
 
@@ -13,6 +14,7 @@ import { EmployeeService } from 'src/app/_services/employee.service';
 export class EmployeeDetailComponent implements OnInit {
   employeeId: number;
   employee: Employee;
+  employeeOperation: FormActions;
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
@@ -24,6 +26,7 @@ export class EmployeeDetailComponent implements OnInit {
     
     this.route.paramMap.subscribe((params) => {
       this.employeeId = +params.get('id');
+      this.employeeOperation = FormActions.Edit;
       this.loadEmployee();
     });
   }

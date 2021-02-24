@@ -11,7 +11,7 @@ import { Province } from 'src/app/_models/province';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { LookupService } from 'src/app/_services/lookup.service';
 import { EmployeeListDataSource } from './employee-list-data-source';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,11 +22,11 @@ import { Router } from '@angular/router';
 export class EmployeeListComponent implements OnInit {
   @Input() companyId: number;
   modalRef: BsModalRef;
-  employeeOperation: FormActions;
   employee:Employee;
   provinces: Province[];
   filterByOptions: any[];
   filterBy: string;
+  config: ModalOptions;
   dataSource: EmployeeListDataSource;
   itemsPerPage = Constants.ItemsPerPage;
   pageSizeOptions = Constants.PageSizeOptions;
@@ -42,6 +42,8 @@ export class EmployeeListComponent implements OnInit {
               private router: Router) { }
 
   openModal(template: TemplateRef<any>) {
+    // this.config = {class: 'modal-lg'};
+    // this.modalRef = this.modalService.show(template,this.config);
     this.modalRef = this.modalService.show(template);
   }
 

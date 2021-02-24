@@ -1,9 +1,11 @@
-import { Component, HostListener, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomValidators } from 'src/app/utilities/custom.validators';
+import { FormActions } from 'src/app/utilities/enum';
 import { ClassList } from 'src/app/_models/classlist';
 import { CompensationType } from 'src/app/_models/compensationtypes';
 import { DivisionList } from 'src/app/_models/divisionlist';
@@ -24,6 +26,8 @@ import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 })
 export class EmployeeInfoComponent implements OnInit {
   @Input() employee: Employee;
+  @Input() employeeOperation: FormActions;
+  @Output() closeWindow: EventEmitter<boolean> = new EventEmitter();
   employeeForm: FormGroup;
   provinces: Province[];
   genders: Gender[];
@@ -68,20 +72,27 @@ export class EmployeeInfoComponent implements OnInit {
       const chng = changes[propName];
       if (propName=='employee' && chng.currentValue != null) {
         this.initializeForm(chng.currentValue);
-      }
+      } 
     }
+    
   }
 
   private initializeForm(employee : Employee) {
-    this.getDivisions(this.employee.companyId);
-    this.getClasses(this.employee.companyId);
+    if (this.employeeOperation==FormActions.Edit) {
+      this.getDivisions(this.employee.companyId);
+      this.getClasses(this.employee.companyId);
+    } else {
+      this.employee.companyId = 1;
+      this.getDivisions(this.employee.companyId);
+      this.getClasses(this.employee.companyId);
+    }
     this.employeeForm = this.fb.group({
       firstName: [employee.firstName, Validators.required],
       lastName: [employee.lastName, Validators.required],
       middleName: [employee.middleName, Validators.required],
       employeeNumber: [employee.employeeNumber, Validators.required],
       sin: [employee.sin, Validators.required],
-      birthDate: [new Date(employee.birthDate), Validators.required],
+      birthDate: [employee.birthDate==null?null:new Date(employee.birthDate), Validators.required],
       genderId:[employee.genderId,Validators.required],
       maritalStatusId:[employee.maritalStatusId,Validators.required],
       emailAddress: [employee.emailAddress,Validators.email],
@@ -92,9 +103,9 @@ export class EmployeeInfoComponent implements OnInit {
       classId:[employee.classId,Validators.required],
       provinceId:[employee.provinceId,Validators.required],
       postalCode:[employee.postalCode,CustomValidators.postalCode("postalCode")],
-      eligibilityDate: [new Date(employee.eligibilityDate), Validators.required],
-      hireDate: [new Date(employee.hireDate), Validators.required],
-      startDate: [new Date(employee.startDate), Validators.required],
+      eligibilityDate: [employee.eligibilityDate==null?null:new Date(employee.eligibilityDate), Validators.required],
+      hireDate: [employee.hireDate==null?null:new Date(employee.hireDate), Validators.required],
+      startDate: [employee.startDate==null?null:new Date(employee.startDate), Validators.required],
       terminationDate: [employee.terminationDate==null?null:new Date(employee.terminationDate)],
       occupation: [employee.occupation, Validators.required],
       compensation: [employee.compensation, CustomValidators.isNumeric("compensation")],
@@ -108,8 +119,6 @@ export class EmployeeInfoComponent implements OnInit {
       evidence: [employee.evidence],
       dependentCoverage: [employee.dependentCoverage]
     });
-    console.log(this.employeeForm.value);
-    console.log(this.employeeForm.valid);
   }
 
   private getProvinces() {
@@ -194,15 +203,30 @@ export class EmployeeInfoComponent implements OnInit {
     this.employee.terminationDate = this.employeeForm.get("terminationDate").value; 
   }
 
-  public updateEmployee() {
+  private updateEmployee() {
     this.retrieveFormData();
     this.employeeService.updateEmployee(this.employee).subscribe(() => {
       this.msg.success('Employee updated successfully');
     }, error => {
-      this.msg.error('Employee was not updated','Error');
       this.validationErrors = error;
     })
   }
 
+  private createEmployee() {
+    this.retrieveFormData();
+    this.employeeService.createEmployee(this.employee).subscribe(() => {
+      this.closeWindow.emit(true);
+      this.msg.success('Employee created successfully');
+    }, error => {
+      this.validationErrors = error;
+    })
+  }
 
+  public handleSubmission() {
+    if (this.employeeOperation==FormActions.Edit) {
+      this.updateEmployee();
+    } else {
+      this.createEmployee();
+    }
+  }
 }

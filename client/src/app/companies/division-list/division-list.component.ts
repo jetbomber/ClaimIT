@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
 import { fromEvent, merge } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 import { Constants } from 'src/app/utilities/constants';
@@ -36,8 +35,7 @@ export class DivisionListComponent implements OnInit {
   @ViewChild('input') input: ElementRef;
 
   constructor(private divisionService: DivisionService, 
-              private lookUpService: LookupService,
-              private router: Router) { }
+              private lookUpService: LookupService) { }
 
   ngOnInit() {
     this.division = null;

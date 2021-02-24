@@ -1,44 +1,13 @@
 <div class="modal-header">
-    <h2 class="modal-title pull-left">Create Employee</h2>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="cancel()">
-      <span aria-hidden="true">&times;</span>
+    <h2 class="modal-title">Create Employee</h2>
+    <button *ngIf="showCloseButton" type="button" class="close pull-right" aria-label="Close" (click)="cancel()">
+        <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body bg-light">
-    <div class="p-3 bg-light border">
-        <form [formGroup]='createEmployeeForm' (ngSubmit)="createEmployeeForm.valid && createEmployee()" autocomplete="off">
-            <app-text-input 
-                [formControl]='createEmployeeForm.controls["lastName"]'
-                [label]='"Last Name"'>
-            </app-text-input>
-            <!--<app-date-input
-                [formControl]='createCompanyForm.controls["commencementDate"]'
-                [label]='"Commencement Date"'>
-            </app-date-input>
-            <app-date-input
-                [formControl]='createCompanyForm.controls["yearEndDate"]'
-                [label]='"Year End Date"'>
-            </app-date-input>
-            <app-checkbox-input
-                [formControl]='createCompanyForm.controls["includeHsaClaims"]'
-                [label]='"HSA"'>
-            </app-checkbox-input>
-            <app-checkbox-input
-                [formControl]='createCompanyForm.controls["includeCostPlusClaims"]'
-                [label]='"Cost Plus"'>
-            </app-checkbox-input>
-            <div class="row mb-2" *ngIf="validationErrors.length > 0">
-                <ul class="text-danger">
-                    <li *ngFor="let error of validationErrors">
-                        {{error}}
-                    </li>
-                </ul>
-            </div>-->
-            <div class="btn-container">
-                <div class="child">
-                    <button [disabled]='!createEmployeeForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
-                </div>
-            </div>   
-        </form>
-    </div>
+<div class="p-3 bg-light border">
+    <app-employee-info [employee]="employee"
+                       [employeeOperation]="employeeOperation"
+                       (closeWindow)="closeWindow($event)">
+    </app-employee-info>
 </div>
+

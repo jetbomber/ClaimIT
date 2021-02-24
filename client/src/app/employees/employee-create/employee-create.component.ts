@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { EmployeeService } from 'src/app/_services/employee.service';
-import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
+import { FormActions } from 'src/app/utilities/enum';
+import { Employee } from 'src/app/_models/employee';
+import { newEmployee } from '../employee-list/employee-common';
 
 @Component({
   selector: 'app-employee-create',
@@ -12,31 +12,28 @@ import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 export class EmployeeCreateComponent implements OnInit {
 
   @Input() modalRef: BsModalRef;
-  public createEmployeeForm: FormGroup;
-  validationErrors: string[] = [];
+  @Output() reloadEmployees: EventEmitter<boolean> = new EventEmitter();
+  employeeOperation: FormActions;
+  employee: Employee;
+  showCloseButton: boolean;
   
-  constructor(private employeeService: EmployeeService,
-              private fb: FormBuilder,
-              private msg: PopUpMessageService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.createEmployeeForm = this.fb.group({
-      lastName: ['', Validators.required]
-    })
+    this.employeeOperation = FormActions.Create;
+    this.employee = newEmployee();
+    this.showCloseButton = true;
+  }
+
+  closeWindow(close: boolean) {
+    if (close) {
+      this.cancel();
+      this.reloadEmployees.emit(true);
+    }
   }
 
   public cancel() {
     this.modalRef.hide();
-  }
-
-  public createEmployee() {
-    this.employeeService.createEmployee(this.createEmployeeForm.value).subscribe(() => {
-      this.msg.success('Employee created successfully');
-      this.modalRef.hide();
-      location.reload();
-    }, error => {
-      this.validationErrors = error;
-    })
   }
 
 }

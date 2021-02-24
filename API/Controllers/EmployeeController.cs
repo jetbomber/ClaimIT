@@ -43,12 +43,35 @@ namespace API.Controllers
         public async Task<ActionResult> UpdateEmployee(Employee employee)
         {
 
+            employee.EligibilityDate = ParseDates.ParseDate(employee.EligibilityDate);
+            employee.StartDate = ParseDates.ParseDate(employee.StartDate);
+            employee.TerminationDate= ParseDates.ParseDate(employee.TerminationDate);
+            employee.HireDate = ParseDates.ParseDate(employee.HireDate);
             _employeeRepository.Update(employee);
 
             if (await _employeeRepository.SaveAllAsync()) return NoContent();
 
             return BadRequest("Failed to update employee");
             
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
+        {
+            
+            if (await _employeeRepository.EmployeeExists(employee.SIN)) {
+                return BadRequest("Employee already exists");
+            } 
+            
+            employee.EligibilityDate = ParseDates.ParseDate(employee.EligibilityDate);
+            employee.StartDate = ParseDates.ParseDate(employee.StartDate);
+            employee.TerminationDate= ParseDates.ParseDate(employee.TerminationDate);
+            employee.HireDate = ParseDates.ParseDate(employee.HireDate);
+            _employeeRepository.Add(employee);
+
+            if (await _employeeRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to add Employee");
         }
      
     }

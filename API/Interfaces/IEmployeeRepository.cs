@@ -11,7 +11,7 @@ namespace API.Interfaces
         Task<bool> SaveAllAsync();
         Task<PagedList<EmployeeDto>> GetEmployeesAsync(UserParams userParams);
         Task<EmployeeDto> GetEmployeeByIdAsync(int employeeId);
-        bool Add(Employee employee);
-        Task<bool> EmployeeExists(string SIN, int companyId);
+        void Add(Employee employee);
+        Task<bool> EmployeeExists(string SIN);
     }
 }

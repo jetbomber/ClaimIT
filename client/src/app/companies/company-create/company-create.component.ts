@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompanyService } from 'src/app/_services/company.service';
-import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 
@@ -12,13 +11,13 @@ import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 })
 export class CompanyCreateComponent implements OnInit {
   @Input() modalRef: BsModalRef;
+  @Output() reloadCompanies: EventEmitter<boolean> = new EventEmitter();
   public createCompanyForm: FormGroup;
   validationErrors: string[] = [];
 
   constructor(private companyService: CompanyService,
               private fb: FormBuilder,
-              private msg: PopUpMessageService,
-              private router: Router) {
+              private msg: PopUpMessageService) {
 
   }
 
@@ -39,8 +38,8 @@ export class CompanyCreateComponent implements OnInit {
   public createCompany() {
     this.companyService.createCompany(this.createCompanyForm.value).subscribe(() => {
       this.msg.success('Company created successfully');
-      this.modalRef.hide();
-      location.reload();
+      this.cancel();
+      this.reloadCompanies.emit(true);
     }, error => {
       this.validationErrors = error;
     })

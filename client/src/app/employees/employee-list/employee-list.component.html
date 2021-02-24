@@ -24,7 +24,7 @@
 </div>
 
 <ng-template #createEmployee>
-  <app-employee-create [modalRef]="modalRef"></app-employee-create>
+  <app-employee-create [modalRef]="modalRef" (reloadEmployees)="reloadEmployees($event)"></app-employee-create>
 </ng-template>
 
 <div class="p-2 bg-light border">

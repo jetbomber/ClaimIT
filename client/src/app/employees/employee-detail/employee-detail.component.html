@@ -1,7 +1,12 @@
 <div *ngIf="employee">
     <h2>{{employee.firstName + ' ' + employee.lastName + ' - [' + employee.companyName + ']'}}</h2>
     <tabset id="tabs">
-      <tab class="p-2 bg-light border" heading="Employee Info" id="tabEmployeeInfo"><app-employee-info [employee]="employee"></app-employee-info></tab>
+      <tab class="p-2 bg-light border" heading="Employee Info" id="tabEmployeeInfo">
+        <app-employee-info [employee]="employee"
+                           [employeeOperation]="employeeOperation"
+                           >
+        </app-employee-info>
+      </tab>
       <tab class="p-2 bg-light border" heading="Dependents" id="tabDependents">Dependents</tab>
       <tab class="p-2 bg-light border" heading="Claims" id="tabClaims">Claims</tab>
     </tabset>

@@ -23,14 +23,9 @@ namespace API.Data
 
         }
 
-        public bool Add(Employee employee)
+        public void Add(Employee employee)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<bool> EmployeeExists(string SIN, int companyId)
-        {
-            throw new System.NotImplementedException();
+            _context.Add(employee).State = EntityState.Added;
         }
 
         public async Task<EmployeeDto> GetEmployeeByIdAsync(int employeeId)
@@ -153,6 +148,13 @@ namespace API.Data
         public void Update(Employee employee)
         {
             _context.Entry(employee).State = EntityState.Modified;
+        }
+
+        public async Task<bool> EmployeeExists(string SIN)
+        {
+            return await _context.Employee
+            .Where(x => x.SIN == SIN)
+            .CountAsync() > 0;
         }
     }
 }
