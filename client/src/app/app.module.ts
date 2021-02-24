@@ -49,6 +49,7 @@ import { SelectInputComponent } from './_forms/select-input/select-input.compone
 import { MatSelectModule } from '@angular/material/select';
 import { EmployeeCreateComponent } from './employees/employee-create/employee-create.component';
 import { EmployeeInfoComponent } from './employees/employee-info/employee-info.component';
+import { EmployeeCompanyComponent } from './employees/employee-company/employee-company.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { EmployeeInfoComponent } from './employees/employee-info/employee-info.c
     CheckboxInputComponent,
     SelectInputComponent,
     EmployeeCreateComponent,
-    EmployeeInfoComponent
+    EmployeeInfoComponent,
+    EmployeeCompanyComponent
   ],
   imports: [
     CommonModule,
