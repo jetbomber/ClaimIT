@@ -1,12 +1,11 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomValidators } from 'src/app/utilities/custom.validators';
 import { FormActions } from 'src/app/utilities/enum';
 import { ClassList } from 'src/app/_models/classlist';
+import { CompanyList } from 'src/app/_models/companylist';
 import { CompensationType } from 'src/app/_models/compensationtypes';
 import { DivisionList } from 'src/app/_models/divisionlist';
 import { Employee } from 'src/app/_models/employee';
@@ -14,6 +13,7 @@ import { Gender } from 'src/app/_models/gender';
 import { MaritalStatus } from 'src/app/_models/maritalstatus';
 import { Province } from 'src/app/_models/province';
 import { ClassService } from 'src/app/_services/class.service';
+import { CompanyService } from 'src/app/_services/company.service';
 import { DivisionService } from 'src/app/_services/division.service';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { LookupService } from 'src/app/_services/lookup.service';
@@ -29,14 +29,17 @@ export class EmployeeInfoComponent implements OnInit {
   @Input() employeeOperation: FormActions;
   @Output() closeWindow: EventEmitter<boolean> = new EventEmitter();
   employeeForm: FormGroup;
+  companies: CompanyList[];
   provinces: Province[];
   genders: Gender[];
   classes: ClassList[];
   divisions: DivisionList[];
   compensationTypes: CompensationType[];
   maritalStatuses: MaritalStatus[];
+  showCompanyList: boolean = false;
 
   validationErrors: string[] = [];
+  companyErrors: string[] = [];
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
@@ -51,6 +54,7 @@ export class EmployeeInfoComponent implements OnInit {
               private lookUpService: LookupService,
               private classService: ClassService,
               private divisionService: DivisionService,
+              private companyService: CompanyService,
               private msg: PopUpMessageService,
               private fb: FormBuilder) {}
 
@@ -61,10 +65,15 @@ export class EmployeeInfoComponent implements OnInit {
       this.divisions = null;
       this.maritalStatuses = null;
       this.compensationTypes = null;
+      this.companies = null;
       this.getProvinces();
       this.getGenders();
       this.getMaritalStatuses();
       this.getCompensationTypes();
+      this.getCompanies();
+      if (this.employeeOperation == FormActions.Create) {
+        this.showCompanyList = true;
+      }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -81,12 +90,9 @@ export class EmployeeInfoComponent implements OnInit {
     if (this.employeeOperation==FormActions.Edit) {
       this.getDivisions(this.employee.companyId);
       this.getClasses(this.employee.companyId);
-    } else {
-      this.employee.companyId = 1;
-      this.getDivisions(this.employee.companyId);
-      this.getClasses(this.employee.companyId);
-    }
+    } 
     this.employeeForm = this.fb.group({
+      companyId: [employee.companyId],
       firstName: [employee.firstName, Validators.required],
       lastName: [employee.lastName, Validators.required],
       middleName: [employee.middleName, Validators.required],
@@ -119,6 +125,15 @@ export class EmployeeInfoComponent implements OnInit {
       evidence: [employee.evidence],
       dependentCoverage: [employee.dependentCoverage]
     });
+    this.employeeForm.get("companyId").valueChanges
+    .subscribe(companyId=> {
+      this.divisions = null;
+      this.classes = null;
+      this.companyErrors = [];
+      this.getDivisions(companyId);
+      this.getClasses(companyId);
+      this.employee.companyId=companyId;
+    })
   }
 
   private getProvinces() {
@@ -156,7 +171,12 @@ export class EmployeeInfoComponent implements OnInit {
   private getDivisions(companyId: number) {
     this.divisionService.getDivisionListForCompany(companyId).pipe(
         map(response => {
-          this.divisions = response;
+          if (response.length>0) {
+            this.divisions = response;
+          } else {
+            this.companyErrors.push("No Divisions Defined");
+            this.msg.error('Define the Divisions for the selected company before creating employees','No Divisions defined');
+          }
         })
     ).subscribe();
   }
@@ -164,7 +184,20 @@ export class EmployeeInfoComponent implements OnInit {
   private getClasses(companyId: number) {
     this.classService.getClassListForCompany(companyId).pipe(
         map(response => {
-          this.classes = response;
+          if (response.length>0) {
+            this.classes = response;
+          } else {
+            this.companyErrors.push("No Classes Defined");
+            this.msg.error('Define the Classes for the selected company before creating employees','No Classes defined');
+          }
+        })
+    ).subscribe();
+  }
+
+  private getCompanies() {
+    this.companyService.getCompanyList().pipe(
+        map(response => {
+          this.companies = response;
         })
     ).subscribe();
   }

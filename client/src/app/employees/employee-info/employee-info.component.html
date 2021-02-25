@@ -1,4 +1,21 @@
 <form [formGroup]='employeeForm' (ngSubmit)="employeeForm.valid && handleSubmission()" autocomplete="off">
+    <div *ngIf="showCompanyList" class="form-row p-2">
+        <div class="col-3">
+            <app-select-input
+            [formControl]='employeeForm.controls["companyId"]'
+            [options]='companies'
+            [label]='"Company"'>
+            </app-select-input>
+        </div>
+        <div class="col-4" *ngIf="companyErrors.length > 0">
+            <label class="error_msg">Employee cannot be created for this company</label>
+            <ul class="text-danger">
+                <li *ngFor="let error of companyErrors">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="grid-container">            
         <div class="grid-item1 border">
             <app-text-input 
@@ -137,15 +154,15 @@
                     </app-text-input>
                 </div>
             </div>
-            <div class="form-row" *ngIf="employee.companyId">
-                <div class="col">
+            <div class="form-row">
+                <div class="col" *ngIf="employee.companyId && divisions">
                     <app-select-input
                         [formControl]='employeeForm.controls["divisionId"]'
                         [options]='divisions'
                         [label]='"Division"'>
                     </app-select-input>
                 </div>
-                <div class="col">
+                <div class="col" *ngIf="employee.companyId && classes">
                     <app-select-input
                         [formControl]='employeeForm.controls["classId"]'
                         [options]='classes'

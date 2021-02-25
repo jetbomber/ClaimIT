@@ -6,6 +6,8 @@ using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using API.DTOs;
 
 namespace API.Data
 {
@@ -32,6 +34,17 @@ namespace API.Data
             query = SortingExtension.SortBy(query,userParams.SortColumn,userParams.Reverse);
 
             return await PagedList<Company>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+        }
+
+        public async Task<IEnumerable<CompanyListDto>> GetCompanyList()
+        {
+            var query =  _context.Company
+            .OrderBy(x=>x.CompanyName)
+            .Select(dtoData => new CompanyListDto {
+                Id = dtoData.Id,
+                Name= dtoData.CompanyName
+            });
+            return await query.ToListAsync();
         }
 
         public async Task<Company> GetCompanyByIdAsync(int id)

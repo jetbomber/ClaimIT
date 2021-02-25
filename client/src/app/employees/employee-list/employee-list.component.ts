@@ -42,8 +42,6 @@ export class EmployeeListComponent implements OnInit {
               private router: Router) { }
 
   openModal(template: TemplateRef<any>) {
-    // this.config = {class: 'modal-lg'};
-    // this.modalRef = this.modalService.show(template,this.config);
     this.modalRef = this.modalService.show(template);
   }
 

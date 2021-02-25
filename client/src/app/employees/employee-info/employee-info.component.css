@@ -17,3 +17,7 @@
 .grid-item4 {	
     grid-column: 2/3;
 }
+.error_msg {
+	color: red;
+	font-weight: bold;
+}

@@ -6,6 +6,7 @@ import { Company } from '../_models/company';
 import { PaginatedResult } from '../_models/pagination';
 import { setRequestParameters } from '../utilities/http.utilities';
 import { SortProps } from '../_models/sort.props';
+import { CompanyList } from '../_models/companylist';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class CompanyService {
 
   getCompany(companyId: number) {
     return this.http.get<Company>(this.baseUrl + 'company/' + companyId); 
+  }
+
+  getCompanyList() {
+    return this.http.get<CompanyList[]>(this.baseUrl + 'company/GetCompanyList'); 
   }
 
   updateCompany(company: Company){

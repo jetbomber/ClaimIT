@@ -49,6 +49,7 @@ namespace API.Data
         {
             var query =  _context.Class
             .Where(x=>x.CompanyId == companyId)
+            .OrderBy(x=>x.ClassName)
             .Select(dtoData => new ClassListDto {
                 Id = dtoData.Id,
                 Name= dtoData.ClassName

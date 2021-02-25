@@ -57,6 +57,7 @@ namespace API.Data
         {
             var query =  _context.Division
             .Where(x=>x.CompanyId == companyId)
+            .OrderBy(x=>x.DivisionName)
             .Select(dtoData => new DivisionListDto {
                 Id = dtoData.Id,
                 Name= dtoData.DivisionName

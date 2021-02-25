@@ -46,10 +46,9 @@ import { DivisionDetailsComponent } from './companies/division-details/division-
 import { ClassDetailsComponent } from './companies/class-details/class-details.component';
 import { CheckboxInputComponent } from './_forms/checkbox-input/checkbox-input.component';
 import { SelectInputComponent } from './_forms/select-input/select-input.component';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectModule} from '@angular/material/select';
 import { EmployeeCreateComponent } from './employees/employee-create/employee-create.component';
 import { EmployeeInfoComponent } from './employees/employee-info/employee-info.component';
-import { EmployeeCompanyComponent } from './employees/employee-company/employee-company.component';
 
 @NgModule({
   declarations: [
@@ -76,8 +75,7 @@ import { EmployeeCompanyComponent } from './employees/employee-company/employee-
     CheckboxInputComponent,
     SelectInputComponent,
     EmployeeCreateComponent,
-    EmployeeInfoComponent,
-    EmployeeCompanyComponent
+    EmployeeInfoComponent
   ],
   imports: [
     CommonModule,

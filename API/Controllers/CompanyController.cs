@@ -43,6 +43,15 @@ namespace API.Controllers
             return await _companyRepository.GetCompanyByIdAsync(companyId);
         }
 
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<CompanyListDto>>> GetCompanyList()
+        {
+            var companyList = await _companyRepository.GetCompanyList();
+
+            return Ok(companyList);
+        }
+
         [HttpPost]
         public async Task<ActionResult<Company>> CreateCompany(Company company)
         {
