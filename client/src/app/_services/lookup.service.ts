@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CompensationType } from '../_models/compensationtypes';
+import { DependentRelationshipType } from '../_models/dependentrelationshiptypes';
 import { FederalTax } from '../_models/federaltax';
 import { Gender } from '../_models/gender';
 import { HsaAccountTypes } from '../_models/hsaaccounttypes';
@@ -37,5 +38,9 @@ export class LookupService {
 
   getCompensationTypes() {
     return this.http.get<CompensationType[]>(this.baseUrl + 'lookup/GetCompensationTypes'); 
+  }
+
+  getDependentRelationshipTypes() {
+    return this.http.get<DependentRelationshipType[]>(this.baseUrl + 'lookup/GetDependentRelationshipTypes'); 
   }
 }

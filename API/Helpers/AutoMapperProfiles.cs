@@ -18,6 +18,7 @@ namespace API.Helpers
             CreateMap<Employee, EmployeeDto>();
             CreateMap<Gender, GenderDto>();
             CreateMap<MaritalStatus, MaritalStatusDto>();
+            CreateMap<Dependent, DependentDto>();
         }
         
     }

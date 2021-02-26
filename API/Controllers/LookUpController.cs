@@ -78,5 +78,14 @@ namespace API.Controllers
 
             return Ok(compensationTypes);
         }
+
+        [Route("[action]")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<DependentRelationshipTypeDto>>> GetDependentRelationshipTypes()
+        {
+            var dependentRelationshipTypes = await _lookUpRepository.GetDependentRelationshipTypesAsync();
+
+            return Ok(dependentRelationshipTypes);
+        }
     }
 }

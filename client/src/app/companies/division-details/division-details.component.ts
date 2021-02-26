@@ -19,7 +19,7 @@ export class DivisionDetailsComponent implements OnInit {
   @Input() division: Division
   @Input() provinces: Province[];
   @Input() federalTaxes: FederalTax[];
-  @Input()  divisionOperation: FormActions;
+  @Input() divisionOperation: FormActions;
   provinceList = [];
   divisionForm: FormGroup;
   taxFeePercentage: number;

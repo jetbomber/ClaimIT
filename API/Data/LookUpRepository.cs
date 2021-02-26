@@ -102,5 +102,16 @@ namespace API.Data
 
             return await query.ToListAsync();
         }
+
+        public async Task<IEnumerable<DependentRelationshipTypeDto>> GetDependentRelationshipTypesAsync()
+        {
+            var query = _context.Dependent_Relationship_Type
+            .Select(dtoData => new DependentRelationshipTypeDto {
+                Id = dtoData.Id,
+                Name= dtoData.Type
+            });
+
+            return await query.ToListAsync();
+        }
     }
 }

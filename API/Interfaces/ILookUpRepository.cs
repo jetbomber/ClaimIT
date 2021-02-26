@@ -14,5 +14,6 @@ namespace API.Interfaces
         Task<IEnumerable<GenderDto>> GetGendersAsync();
         Task<IEnumerable<MaritalStatusDto>> GetMaritalStatusesAsync();
         Task<IEnumerable<CompensationTypeDto>> GetCompensationTypesAsync();
+        Task<IEnumerable<DependentRelationshipTypeDto>> GetDependentRelationshipTypesAsync();
     }
 }

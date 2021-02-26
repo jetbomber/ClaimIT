@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { setRequestParameters } from '../utilities/http.utilities';
-import { Class } from '../_models/class';
 import { Employee } from '../_models/employee';
 import { PaginatedResult } from '../_models/pagination';
 import { SortProps } from '../_models/sort.props';

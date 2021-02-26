@@ -1,0 +1,60 @@
+<div>
+
+    <div class="row justify-content-between ext-box">
+
+      <div class="col-2 int-box pull-right">
+        <a mat-button color="primary" (click)="createDependent(employee)">Create Dependent</a>
+      </div>
+
+    </div>
+
+</div>
+
+<div class="p-2 bg-light border">
+
+    <table mat-table [dataSource]="dataSource" class="table table-hover"
+    matSort matSortActive="FirstName" matSortDirection="asc" matSortDisableClear>
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Id Column -->
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Id </th>
+          <td mat-cell *matCellDef="let dependent">{{dependent.id}}</td>
+        </ng-container>
+        <!-- First Name Column -->
+        <ng-container matColumnDef="FirstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> First Name </th>
+          <td mat-cell *matCellDef="let dependent"> {{dependent.firstName}} </td>
+        </ng-container>
+        <!-- Last Name Column -->
+        <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Last Name </th>
+        <td mat-cell *matCellDef="let dependent"> {{dependent.lastName}} </td>
+        </ng-container>
+        <!-- Birth Date Column -->
+        <ng-container matColumnDef="BirthDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Birth Date </th>
+            <td mat-cell *matCellDef="let dependent"> {{dependent.birthDate | date:'MM/dd/yyyy'}} </td>
+        </ng-container>
+        <!-- Relationship Column -->
+        <ng-container matColumnDef="DependentRelationshipTypeName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="modify-arrow"> Relationship </th>
+            <td mat-cell *matCellDef="let dependent"> {{dependent.dependentRelationshipTypeName}} </td>
+        </ng-container>
+       
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row *matRowDef="let dependent; columns: displayColumns;" (click)="selectDependent(dependent)"></tr>
+       
+      </table>
+      <mat-paginator class="p-2 bg-light border" [length]="dataSource.total" 
+      [pageSizeOptions]="pageSizeOptions" [pageSize]="itemsPerPage" showFirstLastButtons></mat-paginator>
+      
+</div>
+<app-dependent-details [dependent]="dependent"
+                       [genders]="genders"
+                       [dependentOperation]="dependentOperation"
+                       [dependentRelationshipTypes]="dependentRelationshipTypes"
+                       (reloadDependents)="reloadDependents($event)">
+</app-dependent-details>

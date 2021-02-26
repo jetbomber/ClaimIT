@@ -1,0 +1,57 @@
+<br/>
+<div *ngIf="dependent" class="p-3 border">
+    <form [formGroup]='dependentForm' (ngSubmit)="dependentForm.valid && handleSubmission()" autocomplete="off">
+        <div class="grid-container">               
+            <div class="grid-item1 border">  
+                <div class="form-row">
+                    <div class="col">
+                        <app-text-input 
+                            [formControl]='dependentForm.controls["firstName"]'
+                            [label]='"First Name"'>
+                        </app-text-input>
+                    </div>
+                    <div class="col">
+                        <app-text-input 
+                            [formControl]='dependentForm.controls["lastName"]'
+                            [label]='"Last Name"'>
+                        </app-text-input>
+                    </div>
+                    <div class="col">
+                        <app-date-input
+                            [formControl]='dependentForm.controls["birthDate"]'
+                            [label]='"Birth Date"'>
+                        </app-date-input>
+                    </div>
+                    <div class="col">
+                        <app-select-input
+                            [formControl]='dependentForm.controls["genderId"]'
+                            [options]='genders'
+                            [label]='"Gender"'>
+                        </app-select-input>
+                    </div>
+                    <div class="col">
+                        <app-select-input
+                            [formControl]='dependentForm.controls["dependentRelationshipTypeId"]'
+                            [options]='dependentRelationshipTypes'
+                            [label]='"Relationship"'>
+                        </app-select-input>
+                    </div>
+                </div>
+            </div>              
+        </div>
+        <div class="row mb-2" *ngIf="validationErrors.length > 0">
+            <ul class="text-danger">
+                <li *ngFor="let error of validationErrors">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+        <div class="btn-container">
+            <fieldset>
+                <div class="child">
+                    <button [disabled]='!dependentForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</div>
