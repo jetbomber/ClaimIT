@@ -97,7 +97,7 @@ export class EmployeeInfoComponent implements OnInit {
       lastName: [employee.lastName, Validators.required],
       middleName: [employee.middleName, Validators.required],
       employeeNumber: [employee.employeeNumber, Validators.required],
-      sin: [employee.sin, Validators.required],
+      sin: [employee.sin, CustomValidators.sin("sin")],
       birthDate: [employee.birthDate==null?null:new Date(employee.birthDate), Validators.required],
       genderId:[employee.genderId,Validators.required],
       maritalStatusId:[employee.maritalStatusId,Validators.required],

@@ -111,6 +111,14 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigateByUrl('/employees/'+ employee.id);
   }
 
+  public createPDF() {
+      this.lookUpService.createPDF().pipe(
+        map(response => {
+          console.log(response);
+        })
+    ).subscribe();
+  }
+
 }
 
 

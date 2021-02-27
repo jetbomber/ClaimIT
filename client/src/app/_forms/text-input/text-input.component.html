@@ -26,7 +26,10 @@
     </div> 
     <div *ngIf="ngControl.control.errors?.isValidPostalCode" class="invalid-feedback">
         A valid {{label}} is required - (e.g. R2J-1Y4)
-    </div>  
+    </div>
+    <div *ngIf="ngControl.control.errors?.isValidSin" class="invalid-feedback">
+        A valid {{label}} is required - (e.g. 123-456-789)
+    </div>   
     <div *ngIf="ngControl.control.errors?.isNumeric" class="invalid-feedback">
         Enter a valid number for {{label}}
     </div>     

@@ -51,6 +51,7 @@ import { EmployeeCreateComponent } from './employees/employee-create/employee-cr
 import { EmployeeInfoComponent } from './employees/employee-info/employee-info.component';
 import { DependentListComponent } from './employees/dependent-list/dependent-list.component';
 import { DependentDetailsComponent } from './employees/dependent-details/dependent-details.component';
+import { CompanyInfoComponent } from './companies/company-info/company-info.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { DependentDetailsComponent } from './employees/dependent-details/depende
     EmployeeCreateComponent,
     EmployeeInfoComponent,
     DependentListComponent,
-    DependentDetailsComponent
+    DependentDetailsComponent,
+    CompanyInfoComponent
   ],
   imports: [
     CommonModule,

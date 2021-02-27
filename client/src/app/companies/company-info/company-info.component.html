@@ -1,0 +1,39 @@
+<form [formGroup]='companyForm' (ngSubmit)="companyForm.valid && handleSubmission()" autocomplete="off">
+    <app-text-input 
+    [formControl]='companyForm.controls["companyName"]'
+    [label]='"Company Name"'>
+    </app-text-input>
+    <app-date-input
+    [formControl]='companyForm.controls["commencementDate"]'
+    [label]='"Commencement Date"'>
+    </app-date-input>
+    <app-date-input
+    [formControl]='companyForm.controls["yearEndDate"]'
+    [label]='"Year End Date"'>
+    </app-date-input>
+    <app-date-input
+    [formControl]='companyForm.controls["groupTerminationDate"]'
+    [label]='"Termination Date"'>
+    </app-date-input>
+    <app-checkbox-input
+    [formControl]='companyForm.controls["includeHsaClaims"]'
+    [label]='"HSA"'>
+    </app-checkbox-input>
+    <app-checkbox-input
+    [formControl]='companyForm.controls["includeCostPlusClaims"]'
+    [label]='"Cost Plus"'>
+    </app-checkbox-input>
+    <div class="row mb-2" *ngIf="validationErrors.length > 0">
+    <ul class="text-danger">
+        <li *ngFor="let error of validationErrors">
+            {{error}}
+        </li>
+    </ul>
+    </div>
+    <div class="btn-container">
+    <div class="child">
+        <button [disabled]='!companyForm.valid' class="btn btn-primary btn-block" type="submit">Save </button>
+    </div>
+    </div>   
+</form>
+

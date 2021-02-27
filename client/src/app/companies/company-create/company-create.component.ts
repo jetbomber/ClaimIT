@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CompanyService } from 'src/app/_services/company.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
+import { FormActions } from 'src/app/utilities/enum';
+import { Company } from 'src/app/_models/company';
+import { newCompany } from '../company-list/company-common';
 
 @Component({
   selector: 'app-company-create',
@@ -12,37 +12,29 @@ import { PopUpMessageService } from 'src/app/_services/pop-up-message.service';
 export class CompanyCreateComponent implements OnInit {
   @Input() modalRef: BsModalRef;
   @Output() reloadCompanies: EventEmitter<boolean> = new EventEmitter();
-  public createCompanyForm: FormGroup;
-  validationErrors: string[] = [];
+  companyOperation: FormActions;
+  company: Company;
+  showCloseButton: boolean;
 
-  constructor(private companyService: CompanyService,
-              private fb: FormBuilder,
-              private msg: PopUpMessageService) {
+  constructor() {
 
   }
 
   ngOnInit(): void {
-    this.createCompanyForm = this.fb.group({
-      companyName: ['', Validators.required],
-      commencementDate: ['', Validators.required],
-      yearEndDate: ['', Validators.required],
-      includeHsaClaims: [false],
-      includeCostPlusClaims: [false]
-    })
+    this.companyOperation = FormActions.Create;
+    this.company = newCompany();
+    this.showCloseButton = true;
+  }
+
+  closeWindow(close: boolean) {
+    if (close) {
+      this.cancel();
+      this.reloadCompanies.emit(true);
+    }
   }
 
   public cancel() {
     this.modalRef.hide();
-  }
-
-  public createCompany() {
-    this.companyService.createCompany(this.createCompanyForm.value).subscribe(() => {
-      this.msg.success('Company created successfully');
-      this.cancel();
-      this.reloadCompanies.emit(true);
-    }, error => {
-      this.validationErrors = error;
-    })
   }
   
 }

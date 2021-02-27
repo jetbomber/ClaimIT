@@ -1,6 +1,7 @@
 using API.Data;
 using API.Helpers;
 using API.Interfaces;
+using API.PdfProvider;
 using API.Services;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ namespace API.Extensions
             services.AddScoped<IHsaClassDetailsRepository, HsaClassDetailsRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IDependentRepository, DependentRepository>();
+            services.AddScoped<IPdfSharpService, PdfSharpService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {

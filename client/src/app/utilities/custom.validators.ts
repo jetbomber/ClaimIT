@@ -16,6 +16,13 @@ export class CustomValidators {
         }
     }
 
+    static sin(validateTo: string): ValidatorFn {
+        return (control: AbstractControl) => {
+            const SIN = /^(\d{3}-\d{3}-\d{3})|(\d{9})$/;
+            return SIN.test(control?.parent?.controls[validateTo].value) ? null : {isValidSin: true};
+        }
+    }
+
     static isNumeric(validateTo: string): ValidatorFn {
         return (control: AbstractControl) => {
             const NUMERIC_REGEXP = /[0-9]\.*$/;

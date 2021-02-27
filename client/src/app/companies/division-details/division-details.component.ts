@@ -95,7 +95,6 @@ export class DivisionDetailsComponent implements OnInit {
         this.reloadDivisions.emit(true);
         this.msg.success('Division updated successfully');
       }, error => {
-        this.msg.error('Division was not updated','Error');
         this.validationErrors = error;
       })
     } else {
@@ -105,7 +104,6 @@ export class DivisionDetailsComponent implements OnInit {
         this.initializeForm(newDivision(this.division.companyId));
         this.msg.success('Division created successfully');
       }, error => {
-        this.msg.error('Division was not created','Error');
         this.validationErrors = error;
       })
     }
