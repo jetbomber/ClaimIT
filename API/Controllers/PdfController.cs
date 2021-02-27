@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using API.Data;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,8 @@ namespace API.Controllers
             _pdfService = pdfService;
         }
 
-        //[Route("CreatePdf")]
         [HttpGet]
-        public FileStreamResult CreatePdf()
+        public IActionResult CreatePdf()
         {
             var data = new PdfData
             {
@@ -36,7 +36,10 @@ namespace API.Controllers
             var path = _pdfService.CreatePdf(data);
 
             var stream = new FileStream(path, FileMode.Open);
-            return File(stream, "application/pdf");
+            return new FileStreamResult(stream, "application/pdf")
+            {
+                FileDownloadName = "TestPdf.pdf"
+            };
         }
     }
 }

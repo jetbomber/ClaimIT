@@ -13,6 +13,7 @@ import { LookupService } from 'src/app/_services/lookup.service';
 import { EmployeeListDataSource } from './employee-list-data-source';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-employee-list',
@@ -109,14 +110,6 @@ export class EmployeeListComponent implements OnInit {
 
   public selectEmployee(employee: Employee) {
     this.router.navigateByUrl('/employees/'+ employee.id);
-  }
-
-  public createPDF() {
-      this.lookUpService.createPDF().pipe(
-        map(response => {
-          console.log(response);
-        })
-    ).subscribe();
   }
 
 }

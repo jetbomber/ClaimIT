@@ -44,7 +44,4 @@ export class LookupService {
     return this.http.get<DependentRelationshipType[]>(this.baseUrl + 'lookup/GetDependentRelationshipTypes'); 
   }
 
-  createPDF() {
-    return this.http.get(this.baseUrl + 'pdf');
-  }
 }
